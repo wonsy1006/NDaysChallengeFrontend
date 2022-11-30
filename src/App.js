@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Router from './router/router';
+import { signIn } from './utils/auth';
+import Navigation from './components/common/Navigation';
+import Header from './components/common/Header';
+import Layout from './components/layout/Layout';
 
-function App() {
+const App = () => {
+  let location = useLocation();
+
+  const [user, setUser] = useState(null);
+  const authenticated = user != null;
+
+  const login = ({ email, password }) => setUser(signIn({ email, password }));
+  const logout = () => setUser(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      {location.pathname === '/welcome' ? null : <Header />}
+      <Router />
+      {location.pathname === '/welcome' ? null : <Navigation />}
+    </Layout>
   );
-}
+};
 
 export default App;
