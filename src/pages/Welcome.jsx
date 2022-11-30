@@ -60,6 +60,9 @@ const Welcome = () => {
           </WaveSpan>
         </WaveWrapper> */}
         <MainWrapper>엔챌</MainWrapper>
+        <Button primary onClick={directToMain}>
+          시작하기
+        </Button>
       </TitleWrapper>
     </>
   );
