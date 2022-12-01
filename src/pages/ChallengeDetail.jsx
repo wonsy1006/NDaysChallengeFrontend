@@ -17,6 +17,7 @@ const ChallengeDetail = () => {
   const { challenges, message, errorMessage } = useSelector(
     (state) => state.challenge,
   );
+
   const dispatch = useDispatch();
 
   const removeChallenge = () => {};
@@ -37,7 +38,7 @@ const ChallengeDetail = () => {
         <Tag individual>개인</Tag>
       </RowWrapper>
       <ChallengeDajim />
-      <ChallengeReward />
+      <ChallengeReward content={challenges[id].reward} />
       <ChallengeStamp />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>

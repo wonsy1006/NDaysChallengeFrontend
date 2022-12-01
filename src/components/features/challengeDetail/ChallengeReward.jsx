@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from '../../common/Card';
 
-const ChallengeReward = () => {
+const ChallengeReward = (props) => {
   return (
     <Card>
       <RewardTitle>🎁 챌린지 보상</RewardTitle>
-      <RewardContent>24시간 잠자기</RewardContent>
+      <RewardContent>{props.content}</RewardContent>
     </Card>
   );
 };

@@ -8,6 +8,8 @@ import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 const ChallengeListItem = ({ id, title, category, startDate }) => {
   const { params } = useParams(id);
 
+  console.log(id);
+
   return (
     <Card>
       <ColumnWrapper>
@@ -25,7 +27,7 @@ const ChallengeListItem = ({ id, title, category, startDate }) => {
           </ChallengePeriod>
         </RowWrapper>
         <RowWrapper justifyContent="flex-end">
-          <ChallengeDetailLink to={`/challenge-detail/${id}`}>
+          <ChallengeDetailLink to={`/challenge-detail/${id - 1}`}>
             상세 보기
           </ChallengeDetailLink>
         </RowWrapper>
