@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Card from '../../common/Card';
 import Tag from '../../common/Tag';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 
 const ChallengeListItem = ({ id, title, category, startDate }) => {
+  const { params } = useParams(id);
+
   return (
     <Card>
       <ColumnWrapper>
@@ -23,7 +25,7 @@ const ChallengeListItem = ({ id, title, category, startDate }) => {
           </ChallengePeriod>
         </RowWrapper>
         <RowWrapper justifyContent="flex-end">
-          <ChallengeDetailLink to="/challenge-detail">
+          <ChallengeDetailLink to={`/challenge-detail/${id}`}>
             상세 보기
           </ChallengeDetailLink>
         </RowWrapper>

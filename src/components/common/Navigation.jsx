@@ -53,7 +53,7 @@ const NavigationContainer = styled.div`
   max-width: 480px;
   height: 9.6rem;
   padding: 20px 15px;
-  gap: 49px;
+  gap: 2.4rem;
 
   border-radius: 1.5rem 1.5rem 0 0;
   background: #fff4db;
@@ -75,7 +75,7 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const NavigationTitle = styled.p`
-  font-size: ${({ theme }) => theme.fonts.size.nav};
+  font-size: ${({ theme }) => theme.fonts.size.small};
   text-align: center;
   margin-top: 1rem;
 `;

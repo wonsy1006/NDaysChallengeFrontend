@@ -35,23 +35,23 @@ const SignUpForm = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="이메일" />
         <StyledInput {...register('email')} type="email" />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="비밀번호" />
         <StyledInput {...register('password')} type="password" />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="비밀번호 확인" />
         <StyledInput {...register('passwordCheck')} type="password" />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="닉네임" />
         <StyledInput {...register('nickname')} type="text" />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="프로필 사진 선택" />
         <RadioWrapper>
           <Radio
@@ -130,7 +130,7 @@ const RadioWrapper = styled.div`
   gap: 0.5rem;
   flex-wrap: wrap;
   width: 95%;
-  margin: 0.6rem auto 3.2rem;
+  margin: 0.6rem auto;
 `;
 
 const Radio = styled.input`

@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const Tag = (props) => <StyledTag {...props} />;
+const Tag = (props) => {
+  return <StyledTag {...props} />;
+};
 
 export default Tag;
 

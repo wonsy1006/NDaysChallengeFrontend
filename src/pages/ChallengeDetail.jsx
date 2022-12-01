@@ -9,9 +9,14 @@ import Invite from '../components/features/invite/Invite';
 import { ColumnWrapper, RowWrapper } from '../components/common/Wrapper';
 import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import Tag from '../components/common/Tag';
+import { useParams } from 'react-router-dom';
 
 const ChallengeDetail = () => {
+  const { id } = useParams();
   const { isOpen } = useSelector((store) => store.modal);
+  const { challenges, message, errorMessage } = useSelector(
+    (state) => state.challenge,
+  );
   const dispatch = useDispatch();
 
   const removeChallenge = () => {};
@@ -26,7 +31,7 @@ const ChallengeDetail = () => {
           <span>님의 챌린지</span>
         </NicknameContainer>
       </UserContainer>
-      <ChallengeTitle>홍제천에서 1만보 걷기</ChallengeTitle>
+      <ChallengeTitle>{challenges[id].title}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
         <Tag routine>규칙적인 생활</Tag>
         <Tag individual>개인</Tag>

@@ -6,14 +6,13 @@ import { StyledInput, InputLabel } from '../../common/Input';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 
-const ChallengeDajimForm = ({ getBackToEditMode, getDajimContent }) => {
+const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
   const { register, resetField, handleSubmit } = useForm();
   const [data, setData] = useState('');
 
   const submitForm = (data) => {
-    setData(JSON.stringify(data));
+    console.log(id);
     console.log(data);
-
     resetField('openRange');
     resetField('dajimContent');
 

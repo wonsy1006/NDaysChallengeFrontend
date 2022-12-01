@@ -8,7 +8,8 @@ import { ReactComponent as Pic6 } from '../../assets/images/profile_pics/pic6.sv
 
 const ProfilePic = (props) => {
   const picType = props.picType;
-  switch (picType) {
+  console.log(picType);
+  switch (props.picType) {
     case 'pic1':
       return <Pic1 />;
     case 'pic2':
