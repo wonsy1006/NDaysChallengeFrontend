@@ -35,7 +35,7 @@ const CreateChallengeForm = () => {
     console.log(data);
 
     axios
-      .post('http://localhost:8080/create/challenge', data, {
+      .post('http://localhost:8080/challenge/create', data, {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((response) => {

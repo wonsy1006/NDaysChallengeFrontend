@@ -20,7 +20,7 @@ const SignUpForm = () => {
     console.log(data);
 
     axios
-      .post('http://localhost:8080/signup', data, {
+      .post('http://localhost:8080/auth/signup', data, {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((response) => {
@@ -45,7 +45,7 @@ const SignUpForm = () => {
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="비밀번호 확인" />
-        <StyledInput {...register('passwordCheck')} type="password" />
+        <StyledInput {...register('pwCheck')} type="password" />
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="닉네임" />

@@ -15,18 +15,14 @@ const initialState = {
 
 export const userSignUp = createAsyncThunk(
   'user/signUp',
-  async ({ email, password, nickname, profilePic }, { rejectWithValue }) => {
+  async ({ id, pw, nickname, image }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
           'Content-Type': 'application/json',
         },
       };
-      await axios.post(
-        '/api/user/signUp',
-        { email, password, nickname, profilePic },
-        config,
-      );
+      await axios.post('/api/user/signUp', { id, pw, nickname, image }, config);
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -39,18 +35,14 @@ export const userSignUp = createAsyncThunk(
 
 export const userLogin = createAsyncThunk(
   'user/login',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ id, pw }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
           'Content-Type': 'application/json',
         },
       };
-      const { data } = await axios.post(
-        '/api/user/login',
-        { email, password },
-        config,
-      );
+      const { data } = await axios.post('/auth/login', { id, pw }, config);
       localStorage.setItem('userToken', data.userToken);
       return data;
     } catch (error) {
