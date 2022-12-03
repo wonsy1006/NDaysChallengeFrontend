@@ -12,7 +12,8 @@ import Tag from '../components/common/Tag';
 import { useParams } from 'react-router-dom';
 
 const ChallengeDetail = () => {
-  const { number } = useParams();
+  const { id } = useParams();
+
   const { isOpen } = useSelector((store) => store.modal);
   const { challenges, message, errorMessage } = useSelector(
     (state) => state.challenge,
@@ -24,7 +25,7 @@ const ChallengeDetail = () => {
 
   return (
     <>
-      {isOpen && <ChallengeModal />}
+      {isOpen && <ChallengeModal content={challenges[id]} />}
       <UserContainer>
         <Pic1 />
         <NicknameContainer>
@@ -32,20 +33,21 @@ const ChallengeDetail = () => {
           <span>님의 챌린지</span>
         </NicknameContainer>
       </UserContainer>
-      <ChallengeTitle>{challenges[number].name}</ChallengeTitle>
+      <ChallengeTitle>{challenges[id].name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
         <Tag routine>규칙적인 생활</Tag>
         <Tag individual>개인</Tag>
       </RowWrapper>
       <ChallengeDajim />
-      <ChallengeReward content={challenges[number].reward} />
-      <ChallengeStamp content={challenges[number].totalDays} />
+      <ChallengeReward content={challenges[id].reward} />
+      <ChallengeStamp content={challenges[id].totalDays} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
-          남은 패스 : <LeftPass>3</LeftPass> 회
+          남은 패스 : <LeftPass>{challenges[id].passCount}</LeftPass> 회
         </PassWrapper>
         <CountWrapper>
-          <Succeeded>12</Succeeded> /<Entire>14</Entire>
+          <Succeeded>12</Succeeded> /{' '}
+          <Entire>{challenges[id].totalDays}</Entire>
         </CountWrapper>
       </RowWrapper>
       <ColumnWrapper

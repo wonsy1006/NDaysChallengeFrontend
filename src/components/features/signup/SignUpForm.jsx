@@ -20,7 +20,7 @@ const SignUpForm = () => {
     console.log(data);
 
     axios
-      .post('http://localhost:8080/api/signUp', data, {
+      .post('http://localhost:8080/signup', data, {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((response) => {
@@ -37,11 +37,11 @@ const SignUpForm = () => {
     <StyledForm onSubmit={handleSubmit(submitForm)}>
       <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="이메일" />
-        <StyledInput {...register('email')} type="email" />
+        <StyledInput {...register('id')} type="email" />
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="비밀번호" />
-        <StyledInput {...register('password')} type="password" />
+        <StyledInput {...register('pw')} type="password" />
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="비밀번호 확인" />
@@ -57,7 +57,7 @@ const SignUpForm = () => {
           <Radio
             {...register('profilePic')}
             type="radio"
-            value="pic1"
+            value={parseInt('1')}
             id="pic1"
           />
           <ProfileLabel htmlFor="pic1">

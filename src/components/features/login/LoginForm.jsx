@@ -21,8 +21,8 @@ const LoginForm = () => {
 
     dispatch(userLogin(data));
 
-    resetField('email');
-    resetField('password');
+    resetField('id');
+    resetField('pw');
   };
 
   // useEffect(() => {
@@ -35,11 +35,11 @@ const LoginForm = () => {
     <StyledForm onSubmit={handleSubmit(submitForm)}>
       <ColumnWrapper>
         <InputLabel label="이메일" />
-        <StyledInput type="email" {...register('email')} />
+        <StyledInput type="email" {...register('id')} />
       </ColumnWrapper>
       <ColumnWrapper>
         <InputLabel label="비밀번호" />
-        <StyledInput type="password" {...register('password')} />
+        <StyledInput type="password" {...register('pw')} />
       </ColumnWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button primary>로그인</Button>

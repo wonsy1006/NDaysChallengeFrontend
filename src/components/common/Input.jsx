@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SearchIcon, EnterIcon } from './Icon';
 import { RowWrapper } from './Wrapper';
 
@@ -43,6 +43,12 @@ export const InputWrapper = styled.div`
   width: 100%;
   margin: 0 auto 2.4rem;
   position: relative;
+
+  ${(props) =>
+    props.displayNone &&
+    css`
+      display: none;
+    `}
 `;
 
 const StyledLabel = styled.label`

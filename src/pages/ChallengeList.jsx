@@ -20,8 +20,6 @@ const ChallengeList = () => {
   };
   const individuals = challenges.filter(isIndividual);
 
-  console.log(individuals.length);
-
   if (challenges.length === 0) {
     return (
       <div>
@@ -59,7 +57,7 @@ const ChallengeList = () => {
         <IndividualSection id="individualChallenge">
           <h3>개인 챌린지</h3>
           {challenges.map((challenge) => {
-            return <ChallengeListItem key={challenge.id} {...challenge} />;
+            return <ChallengeListItem key={challenge.number} {...challenge} />;
           })}
         </IndividualSection>
         <GroupSection id="groupChallenge">

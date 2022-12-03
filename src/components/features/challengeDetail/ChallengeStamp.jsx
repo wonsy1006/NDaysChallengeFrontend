@@ -12,14 +12,6 @@ const ChallengeStamp = (props) => {
     (state) => state.challenge,
   );
 
-  console.log(props.content);
-
-  const setDoubleFigure = (num) => {
-    const doubleFigureNum = num.padStart(1, '0');
-  };
-
-  console.log(setDoubleFigure(5));
-
   const loopStamps = (num) => {
     let stamps = [];
     for (let i = 0; i < props.content; i++) {

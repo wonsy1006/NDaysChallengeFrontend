@@ -52,7 +52,7 @@ const Router = () => {
       />
       <Route element={<ProtectedRoute />}>
         <Route path="/challenge-list" element={<ChallengeList />} />
-        <Route path="/challenge-detail/:number" element={<ChallengeDetail />} />
+        <Route path="/challenge-detail/:id" element={<ChallengeDetail />} />
         <Route path="/challenge-result" element={<ChallengeResult />} />
         <Route path="/create-challenge" element={<CreateChallenge />} />
         <Route path="/edit-profile" element={<EditProfile />} />

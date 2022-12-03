@@ -28,7 +28,11 @@ const initialState = {
 const challengeSlice = createSlice({
   name: 'challenge',
   initialState,
-  reducers: {},
+  reducers: {
+    subtractPassCount: (state) => {
+      state.challenges.passCount--;
+    },
+  },
 });
 
 export default challengeSlice.reducer;

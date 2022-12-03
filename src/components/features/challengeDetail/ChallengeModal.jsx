@@ -12,8 +12,6 @@ const ChallengeModal = (props) => {
   );
   const dispatch = useDispatch();
 
-  console.log(props);
-
   return (
     <ModalContainer>
       <Modal>
@@ -25,13 +23,14 @@ const ChallengeModal = (props) => {
           <br /> 성공하셨나요?
         </ModalText>
         <PassWrapper>
-          남은 패스 : <LeftPass></LeftPass> 회
+          남은 패스 : <LeftPass>{props.content.passCount}</LeftPass> 회
         </PassWrapper>
         <ButtonWrapper>
           <Button
             sub
             onClick={() => {
               dispatch(closeModal());
+              dispatch();
             }}
           >
             패스 사용하기

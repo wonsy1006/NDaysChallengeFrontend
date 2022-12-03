@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -35,7 +35,7 @@ const CreateChallengeForm = () => {
     console.log(data);
 
     axios
-      .post('http://localhost:8080/api/signUp', data, {
+      .post('http://localhost:8080/create/challenge', data, {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((response) => {
@@ -55,26 +55,28 @@ const CreateChallengeForm = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
-      <ColumnWrapper margin="0 auto 2.4rem auto">
-        <InputLabel label="챌린지 유형" />
-        <RadioWrapper>
-          <Radio
-            {...register('challengeType')}
-            type="radio"
-            value="individual"
-            id="individual"
-            defaultChecked
-          />
-          <RadioLabel htmlFor="individual">개인</RadioLabel>
-          <Radio
-            {...register('challengeType')}
-            type="radio"
-            value="group"
-            id="group"
-          />
-          <RadioLabel htmlFor="group">단체</RadioLabel>
-        </RadioWrapper>
-      </ColumnWrapper>
+      <DisplayNoneWrapper>
+        <ColumnWrapper margin="0 auto 2.4rem auto">
+          <InputLabel label="챌린지 유형" />
+          <RadioWrapper>
+            <Radio
+              {...register('challengeType')}
+              type="radio"
+              value="individual"
+              id="individual"
+              defaultChecked
+            />
+            <RadioLabel htmlFor="individual">개인</RadioLabel>
+            <Radio
+              {...register('challengeType')}
+              type="radio"
+              value="group"
+              id="group"
+            />
+            <RadioLabel htmlFor="group">단체</RadioLabel>
+          </RadioWrapper>
+        </ColumnWrapper>
+      </DisplayNoneWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="챌린지 이름" />
         <StyledInput
@@ -127,15 +129,17 @@ const CreateChallengeForm = () => {
           type="date"
         />
       </ColumnWrapper>
-      <ColumnWrapper margin="0 auto 2.4rem auto">
-        <InputLabel label="종료일" />
-        <StyledInput
-          {...register('challengeEndDate', { required: true })}
-          type="date"
-          disabled
-          defaultValue={data.challengeStartDate}
-        />
-      </ColumnWrapper>
+      <DisplayNoneWrapper>
+        <ColumnWrapper margin="0 auto 2.4rem auto">
+          <InputLabel label="종료일" />
+          <StyledInput
+            {...register('challengeEndDate', { required: true })}
+            type="date"
+            disabled
+            defaultValue=""
+          />
+        </ColumnWrapper>
+      </DisplayNoneWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="패스 횟수 설정" />
         <RadioWrapper>
@@ -291,6 +295,7 @@ const Select = styled.select`
   border: 1px solid ${({ theme }) => theme.colors.gr300};
   border-radius: 4.8rem;
   outline: none;
+  appearance: none;
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.bl500};
@@ -311,4 +316,8 @@ const DisplayNoneInput = styled(StyledInput)`
 
 const RewardInput = styled(StyledInput)`
   margin-top: 0.5rem;
+`;
+
+const DisplayNoneWrapper = styled.div`
+  display: none;
 `;

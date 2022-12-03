@@ -5,10 +5,8 @@ import Card from '../../common/Card';
 import Tag from '../../common/Tag';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 
-const ChallengeListItem = ({ id, title, category, startDate }) => {
-  const { params } = useParams(id);
-
-  console.log(id);
+const ChallengeListItem = ({ number, name, category, startDate, endDate }) => {
+  const { params } = useParams(number);
 
   return (
     <Card>
@@ -17,17 +15,17 @@ const ChallengeListItem = ({ id, title, category, startDate }) => {
           <Tag routine>{category}</Tag>
         </RowWrapper>
         <RowWrapper margin=".5rem">
-          <ChallengeTitle>{title}</ChallengeTitle>
+          <ChallengeTitle>{name}</ChallengeTitle>
         </RowWrapper>
         <RowWrapper justifyContent="flex-end">
           <ChallengePeriod>
             <StartDate>{startDate}</StartDate>
             <span> - </span>
-            <EndDate>2022.xx.xx</EndDate>
+            <EndDate>{endDate}</EndDate>
           </ChallengePeriod>
         </RowWrapper>
         <RowWrapper justifyContent="flex-end">
-          <ChallengeDetailLink to={`/challenge-detail/${id - 1}`}>
+          <ChallengeDetailLink to={`/challenge-detail/${number - 1}`}>
             상세 보기
           </ChallengeDetailLink>
         </RowWrapper>
