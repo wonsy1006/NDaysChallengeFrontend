@@ -175,7 +175,14 @@ const CreateChallengeForm = () => {
             id="challengePassCount"
             type="number"
           />
-        ) : null}
+        ) : (
+          <DisplayNoneInput
+            {...register('challengePassCount')}
+            id="challengePassCount"
+            type="number"
+            defaultValue={0}
+          />
+        )}
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="보상 설정" />
@@ -216,7 +223,14 @@ const CreateChallengeForm = () => {
             id="challengeReward"
             type="text"
           />
-        ) : null}
+        ) : (
+          <DisplayNoneInput
+            {...register('challengeReward')}
+            id="challengeReward"
+            type="text"
+            defaultValue=""
+          />
+        )}
       </ColumnWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button type="submit" primary>
@@ -289,6 +303,10 @@ const Option = styled.option`
 
 const PassInput = styled(StyledInput)`
   margin-top: 0.5rem;
+`;
+
+const DisplayNoneInput = styled(StyledInput)`
+  display: none;
 `;
 
 const RewardInput = styled(StyledInput)`

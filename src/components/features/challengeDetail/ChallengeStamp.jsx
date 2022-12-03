@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../../app/module/modalSlice';
 import styled from 'styled-components';
 import Card from '../../common/Card';
 import Stamp from '../../common/Stamp';
 
-const ChallengeStamp = () => {
+const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
+
   const { challenges, message, errorMessage } = useSelector(
     (state) => state.challenge,
   );
+
+  console.log(props.content);
+
+  const loopStamps = (num) => {
+    const setDoubleFigure = (num) => {
+      'num'.padStart(1, '0');
+    };
+
+    console.log(setDoubleFigure('5'));
+
+    let stamps = [];
+    for (let i = 0; i < props.content; i++) {
+      stamps.push(
+        <Stamp unchecked day="" onClick={() => dispatch(openModal(props))} />,
+      );
+    }
+  };
+
+  loopStamps('5');
+
+  const [stampState, setStampState] = useState();
 
   return (
     <Card>
       <StampTitle>✔️ 챌린지 진척도</StampTitle>
       <StampArea>
-        <Stamp unchecked day="01" onClick={() => dispatch(openModal())} />
+        <Stamp unchecked day="01" onClick={() => dispatch(openModal(props))} />
         <Stamp success day="02" />
         <Stamp pass day="03" />
         <Stamp fail day="04" />
@@ -24,6 +46,10 @@ const ChallengeStamp = () => {
         <Stamp unchecked day="07" />
         <Stamp unchecked day="08" />
         <Stamp unchecked day="09" />
+        <Stamp unchecked day="10" />
+        <Stamp unchecked day="12" />
+        <Stamp unchecked day="13" />
+        <Stamp unchecked day="14" />
       </StampArea>
     </Card>
   );

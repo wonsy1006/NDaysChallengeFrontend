@@ -39,7 +39,7 @@ const ChallengeDetail = () => {
       </RowWrapper>
       <ChallengeDajim />
       <ChallengeReward content={challenges[id].reward} />
-      <ChallengeStamp />
+      <ChallengeStamp content={challenges[id].period} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
           남은 패스 : <LeftPass>3</LeftPass> 회

@@ -6,17 +6,19 @@ import { RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { CloseIcon } from '../../common/Icon';
 
-const ChallengeModal = () => {
+const ChallengeModal = (props) => {
   const { challenges, message, errorMessage } = useSelector(
     (state) => state.challenge,
   );
   const dispatch = useDispatch();
 
+  console.log(props);
+
   return (
     <ModalContainer>
       <Modal>
         <ModalTitle>
-          도전 <DayHighlight>12</DayHighlight>일차
+          도전 <DayHighlight>{props.day}</DayHighlight>일차
         </ModalTitle>
         <ModalText>
           오늘의 도전,
