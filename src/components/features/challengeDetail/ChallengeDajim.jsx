@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import ChallengeDajimForm from './ChallengeDajimForm';
 import Card from '../../common/Card';
 import { WriteIcon, ArrowUpIcon } from '../../common/Icon';
-import { ColumnWrapper } from '../../common/Wrapper';
 
 const ChallengeDajim = ({ children }) => {
   // WriteIcon 클릭 시 다짐 입력 input 표시
