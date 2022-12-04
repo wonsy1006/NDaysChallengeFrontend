@@ -101,7 +101,7 @@ const SignUpForm = () => {
         <InputLabel label="프로필 사진 선택" />
         <RadioWrapper>
           <Radio
-            {...register('image')}
+            {...register('image', { valueAsNumber: true })}
             type="radio"
             value="1"
             id="pic1"
