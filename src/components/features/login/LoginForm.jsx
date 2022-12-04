@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userLogin } from '../../../app/module/userSlice';
+import { getUserDetails, userLogin } from '../../../app/module/userSlice';
 import styled from 'styled-components';
 import { ColumnWrapper } from '../../common/Wrapper';
 import { InputLabel, StyledInput } from '../../common/Input';
@@ -20,24 +22,25 @@ const LoginForm = () => {
     console.log(data);
 
     dispatch(userLogin(data));
+    dispatch(getUserDetails(userInfo));
 
     resetField('id');
     resetField('pw');
   };
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate('/challenge-list');
-  //   }
-  // }, [navigate, userInfo]);
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/challenge-list');
+    }
+  }, [navigate, userInfo]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="이메일" />
         <StyledInput type="email" {...register('id')} />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="비밀번호" />
         <StyledInput type="password" {...register('pw')} />
       </ColumnWrapper>

@@ -1,28 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const userToken = localStorage.getItem('userToken')
+const accessToken = localStorage.getItem('userToken')
   ? localStorage.getItem('userToken')
   : null;
 
 const initialState = {
   loading: false,
-  userInfo: {}, // user 객체
-  userToken, // JWT 저장
+  user: {}, // user 객체
+  accessToken: null, // JWT 저장
   error: null,
   success: false, // signUp 과정 모니터
 };
 
 export const userSignUp = createAsyncThunk(
+  // action type string
   'user/signUp',
+  // callback function
   async ({ id, pw, nickname, image }, { rejectWithValue }) => {
     try {
+      // configure header's Content-Type as JSON
       const config = {
         headers: {
           'Content-Type': 'application/json',
         },
       };
-      await axios.post('/api/user/signUp', { id, pw, nickname, image }, config);
+      // make request to backend
+      await axios.post(
+        'http://localhost:8080/auth/signup',
+        { id, pw, nickname, image },
+        config,
+      );
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -42,8 +50,12 @@ export const userLogin = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
-      const { data } = await axios.post('/auth/login', { id, pw }, config);
-      localStorage.setItem('userToken', data.userToken);
+      const { data } = await axios.post(
+        'http://localhost:8080/auth/login',
+        { id, pw },
+        config,
+      );
+      localStorage.setItem('userToken', data.accessToken);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -65,10 +77,13 @@ export const getUserDetails = createAsyncThunk(
       // configure authorization header with user's token
       const config = {
         headers: {
-          Authorization: `Bearer ${user.userToken}`,
+          Authorization: `Bearer ${user.accessToken}`,
         },
       };
-      const { data } = await axios.get(`/api/user/profile`, config);
+      const { data } = await axios.post(
+        `http://localhost:8080/auth/login`,
+        config,
+      );
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -85,7 +100,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      localStorage.removeItem('userToken');
+      localStorage.removeItem('accessToken');
       state.loading = false;
       state.userInfo = null;
       state.userToken = null;
@@ -112,8 +127,8 @@ const userSlice = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
-        state.userInfo = payload;
-        state.userToken = payload.userToken;
+        state.user = payload;
+        state.accessToken = payload.accessToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
@@ -124,7 +139,7 @@ const userSlice = createSlice({
       })
       .addCase(getUserDetails.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload;
+        state.user = payload;
       })
       .addCase(getUserDetails.rejected, (state, { payload }) => {
         state.loading = false;
@@ -132,4 +147,5 @@ const userSlice = createSlice({
   },
 });
 
+export const { logout } = userSlice.actions;
 export default userSlice.reducer;

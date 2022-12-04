@@ -1,24 +1,26 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
+import { getUserDetails, logout } from '../app/module/userSlice';
+import UserProfile from '../components/common/UserProfile';
 
 const MyPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const logout = () => {
-    window.localStorage.removeItem('token');
-    navigate('/');
-  };
+  dispatch(getUserDetails());
+
+  const { userInfo } = useSelector((state) => state.user);
 
   return (
     <>
       <h2>내 정보</h2>
-      <UserNameContainer>
-        <Pic1 />
-        <StyledSpan>username 님</StyledSpan>
-      </UserNameContainer>
+      <UserProfile
+        nickname={userInfo.nickname}
+        profilePicNum={userInfo.image}
+      />
       <PagesContainer>
         <Link to="/challenge-list">
           <h3>완료된 챌린지 보기</h3>
@@ -34,7 +36,14 @@ const MyPage = () => {
         </Link>
       </PagesContainer>
       <LogoutContainer>
-        <StyledLink onClick={logout()}>로그아웃</StyledLink>
+        <StyledLink
+          onClick={() => {
+            dispatch(logout());
+            navigate('/');
+          }}
+        >
+          로그아웃
+        </StyledLink>
       </LogoutContainer>
     </>
   );

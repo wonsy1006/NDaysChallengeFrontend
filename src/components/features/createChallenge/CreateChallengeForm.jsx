@@ -5,7 +5,6 @@ import * as yup from 'yup';
 import styled from 'styled-components';
 import { ColumnWrapper } from '../../common/Wrapper';
 import { InputLabel, StyledInput } from '../../common/Input';
-import { ArrowDownIcon } from '../../common/Icon';
 import Button from '../../common/Button';
 import axios from '../../../../node_modules/axios/index';
 
@@ -13,13 +12,14 @@ const CreateChallengeForm = () => {
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
 
   const schema = yup.object().shape({
-    challengeType: yup.string().required('챌린지 유형을 선택해 주세요'),
-    challengeTitle: yup.string().required('챌린지 제목을 입력해 주세요'),
-    challengeCategory: yup.string().required('챌린지 카테고리를 선택해 주세요'),
-    challengePeriod: yup.string().required('챌린지 기간을 선택해 주세요'),
-    challengeStartDate: yup.date().required('챌린지 시작일을 선택해 주세요'),
-    challengePassCount: yup.number(),
-    challengeReward: yup.string(),
+    type: yup.string().max(30).required('챌린지 유형을 선택해 주세요'),
+    name: yup.string().required('챌린지 제목을 입력해 주세요'),
+    category: yup.string().required('챌린지 카테고리를 선택해 주세요'),
+    totalDays: yup.string().required('챌린지 기간을 선택해 주세요'),
+    startDate: yup.date().required('챌린지 시작일을 선택해 주세요'),
+    endDate: yup.date(),
+    passCount: yup.number().min(0),
+    reward: yup.string(),
   });
 
   const {
@@ -35,7 +35,7 @@ const CreateChallengeForm = () => {
     console.log(data);
 
     axios
-      .post('http://localhost:8080/challenge/create', data, {
+      .get('http://localhost:8080/challenge/create', data, {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((response) => {
@@ -46,10 +46,10 @@ const CreateChallengeForm = () => {
       });
   };
 
-  const [startDate, setStartDate] = useState('');
-  const getStartDate = (date) => {};
+  // const [startDate, setStartDate] = useState('');
+  // const getStartDate = (date) => {};
 
-  const [showGroupInput, setShowGroupInput] = useState(false);
+  // const [showGroupInput, setShowGroupInput] = useState(false);
   const [showPassInput, setShowPassInput] = useState(false);
   const [showRewardInput, setShowRewardInput] = useState(false);
 
@@ -60,7 +60,7 @@ const CreateChallengeForm = () => {
           <InputLabel label="챌린지 유형" />
           <RadioWrapper>
             <Radio
-              {...register('challengeType')}
+              {...register('type')}
               type="radio"
               value="individual"
               id="individual"
@@ -68,7 +68,7 @@ const CreateChallengeForm = () => {
             />
             <RadioLabel htmlFor="individual">개인</RadioLabel>
             <Radio
-              {...register('challengeType')}
+              {...register('type')}
               type="radio"
               value="group"
               id="group"
@@ -79,14 +79,12 @@ const CreateChallengeForm = () => {
       </DisplayNoneWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="챌린지 이름" />
-        <StyledInput
-          {...register('challengeTitle', { required: true })}
-          type="text"
-        />
+        <StyledInput {...register('name', { required: true })} type="text" />
+        <ErrorMessage>{errors.name?.message}</ErrorMessage>
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="챌린지 카테고리" />
-        <Select {...register('challengeCategory', { required: true })}>
+        <Select {...register('category', { required: true })}>
           <Option value="">카테고리를 선택하세요</Option>
           <Option value="study">공부</Option>
           <Option value="workout">운동</Option>
@@ -94,29 +92,30 @@ const CreateChallengeForm = () => {
           <Option value="mentalcare">멘탈케어</Option>
           <Option value="etc">기타</Option>
         </Select>
+        <ErrorMessage>{errors.category?.message}</ErrorMessage>
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="챌린지 기간" />
         <RadioWrapper>
           <Radio
-            {...register('challengePeriod')}
+            {...register('totalDays')}
             type="radio"
-            value="14days"
+            value="14"
             id="14days"
             defaultChecked
           />
           <RadioLabel htmlFor="14days">14일</RadioLabel>
           <Radio
-            {...register('challengePeriod')}
+            {...register('totalDays')}
             type="radio"
-            value="30days"
+            value="30"
             id="30days"
           />
           <RadioLabel htmlFor="30days">30일</RadioLabel>
           <Radio
-            {...register('challengePeriod')}
+            {...register('totalDays')}
             type="radio"
-            value="60days"
+            value="60"
             id="60days"
           />
           <RadioLabel htmlFor="60days">60일</RadioLabel>
@@ -125,7 +124,7 @@ const CreateChallengeForm = () => {
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="시작일 선택" />
         <StyledInput
-          {...register('challengeStartDate', { required: true })}
+          {...register('startDate', { required: true })}
           type="date"
         />
       </ColumnWrapper>
@@ -133,7 +132,7 @@ const CreateChallengeForm = () => {
         <ColumnWrapper margin="0 auto 2.4rem auto">
           <InputLabel label="종료일" />
           <StyledInput
-            {...register('challengeEndDate', { required: true })}
+            {...register('endDate')}
             type="date"
             disabled
             defaultValue=""
@@ -144,7 +143,7 @@ const CreateChallengeForm = () => {
         <InputLabel label="패스 횟수 설정" />
         <RadioWrapper>
           <Radio
-            {...register('challengePassSet')}
+            {...register('passSet')}
             type="radio"
             value="unsetPass"
             id="unsetPass"
@@ -159,7 +158,7 @@ const CreateChallengeForm = () => {
             미설정
           </RadioLabel>
           <Radio
-            {...register('challengePassSet')}
+            {...register('passSet')}
             type="radio"
             value="setPass"
             id="setPass"
@@ -175,13 +174,13 @@ const CreateChallengeForm = () => {
         </RadioWrapper>
         {showPassInput ? (
           <PassInput
-            {...register('challengePassCount')}
+            {...register('passCount')}
             id="challengePassCount"
             type="number"
           />
         ) : (
           <DisplayNoneInput
-            {...register('challengePassCount')}
+            {...register('passCount')}
             id="challengePassCount"
             type="number"
             defaultValue={0}
@@ -192,7 +191,7 @@ const CreateChallengeForm = () => {
         <InputLabel label="보상 설정" />
         <RadioWrapper>
           <Radio
-            {...register('challengeRewardSet')}
+            {...register('rewardSet')}
             type="radio"
             value="unsetReward"
             id="unsetReward"
@@ -207,7 +206,7 @@ const CreateChallengeForm = () => {
             미설정
           </RadioLabel>
           <Radio
-            {...register('challengeRewardSet')}
+            {...register('rewardSet')}
             type="radio"
             value="setReward"
             id="setReward"
@@ -223,13 +222,13 @@ const CreateChallengeForm = () => {
         </RadioWrapper>
         {showRewardInput ? (
           <RewardInput
-            {...register('challengeReward')}
+            {...register('reward')}
             id="challengeReward"
             type="text"
           />
         ) : (
           <DisplayNoneInput
-            {...register('challengeReward')}
+            {...register('reward')}
             id="challengeReward"
             type="text"
             defaultValue=""
@@ -237,10 +236,9 @@ const CreateChallengeForm = () => {
         )}
       </ColumnWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
-        <Button type="submit" primary>
-          챌린지 생성
-        </Button>
+        <Button primary>챌린지 생성</Button>
       </ColumnWrapper>
+      {errors.message}
     </StyledForm>
   );
 };
@@ -291,7 +289,7 @@ const Select = styled.select`
   width: 90%;
   font-size: 1.6rem;
   padding: 1.2rem 2rem;
-  margin: 0 auto 1.6rem;
+  margin: 0 auto;
   border: 1px solid ${({ theme }) => theme.colors.gr300};
   border-radius: 4.8rem;
   outline: none;
@@ -320,4 +318,11 @@ const RewardInput = styled(StyledInput)`
 
 const DisplayNoneWrapper = styled.div`
   display: none;
+`;
+
+const ErrorMessage = styled.p`
+  width: 90%;
+  margin: 0.8rem auto 1.6rem;
+  font-size: ${({ theme }) => theme.fonts.size.small};
+  color: ${({ theme }) => theme.colors.rd};
 `;

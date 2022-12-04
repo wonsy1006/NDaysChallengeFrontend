@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
+import UserProfile from '../components/common/UserProfile';
 import NoChallenge from '../assets/images/noChallenge.svg';
 import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import ChallengeListItem from '../components/features/challengeList/ChallengeListItem';
@@ -12,6 +13,8 @@ const ChallengeList = () => {
   const { challenges, message, errorMessage } = useSelector(
     (state) => state.challenge,
   );
+
+  const { userInfo } = useSelector((state) => state.user);
 
   const isIndividual = (element) => {
     if (element.type === 'individual') {
@@ -23,11 +26,10 @@ const ChallengeList = () => {
   if (challenges.length === 0) {
     return (
       <div>
-        <UserNameContainer>
-          <Pic1 />
-          <StyledSpan>OOOOO 님</StyledSpan>
-          <span>의 챌린지</span>
-        </UserNameContainer>
+        <UserProfile
+          profilePicNum={userInfo.image}
+          nickname={userInfo.nickname}
+        />
         <Card>
           <NoChallenge></NoChallenge>
           <StyledText>

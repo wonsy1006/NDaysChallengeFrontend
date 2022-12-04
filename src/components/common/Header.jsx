@@ -10,16 +10,16 @@ import { getUserDetails } from '../../app/module/userSlice';
 // 친구 요청 있을 시, 아이콘 바꾸기
 
 const Header = () => {
-  const { userInfo, userToken } = useSelector((state) => state.user);
+  const { user, accessToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userToken) {
+    if (accessToken) {
       dispatch(getUserDetails());
     }
-  }, [userToken, dispatch]);
+  }, [accessToken, dispatch]);
 
-  const [hasFriendRequest, setHasFriendRequest] = useState(false);
+  console.log(`header: ${user}, ${accessToken}`);
 
   return (
     <>
@@ -33,9 +33,9 @@ const Header = () => {
           {/* <Link to="/create-challenge">
             <Add style={{ marginRight: 1 + 'rem' }} />
           </Link> */}
-          <Link to="/friends-list">
+          {/* <Link to="/friends-list">
             <FriendIcon size={24} />
-          </Link>
+          </Link> */}
         </HeaderIcons>
       </HeaderContainer>
       <Spacer />

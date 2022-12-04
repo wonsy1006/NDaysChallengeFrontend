@@ -10,13 +10,13 @@ const Login = () => {
     <>
       <h2>로그인</h2>
       <LoginForm />
-      <Separator>
+      {/* <Separator>
         <StyledHr />
         <Or>또는</Or>
       </Separator>
       <ButtonContainer>
         <Button sub>카카오로 로그인</Button>
-      </ButtonContainer>
+      </ButtonContainer> */}
       <SignUpContainer>
         <SignUpText>아직 계정이 없으신가요?</SignUpText>
         <SignUpLink to="/signup">회원가입</SignUpLink>

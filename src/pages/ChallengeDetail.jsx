@@ -15,9 +15,7 @@ const ChallengeDetail = () => {
   const { id } = useParams();
 
   const { isOpen } = useSelector((store) => store.modal);
-  const { challenges, message, errorMessage } = useSelector(
-    (state) => state.challenge,
-  );
+  const { data } = useSelector((state) => state.challenge);
 
   const dispatch = useDispatch();
 
@@ -25,7 +23,7 @@ const ChallengeDetail = () => {
 
   return (
     <>
-      {isOpen && <ChallengeModal content={challenges[id]} />}
+      {isOpen && <ChallengeModal content={data[id]} />}
       <UserContainer>
         <Pic1 />
         <NicknameContainer>
@@ -33,21 +31,20 @@ const ChallengeDetail = () => {
           <span>님의 챌린지</span>
         </NicknameContainer>
       </UserContainer>
-      <ChallengeTitle>{challenges[id].name}</ChallengeTitle>
+      <ChallengeTitle>{data[id].name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
         <Tag routine>규칙적인 생활</Tag>
         <Tag individual>개인</Tag>
       </RowWrapper>
       <ChallengeDajim />
-      <ChallengeReward content={challenges[id].reward} />
-      <ChallengeStamp content={challenges[id].totalDays} />
+      <ChallengeReward content={data[id].reward} />
+      <ChallengeStamp content={data[id].totalDays} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
-          남은 패스 : <LeftPass>{challenges[id].passCount}</LeftPass> 회
+          남은 패스 : <LeftPass>{data[id].passCount}</LeftPass> 회
         </PassWrapper>
         <CountWrapper>
-          <Succeeded>12</Succeeded> /{' '}
-          <Entire>{challenges[id].totalDays}</Entire>
+          <Succeeded>12</Succeeded> / <Entire>{data[id].totalDays}</Entire>
         </CountWrapper>
       </RowWrapper>
       <ColumnWrapper

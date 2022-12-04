@@ -6,6 +6,8 @@ import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 import ProfilePic from '../../common/ProfilePic';
 
+// 닉네임 중복 체크 여부 boolean으로 받기
+
 const EditProfileForm = () => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState('');
