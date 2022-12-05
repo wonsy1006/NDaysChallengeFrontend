@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const accessToken = localStorage.getItem('userToken')
-  ? localStorage.getItem('userToken')
+const accessToken = localStorage.getItem('accessToken')
+  ? localStorage.getItem('accessToken')
   : null;
 
 const initialState = {
@@ -55,7 +55,7 @@ export const userLogin = createAsyncThunk(
         { id, pw },
         config,
       );
-      localStorage.setItem('userToken', data.accessToken);
+      localStorage.setItem('accessToken', data.accessToken);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -72,7 +72,7 @@ export const getUserDetails = createAsyncThunk(
   async (arg, { getState, rejectWithValue }) => {
     try {
       // store에서 user data 가져오기
-      const { user } = getState();
+      const { user } = getState(state => state.user);
 
       // configure authorization header with user's token
       const config = {
@@ -80,10 +80,13 @@ export const getUserDetails = createAsyncThunk(
           Authorization: `Bearer ${user.accessToken}`,
         },
       };
-      const { data } = await axios.post(
-        `http://localhost:8080/auth/login`,
+
+      console.log(`config: ${config.headers.Authorization}`)
+      const { data } = await axios.get(
+        'http://localhost:8080/user/details',
         config,
       );
+      console.log({data});
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -103,7 +106,7 @@ const userSlice = createSlice({
       localStorage.removeItem('accessToken');
       state.loading = false;
       state.userInfo = null;
-      state.userToken = null;
+      state.accessToken = null;
       state.error = null;
     },
   },
@@ -116,6 +119,7 @@ const userSlice = createSlice({
       .addCase(userSignUp.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
+        state.success = true;
       })
       .addCase(userSignUp.rejected, (state, { payload }) => {
         state.loading = false;
@@ -129,6 +133,7 @@ const userSlice = createSlice({
         state.loading = true;
         state.user = payload;
         state.accessToken = payload.accessToken;
+        state.success = true;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
@@ -140,9 +145,12 @@ const userSlice = createSlice({
       .addCase(getUserDetails.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.user = payload;
+        state.success = true;
       })
       .addCase(getUserDetails.rejected, (state, { payload }) => {
         state.loading = false;
+        state.error = payload;
+        state.success = false;
       });
   },
 });

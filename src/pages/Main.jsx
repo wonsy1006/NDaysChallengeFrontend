@@ -5,15 +5,16 @@ import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import { ReactComponent as NoChallenge } from '../assets/images/noChallenge.svg';
-
-const onChange = () => {};
+import {useSelector} from "react-redux";
 
 const Main = () => {
+    const { userInfo, success } = useSelector((state) => state.user);
+    console.log({userInfo});
   return (
     <div>
       <UserNameContainer>
         <Pic1 />
-        <StyledSpan>OOOOO 님</StyledSpan>
+        {/*<StyledSpan>{userInfo?.nickname}</StyledSpan>*/}
         <span>의 챌린지</span>
       </UserNameContainer>
       <Card>

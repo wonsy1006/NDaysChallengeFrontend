@@ -63,16 +63,9 @@ const SignUpForm = () => {
     }
 
     dispatch(userSignUp(data));
-    // axios
-    //   .post('http://localhost:8080/auth/signup', data, {
-    //     headers: { 'Content-Type': 'application/json' },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.data);
-    //   });
+    if(success) {
+      navigate('/login');
+    }
   };
 
   return (

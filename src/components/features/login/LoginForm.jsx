@@ -11,28 +11,27 @@ import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 
 const LoginForm = () => {
-  const { loading, userInfo, error } = useSelector((state) => state.user);
+  const { loading, userInfo, error, success } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, resetField, handleSubmit } = useForm();
   const [data, setData] = useState('');
+
+  useEffect(() => {
+    if (userInfo) {
+      console.log(userInfo);
+      navigate('/');
+    }
+  }, [navigate, userInfo]);
 
   const submitForm = (data) => {
     setData(JSON.stringify(data));
     console.log(data);
 
     dispatch(userLogin(data));
-    dispatch(getUserDetails(userInfo));
-
     resetField('id');
     resetField('pw');
   };
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/challenge-list');
-    }
-  }, [navigate, userInfo]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
