@@ -12,17 +12,17 @@ import {
   Interaction,
 } from '../../common/Sticker';
 
-const FeedItem = () => {
+const FeedItem = (props) => {
   return (
     <Card>
       <UserContainer>
         <Pic1 />
         <NicknameContainer>
-          <NicknameSpan>OOOOO</NicknameSpan>
+          <NicknameSpan>{props.user}</NicknameSpan>
           <span>님이 다짐을 공유했습니다.</span>
         </NicknameContainer>
       </UserContainer>
-      <DajimWrapper>열심히 코딩</DajimWrapper>
+      <DajimWrapper>{props.dajimContent}</DajimWrapper>
       <InteractionWrapper>
         <Like />
         <Cheer />
@@ -50,7 +50,7 @@ const NicknameContainer = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 0.5rem;
+  margin-left: 1.2rem;
 `;
 
 const NicknameSpan = styled.span`

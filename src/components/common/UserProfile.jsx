@@ -6,14 +6,15 @@ import { ColumnWrapper, RowWrapper } from './Wrapper';
 const UserProfile = (props) => {
   const profilePicNum = props.profilePicNum;
   const nickname = props.nickname;
+  const margin = props.margin;
 
   return props.flexDirection === 'row' ? (
-    <RowWrapper jusfityContent="center" alignItems="center">
+    <RowWrapper margin={margin} justifyContent="center" alignItems="center">
       <ProfilePic picType={`pic${profilePicNum}`} />
       <NicknameWrapper row>{nickname}</NicknameWrapper>
     </RowWrapper>
   ) : (
-    <ColumnWrapper jusfityContent="center" alignItems="center">
+    <ColumnWrapper margin={margin} justifyContent="center" alignItems="center">
       <ProfilePic picType={`pic${profilePicNum}`} />
       <NicknameWrapper column>{nickname}</NicknameWrapper>
     </ColumnWrapper>

@@ -19,23 +19,28 @@ const EditProfileForm = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <DisabledLabel>이메일</DisabledLabel>
-        <StyledInput {...register('email')} type="email" disabled />
+        <StyledInput
+          {...register('email')}
+          type="email"
+          placeholder="abcde@gmail.com"
+          disabled
+        />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="비밀번호" />
         <StyledInput {...register('password')} type="password" />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem" v>
         <InputLabel label="비밀번호 확인" />
         <StyledInput {...register('passwordCheck')} type="password" />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="닉네임" />
         <StyledInput {...register('nickname')} type="text" />
       </ColumnWrapper>
-      <ColumnWrapper>
+      <ColumnWrapper margin="0 auto 2.4rem">
         <InputLabel label="프로필 사진 선택" />
         <RadioWrapper>
           <Radio

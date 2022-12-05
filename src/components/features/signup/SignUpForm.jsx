@@ -47,13 +47,6 @@ const SignUpForm = () => {
 
   const [data, setData] = useState('');
 
-  useEffect(() => {
-    // redirect user to login page if registration was successful
-    if (success) navigate('/login');
-    // redirect authenticated user to profile screen
-    if (userInfo) navigate('/user-profile');
-  }, [navigate, userInfo, success]);
-
   const submitForm = (data) => {
     setData(JSON.stringify(data));
     console.log(data);
@@ -63,17 +56,13 @@ const SignUpForm = () => {
     }
 
     dispatch(userSignUp(data));
-    // axios
-    //   .post('http://localhost:8080/auth/signup', data, {
-    //     headers: { 'Content-Type': 'application/json' },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.data);
-    //   });
   };
+
+  useEffect(() => {
+    // redirect user to login page if registration was successful
+    if (success) navigate('/login');
+    // redirect authenticated user to profile screen
+  }, [navigate, userInfo, success]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>

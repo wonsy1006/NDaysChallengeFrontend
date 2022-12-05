@@ -12,6 +12,10 @@ const Welcome = () => {
     navigate('/');
   };
 
+  const pages = (props) => {
+    return;
+  };
+
   return (
     <>
       <TitleWrapper>

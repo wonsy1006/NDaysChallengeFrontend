@@ -13,6 +13,7 @@ const Header = () => {
   const { user, accessToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  // accessToken 보유 시에 사용자 정보 dispatch
   useEffect(() => {
     if (accessToken) {
       dispatch(getUserDetails());
@@ -33,9 +34,9 @@ const Header = () => {
           {/* <Link to="/create-challenge">
             <Add style={{ marginRight: 1 + 'rem' }} />
           </Link> */}
-          {/* <Link to="/friends-list">
+          <Link to="/friends-list">
             <FriendIcon size={24} />
-          </Link> */}
+          </Link>
         </HeaderIcons>
       </HeaderContainer>
       <Spacer />

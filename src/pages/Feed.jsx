@@ -8,7 +8,9 @@ const Feed = () => {
   return (
     <>
       <h2>오늘의 다짐</h2>
-      <FeedItem />
+      <FeedItem user="user1" dajimContent="깃허브 커밋하기" />
+      <FeedItem user="user2" dajimContent="퇴근하면 바로 운동 가기" />
+      <FeedItem user="user3" dajimContent="요미 산책시키기" />
     </>
   );
 };

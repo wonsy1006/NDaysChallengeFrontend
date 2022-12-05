@@ -12,53 +12,57 @@ import Tag from '../components/common/Tag';
 import { useParams } from 'react-router-dom';
 
 const ChallengeDetail = () => {
-  const { id } = useParams();
-
   const { isOpen } = useSelector((store) => store.modal);
-  const { data } = useSelector((state) => state.challenge);
+  const { challenges, message, errorMessage } = useSelector(
+    (state) => state.challenge,
+  );
+
+  const id = useParams();
+
+  console.log(id);
 
   const dispatch = useDispatch();
 
   const removeChallenge = () => {};
 
-  return (
-    <>
-      {isOpen && <ChallengeModal content={data[id]} />}
-      <UserContainer>
-        <Pic1 />
-        <NicknameContainer>
-          <NicknameSpan>OOOOO</NicknameSpan>
-          <span>님의 챌린지</span>
-        </NicknameContainer>
-      </UserContainer>
-      <ChallengeTitle>{data[id].name}</ChallengeTitle>
-      <RowWrapper justifyContent="center" margin="0 auto 2rem">
-        <Tag routine>규칙적인 생활</Tag>
-        <Tag individual>개인</Tag>
-      </RowWrapper>
-      <ChallengeDajim />
-      <ChallengeReward content={data[id].reward} />
-      <ChallengeStamp content={data[id].totalDays} />
-      <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
-        <PassWrapper>
-          남은 패스 : <LeftPass>{data[id].passCount}</LeftPass> 회
-        </PassWrapper>
-        <CountWrapper>
-          <Succeeded>12</Succeeded> / <Entire>{data[id].totalDays}</Entire>
-        </CountWrapper>
-      </RowWrapper>
-      <ColumnWrapper
-        justifyContent="center"
-        alignItems="center"
-        margin="2rem auto"
-      >
-        <RemoveChallenge onClick={removeChallenge()}>
-          챌린지 삭제하기
-        </RemoveChallenge>
-      </ColumnWrapper>
-      <Invite />
-    </>
-  );
+  // return (
+  //   <>
+  //     {isOpen && <ChallengeModal content={challenges[number]} />}
+  //     <UserContainer>
+  //       <Pic1 />
+  //       <NicknameContainer>
+  //         <NicknameSpan>OOOOO</NicknameSpan>
+  //         <span>님의 챌린지</span>
+  //       </NicknameContainer>
+  //     </UserContainer>
+  //     <ChallengeTitle>{challenges[number].name}</ChallengeTitle>
+  //     <RowWrapper justifyContent="center" margin="0 auto 2rem">
+  //       <Tag routine>규칙적인 생활</Tag>
+  //       <Tag individual>개인</Tag>
+  //     </RowWrapper>
+  //     <ChallengeDajim />
+  //     <ChallengeReward content={challenges[number].reward} />
+  //     <ChallengeStamp content={challenges[number].totalDays} />
+  //     <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
+  //       <PassWrapper>
+  //         남은 패스 : <LeftPass>{challenges[number].passCount}</LeftPass> 회
+  //       </PassWrapper>
+  //       <CountWrapper>
+  //         <Succeeded>12</Succeeded> / <Entire>{challenges[number].totalDays}</Entire>
+  //       </CountWrapper>
+  //     </RowWrapper>
+  //     <ColumnWrapper
+  //       justifyContent="center"
+  //       alignItems="center"
+  //       margin="2rem auto"
+  //     >
+  //       <RemoveChallenge onClick={removeChallenge()}>
+  //         챌린지 삭제하기
+  //       </RemoveChallenge>
+  //     </ColumnWrapper>
+  //     <Invite />
+  //   </>
+  // );
 };
 
 export default ChallengeDetail;

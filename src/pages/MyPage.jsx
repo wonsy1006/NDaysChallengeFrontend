@@ -10,16 +10,15 @@ const MyPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  dispatch(getUserDetails());
-
-  const { userInfo } = useSelector((state) => state.user);
+  // const { userInfo } = useSelector((state) => state.user);
 
   return (
     <>
       <h2>내 정보</h2>
       <UserProfile
-        nickname={userInfo.nickname}
-        profilePicNum={userInfo.image}
+        margin="0 auto 3.2rem"
+        nickname="nickname"
+        profilePicNum={1}
       />
       <PagesContainer>
         <Link to="/challenge-list">
@@ -50,31 +49,6 @@ const MyPage = () => {
 };
 
 export default MyPage;
-
-const PageTitle = styled.h2`
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
-const UserNameContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  width: 90%;
-  margin: 0 auto 1rem auto;
-
-  & + & {
-    margin: 0.5rem;
-  }
-`;
-
-const StyledSpan = styled.span`
-  margin-left: 1rem;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.bl500};
-`;
 
 const PagesContainer = styled.div`
   display: flex;

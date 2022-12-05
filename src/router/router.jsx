@@ -29,7 +29,7 @@ import GroupChallenge from '../pages/GroupChallenge';
 const FirstPage = ({ children }) => {
   if (
     window.localStorage.getItem('firstAccess') === null &&
-    window.localStorage.getItem('userToken') === null
+    window.localStorage.getItem('accessToken') === null
   ) {
     return <Navigate to="/welcome" />;
   }
@@ -50,6 +50,11 @@ const Router = () => {
           </FirstPage>
         }
       />
+      <Route path="/onboarding" element={<Onboarding />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/*" element={<ErrorPage />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/welcome" element={<Welcome />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/challenge-list" element={<ChallengeList />} />
         <Route path="/challenge-detail/:id" element={<ChallengeDetail />} />
@@ -63,11 +68,6 @@ const Router = () => {
         <Route path="/withdraw" element={<Withdraw />} />
         <Route path="/report" element={<Report />} />
       </Route>
-      <Route path="/onboarding" element={<Onboarding />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/*" element={<ErrorPage />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/welcome" element={<Welcome />} />
     </Routes>
     // </BrowserRouter>
   );
