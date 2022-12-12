@@ -5,23 +5,10 @@ import { Link } from '../../../node_modules/react-router-dom/dist/index';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 
 import { FriendIcon } from './Icon';
-import { getUserDetails } from '../../app/module/userSlice';
 
 // 친구 요청 있을 시, 아이콘 바꾸기
 
 const Header = () => {
-  const { user, accessToken } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
-  // accessToken 보유 시에 사용자 정보 dispatch
-  useEffect(() => {
-    if (accessToken) {
-      dispatch(getUserDetails());
-    }
-  }, [accessToken, dispatch]);
-
-  console.log(`header: ${user}, ${accessToken}`);
-
   return (
     <>
       <HeaderContainer>

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from '../../node_modules/react-router-dom/dist/index';
+import { Link } from 'react-router-dom';
 import Button from '../components/common/Button';
 
 const ErrorPage = () => {
   return (
     <>
-      <PageTitle>ERROR!!</PageTitle>
+      <h2>ERROR!!</h2>
       <Styled404>
         <SpanBlue>4</SpanBlue>
         <SpanYellow>0</SpanYellow>

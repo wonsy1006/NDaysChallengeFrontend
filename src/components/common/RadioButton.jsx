@@ -6,7 +6,7 @@ export const Radio = () => {
 };
 
 export const Label = () => {
-  return <Label htmlFor={id}>label</Label>;
+  return <StyledLabel htmlFor={id}>label</StyledLabel>;
 };
 
 const Wrapper = styled.div`
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   height: 4.8rem;
 `;
 
-const Label = styled.label`
+const StyledLabel = styled.label`
   display: block;
   position: absolute;
   top: 50%;
