@@ -3,7 +3,7 @@ import axios from 'axios';
 import challenges from '../../challenges';
 
 const initialState = {
-  challenges: challenges,
+  challenges: { challenges },
   message: '',
   errorMessage: '',
   loading: false,

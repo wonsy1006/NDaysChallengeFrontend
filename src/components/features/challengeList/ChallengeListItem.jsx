@@ -7,6 +7,7 @@ import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 
 const ChallengeListItem = ({ number, name, category, startDate, endDate }) => {
   const { params } = useParams(number);
+  console.log(params);
 
   return (
     <Card>

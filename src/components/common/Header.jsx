@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from '../../../node_modules/react-router-dom/dist/index';
+import { Link } from 'react-router-dom';
+import { getUserDetails } from '../../app/module/userSlice';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
-
 import { FriendIcon } from './Icon';
 
 // 친구 요청 있을 시, 아이콘 바꾸기
 
 const Header = () => {
+  const { user, accessToken } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  // accessToken 보유 시에 사용자 정보 dispatch
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(getUserDetails());
+    }
+  }, [accessToken, dispatch]);
+
+  console.log(`header: ${user}, ${accessToken}`);
   return (
     <>
       <HeaderContainer>

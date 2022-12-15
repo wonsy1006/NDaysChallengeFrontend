@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useParams,
 } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
@@ -24,6 +25,7 @@ import Welcome from '../pages/Welcome';
 import Withdraw from '../pages/Withdraw';
 import Report from '../pages/Report';
 import GroupChallenge from '../pages/GroupChallenge';
+import { useSelector } from 'react-redux';
 
 // 최초 방문 유저 판별
 const FirstPage = ({ children }) => {
@@ -57,7 +59,10 @@ const Router = () => {
       <Route path="/welcome" element={<Welcome />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/challenge-list" element={<ChallengeList />} />
-        <Route path="/challenge-detail/:id" element={<ChallengeDetail />} />
+        <Route
+          path="/challenge-detail/:challengeNum"
+          element={<ChallengeDetail />}
+        />
         <Route path="/challenge-result" element={<ChallengeResult />} />
         <Route path="/create-challenge" element={<CreateChallenge />} />
         <Route path="/edit-profile" element={<EditProfile />} />

@@ -85,6 +85,7 @@ export const getUserDetails = createAsyncThunk(
         `http://localhost:8080/user/details`,
         config,
       );
+      console.log({ data });
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
