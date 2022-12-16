@@ -20,6 +20,7 @@ const Header = () => {
   }, [accessToken, dispatch]);
 
   console.log(`header: ${user}, ${accessToken}`);
+
   return (
     <>
       <HeaderContainer>

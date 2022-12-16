@@ -35,14 +35,14 @@ const CreateChallengeForm = () => {
     console.log(data);
 
     axios
-      .get('http://localhost:8080/challenge/create', data, {
+      .post('http://localhost:8080/challenge/create', data, {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((response) => {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error.data);
+        console.log(error);
       });
   };
 

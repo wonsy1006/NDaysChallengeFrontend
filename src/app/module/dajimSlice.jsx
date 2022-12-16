@@ -1,11 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const dajim = [{}];
-
 const initialState = {
-  dajim: dajim,
+  dajim: {},
   message: '',
   errorMessage: '',
   isLoading: true,
 };
+
+const dajimSlice = createSlice({
+  name: 'dajim',
+  ...initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase();
+  },
+});
+
+export default dajimSlice.reducer;

@@ -6,6 +6,7 @@ const ProtectedRoute = () => {
   const { userInfo } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
+  // 구현 단계에서는 주석처리
   // useEffect(() => {
   //   if (!userInfo) {
   //     navigate('/');
