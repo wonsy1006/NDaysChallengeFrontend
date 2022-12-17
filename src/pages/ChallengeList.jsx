@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Card from '../components/common/Card';
@@ -8,20 +7,27 @@ import UserProfile from '../components/common/UserProfile';
 import NoChallenge from '../assets/images/noChallenge.svg';
 import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import ChallengeListItem from '../components/features/challengeList/ChallengeListItem';
+import { getChallengeList } from '../app/module/challengeSlice';
+import useUpdateEffect from '../customHooks/useUpdateEffect';
 
 const ChallengeList = () => {
-  const { challenges, message, errorMessage } = useSelector(
-    (state) => state.challenge,
-  );
+  const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.user);
 
-  const isIndividual = (element) => {
-    if (element.type === 'individual') {
-      return true;
-    }
-  };
-  const individuals = challenges.filter(isIndividual);
+  useUpdateEffect(() => {
+    dispatch(getChallengeList());
+  }, []);
+
+  // const isIndividual = (element) => {
+  //   if (element.type === 'individual') {
+  //     return true;
+  //   }
+  // };
+  // const individuals = challenges.filter(isIndividual);
+
+  const { challenges } = useSelector((state) => state.challenge);
+  console.log(challenges);
 
   if (challenges.length === 0) {
     return (
@@ -59,7 +65,7 @@ const ChallengeList = () => {
         <IndividualSection id="individualChallenge">
           <h3>개인 챌린지</h3>
           {challenges.map((challenge) => {
-            return <ChallengeListItem key={challenge.number} {...challenge} />;
+            return <ChallengeListItem key={challenge.id} {...challenge} />;
           })}
         </IndividualSection>
         <GroupSection id="groupChallenge">

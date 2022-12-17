@@ -12,16 +12,9 @@ const ChallengeStamp = (props) => {
     (state) => state.challenge,
   );
 
-  const loopStamps = (num) => {
-    let stamps = [];
-    for (let i = 0; i < props.content; i++) {
-      stamps.push(
-        <Stamp unchecked day="" onClick={() => dispatch(openModal(props))} />,
-      );
-    }
-  };
+  let stamps = [];
 
-  loopStamps('5');
+  stamps.map((stamp) => {});
 
   const [stampState, setStampState] = useState();
 

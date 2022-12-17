@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  challenge: {},
+  challenges: [],
   message: '',
   errorMessage: '',
   loading: false,
@@ -14,7 +14,7 @@ export const createChallenge = createAsyncThunk(
   'challenge/createChallenge',
   async (
     {
-      number,
+      id,
       name,
       category,
       type,
@@ -34,9 +34,9 @@ export const createChallenge = createAsyncThunk(
         },
       };
       await axios.post(
-        'http://localhost:8080/challenge/create',
+        'http://localhost:8080/challenges',
         {
-          number,
+          id,
           name,
           category,
           type,
@@ -59,43 +59,56 @@ export const createChallenge = createAsyncThunk(
   },
 );
 
+export const getChallengeList = createAsyncThunk(
+  'challenge/challengeList',
+  async (args, { rejectWithValue }) => {
+    try {
+      const data = await axios.get('http://localhost:8080/challenges');
+      // console.log(data);
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);
+
 const challengeSlice = createSlice({
   name: 'challenge',
   initialState,
-  reducers: {
-    subtractPassCount: (state) => {
-      state.challenge.passCount--;
-    },
-    // changeChallengeStatus: (state) => {},
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase('createChallenge.pending', (state) => {
+      .addCase(createChallenge.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase('createChallenge.fulfilled', (state, { payload }) => {
+      .addCase(createChallenge.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
         state.data = payload;
       })
-      .addCase('createChallenge.rejected', (state, { payload }) => {
+      .addCase(createChallenge.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(getChallengeList.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getChallengeList.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.challenges = payload.data;
+        console.log(state.challenges.length);
+      })
+      .addCase(getChallengeList.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });
-    //     .addCase(getChallengeList.pending, (state) => {
-    //       state.loading = true;
-    //       state.error = null;
-    //     })
-    //     .addCase(getChallengeList.fulfilled, (state, { payload }) => {
-    //       state.loading = false;
-    //       state.error = null;
-    //       state.data = payload;
-    //     })
-    //     .addCase(getChallengeList.rejected, (state, { payload }) => {
-    //       state.loading = false;
-    //       state.error = payload;
-    //     });
   },
 });
 
