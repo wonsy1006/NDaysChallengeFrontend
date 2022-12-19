@@ -19,7 +19,7 @@ const Header = () => {
     }
   }, [accessToken, dispatch]);
 
-  console.log(`header: ${user}, ${accessToken}`);
+  // console.log(`header: ${user}, ${accessToken}`);
 
   return (
     <>

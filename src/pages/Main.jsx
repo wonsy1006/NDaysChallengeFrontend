@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
-import { ReactComponent as NoChallenge } from '../assets/images/noChallenge.svg';
+import { ReactComponent as NoChallenge } from '../assets/images/nochallenge.svg';
 
 const onChange = () => {};
 

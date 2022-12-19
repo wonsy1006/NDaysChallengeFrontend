@@ -1,23 +1,23 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import UserProfile from '../components/common/UserProfile';
-import NoChallenge from '../assets/images/noChallenge.svg';
+import { ReactComponent as NoChallenge } from '../assets/images/nochallenge.svg';
 import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import ChallengeListItem from '../components/features/challengeList/ChallengeListItem';
 import { getChallengeList } from '../app/module/challengeSlice';
-import useUpdateEffect from '../customHooks/useUpdateEffect';
 
 const ChallengeList = () => {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.user);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     dispatch(getChallengeList());
-  }, []);
+  }, [dispatch]);
 
   // const isIndividual = (element) => {
   //   if (element.type === 'individual') {
@@ -27,15 +27,14 @@ const ChallengeList = () => {
   // const individuals = challenges.filter(isIndividual);
 
   const { challenges } = useSelector((state) => state.challenge);
-  console.log(challenges);
 
   if (challenges.length === 0) {
     return (
       <div>
-        <UserProfile
+        {/* <UserProfile
           profilePicNum={userInfo.image}
           nickname={userInfo.nickname}
-        />
+        /> */}
         <Card>
           <NoChallenge></NoChallenge>
           <StyledText>

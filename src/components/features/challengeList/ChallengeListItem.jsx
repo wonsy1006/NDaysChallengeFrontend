@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import Card from '../../common/Card';
 import Tag from '../../common/Tag';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
+import { toStringByFormatting } from '../../../utils/Date';
 
 const ChallengeListItem = ({ id, name, category, startDate, endDate }) => {
   const { params } = useParams(id);
-  console.log(params);
 
   return (
     <Card>
@@ -20,13 +20,13 @@ const ChallengeListItem = ({ id, name, category, startDate, endDate }) => {
         </RowWrapper>
         <RowWrapper justifyContent="flex-end">
           <ChallengePeriod>
-            <StartDate>{startDate}</StartDate>
+            <StartDate>{toStringByFormatting(new Date(startDate))}</StartDate>
             <span> - </span>
-            <EndDate>{endDate}</EndDate>
+            <EndDate>{toStringByFormatting(new Date(endDate))}</EndDate>
           </ChallengePeriod>
         </RowWrapper>
         <RowWrapper justifyContent="flex-end">
-          <ChallengeDetailLink to={`/challenge-detail/${id - 1}`}>
+          <ChallengeDetailLink to={`/challenge-detail/${id}`}>
             상세 보기
           </ChallengeDetailLink>
         </RowWrapper>

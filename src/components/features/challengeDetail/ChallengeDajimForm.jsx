@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { StyledInput, InputLabel } from '../../common/Input';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
+import { updateDajim } from '../../../app/module/dajimSlice';
 
 const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
   const { register, resetField, handleSubmit } = useForm();
   const [data, setData] = useState('');
+  const dispatch = useDispatch();
 
   const submitForm = (data) => {
     console.log(id);
@@ -16,8 +19,9 @@ const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
     resetField('openRange');
     resetField('dajimContent');
 
+    dispatch(updateDajim(data));
     // axios
-    //   .post('http://localhost:8080/api/dajim', data, {
+    //   .post('http://localhost:8080/dajim', data, {
     //     headers: { 'Content-Type': 'application/json' },
     //   })
     //   .then((response) => {

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import ProfilePic from '../../common/ProfilePic';
-import { ReactComponent as NoChallenge } from '../assets/images/noChallenge.svg';
+import { ReactComponent as NoChallenge } from '../assets/images/nochallenge.svg';
 
 const NoChallengeList = () => {
   return (

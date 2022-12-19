@@ -27,7 +27,7 @@ export const userSignUp = createAsyncThunk(
       };
       // make request to backend
       await axios.post(
-        'http://localhost:8080/auth/signup',
+        'http://localhost:8080/auth',
         { id, pw, nickname, image },
         config,
       );

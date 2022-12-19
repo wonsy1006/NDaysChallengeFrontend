@@ -76,6 +76,22 @@ export const getChallengeList = createAsyncThunk(
   },
 );
 
+export const deleteChallenge = createAsyncThunk(
+  'challenge/deleteChallenge',
+  async (args, { rejectWithValue }) => {
+    try {
+      const data = await axios.delete('http://localhost:8080/challenges');
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);
+
 const challengeSlice = createSlice({
   name: 'challenge',
   initialState,
@@ -102,8 +118,7 @@ const challengeSlice = createSlice({
       .addCase(getChallengeList.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        state.challenges = payload.data;
-        console.log(state.challenges.length);
+        state.challenges = payload.data.reverse();
       })
       .addCase(getChallengeList.rejected, (state, { payload }) => {
         state.loading = false;

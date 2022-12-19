@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { openModal } from '../../../app/module/modalSlice';
 import styled from 'styled-components';
 import Card from '../../common/Card';
@@ -8,33 +7,28 @@ import Stamp from '../../common/Stamp';
 const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
 
-  const { challenges, message, errorMessage } = useSelector(
-    (state) => state.challenge,
-  );
-
-  let stamps = [];
-
-  stamps.map((stamp) => {});
-
-  const [stampState, setStampState] = useState();
+  const numberOfStamp = parseInt(props.content);
+  const leftPad = (num) => {
+    return num.toString().padStart(2, '0');
+  };
 
   return (
     <Card>
       <StampTitle>✔️ 챌린지 진척도</StampTitle>
       <StampArea>
-        <Stamp unchecked day="01" onClick={() => dispatch(openModal(props))} />
-        <Stamp success day="02" />
-        <Stamp pass day="03" />
-        <Stamp fail day="04" />
-        <Stamp unchecked day="05" />
-        <Stamp unchecked day="06" />
-        <Stamp unchecked day="07" />
-        <Stamp unchecked day="08" />
-        <Stamp unchecked day="09" />
-        <Stamp unchecked day="10" />
-        <Stamp unchecked day="12" />
-        <Stamp unchecked day="13" />
-        <Stamp unchecked day="14" />
+        {[...Array(numberOfStamp)].map((n, index) => {
+          const day = [...Array(numberOfStamp)].map((v, i) =>
+            i < 10 ? leftPad(i + 1) : i + 1,
+          );
+          return (
+            <Stamp
+              unchecked
+              day={day[index]}
+              key={index}
+              onClick={() => dispatch(openModal(props.currentDay))}
+            />
+          );
+        })}
       </StampArea>
     </Card>
   );

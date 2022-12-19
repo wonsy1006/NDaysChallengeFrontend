@@ -2,18 +2,65 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  dajim: {},
+  dajim: [],
   message: '',
-  errorMessage: '',
-  isLoading: true,
+  error: '',
+  isLoading: false,
 };
+
+export const updateDajim = createAsyncThunk(
+  'dajim/updateDajim',
+  async (args, { rejectWithValue }) => {
+    try {
+      const data = await axios.post('http://localhost:8080/dajim', args, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);
+
+export const getDajimFeed = createAsyncThunk(
+  'dajim/getDajimFeed',
+  async (data, { rejectWithValue }) => {
+    try {
+      const data = await axios.get('http://localhost:8080/dajim');
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);
 
 const dajimSlice = createSlice({
   name: 'dajim',
-  ...initialState,
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase();
+    builder
+      .addCase(getDajimFeed.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getDajimFeed.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.dajim = payload.data;
+      })
+      .addCase(getDajimFeed.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      });
   },
 });
 
