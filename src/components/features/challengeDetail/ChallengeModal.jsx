@@ -9,6 +9,8 @@ import { CloseIcon } from '../../common/Icon';
 const ChallengeModal = (props) => {
   const dispatch = useDispatch();
 
+  console.log(props.content);
+
   return (
     <ModalContainer>
       <Modal>

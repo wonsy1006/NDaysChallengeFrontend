@@ -12,6 +12,10 @@ const store = configureStore({
     user: userReducer,
     dajim: dajimReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;

@@ -20,16 +20,6 @@ const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
     resetField('dajimContent');
 
     dispatch(updateDajim(data));
-    // axios
-    //   .post('http://localhost:8080/dajim', data, {
-    //     headers: { 'Content-Type': 'application/json' },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.data);
-    //   });
 
     getDajimContent(data.dajimContent);
     getBackToEditMode(false);
@@ -86,9 +76,9 @@ const StyledForm = styled.form`
   margin: 1.6rem auto;
 `;
 
-const DajimFormLabel = styled(InputLabel)`
-  font-size: ${({ theme }) => theme.fonts.size.small};
-`;
+// const DajimFormLabel = styled(InputLabel)`
+//   font-size: ${({ theme }) => theme.fonts.size.small};
+// `;
 
 const RadioWrapper = styled(RowWrapper)`
   width: 95%;
@@ -121,29 +111,29 @@ const RadioLabel = styled.label`
   }
 `;
 
-const InputWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-`;
+// const InputWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
+//   width: 100%;
+//   margin: 0 auto;
+// `;
 
-const IconWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+// const IconWrapper = styled.div`
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
 
-  position: absolute;
-  top: -1.6rem;
-  right: 0;
-  left: 0;
-  bottom: 0;
+//   position: absolute;
+//   top: -1.6rem;
+//   right: 0;
+//   left: 0;
+//   bottom: 0;
 
-  margin-right: 3rem;
+//   margin-right: 3rem;
 
-  & > * {
-    cursor: pointer;
-  }
-`;
+//   & > * {
+//     cursor: pointer;
+//   }
+// `;

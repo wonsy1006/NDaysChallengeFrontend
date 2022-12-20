@@ -24,10 +24,6 @@ const ChallengeDetail = () => {
 
   const challengeId = useParams();
 
-  const removeChallenge = () => {
-    
-  };
-
   // 현재 일차 수 계산
   const today = new Date();
   const endDate = new Date(2022, 11, 31);
@@ -73,9 +69,7 @@ const ChallengeDetail = () => {
         alignItems="center"
         margin="2rem auto"
       >
-        <RemoveChallenge onClick={removeChallenge()}>
-          챌린지 삭제하기
-        </RemoveChallenge>
+        <RemoveChallenge>챌린지 삭제하기</RemoveChallenge>
       </ColumnWrapper>
       <Invite />
     </>

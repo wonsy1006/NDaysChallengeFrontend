@@ -4,14 +4,14 @@ import axios from 'axios';
 const initialState = {
   challenges: [],
   message: '',
-  errorMessage: '',
+  error: '',
   loading: false,
   success: false,
 };
 
 // 챌린지 생성
 export const createChallenge = createAsyncThunk(
-  'challenge/createChallenge',
+  'challenge/create',
   async (
     {
       id,
@@ -60,7 +60,7 @@ export const createChallenge = createAsyncThunk(
 );
 
 export const getChallengeList = createAsyncThunk(
-  'challenge/challengeList',
+  'challenge/get',
   async (args, { rejectWithValue }) => {
     try {
       const data = await axios.get('http://localhost:8080/challenges');
@@ -77,10 +77,10 @@ export const getChallengeList = createAsyncThunk(
 );
 
 export const deleteChallenge = createAsyncThunk(
-  'challenge/deleteChallenge',
-  async (args, { rejectWithValue }) => {
+  'challenge/delete',
+  async (id, { rejectWithValue }) => {
     try {
-      const data = await axios.delete('http://localhost:8080/challenges');
+      const data = await axios.delete(`http://localhost:8080/challenges/${id}`);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -118,9 +118,24 @@ const challengeSlice = createSlice({
       .addCase(getChallengeList.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        state.challenges = payload.data.reverse();
+        state.challenges = payload.data;
       })
       .addCase(getChallengeList.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(deleteChallenge.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteChallenge.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        // state.challenges = state.challenges.filter(
+        //   (_) => _.id !== payload.data,
+        // );
+      })
+      .addCase(deleteChallenge.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });
