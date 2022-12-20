@@ -34,7 +34,7 @@ export const createChallenge = createAsyncThunk(
         },
       };
       await axios.post(
-        'http://localhost:8080/challenges',
+        'http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/challenge/create',
         {
           id,
           name,

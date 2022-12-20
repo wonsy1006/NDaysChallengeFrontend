@@ -27,7 +27,7 @@ export const userSignUp = createAsyncThunk(
       };
       // make request to backend
       await axios.post(
-        'http://localhost:8080/auth',
+        'http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/auth/signup',
         { id, pw, nickname, image },
         config,
       );
@@ -51,7 +51,7 @@ export const userLogin = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        'http://localhost:8080/auth/login',
+        'http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/auth/login',
         { id, pw },
         config,
       );
@@ -82,7 +82,7 @@ export const getUserDetails = createAsyncThunk(
         },
       };
       const { data } = await axios.get(
-        `http://localhost:8080/user/details`,
+        `http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/user/details`,
         config,
       );
       console.log({ data });
