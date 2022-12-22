@@ -48,7 +48,7 @@ const Router = () => {
         path="/"
         element={
           <FirstPage>
-            <Main />
+            <ChallengeList />
           </FirstPage>
         }
       />

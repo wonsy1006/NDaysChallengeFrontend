@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import baseUrl from '../../utils/api';
 
 const accessToken = localStorage.getItem('accessToken')
   ? localStorage.getItem('accessToken')
@@ -27,7 +28,7 @@ export const userSignUp = createAsyncThunk(
       };
       // make request to backend
       await axios.post(
-        'http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/auth/signup',
+        `${baseUrl}/auth/signup`,
         { id, pw, nickname, image },
         config,
       );
@@ -51,7 +52,7 @@ export const userLogin = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        'http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/auth/login',
+        `${baseUrl}/auth/login`,
         { id, pw },
         config,
       );
@@ -81,10 +82,7 @@ export const getUserDetails = createAsyncThunk(
           Authorization: `Bearer ${user.accessToken}`,
         },
       };
-      const { data } = await axios.get(
-        `http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/user/details`,
-        config,
-      );
+      const { data } = await axios.get(`${baseUrl}/user/details`, config);
       console.log({ data });
       return data;
     } catch (error) {
@@ -101,7 +99,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logout: (state) => {
+    logout: state => {
       localStorage.removeItem('accessToken');
       state.loading = false;
       state.userInfo = null;
@@ -109,9 +107,9 @@ const userSlice = createSlice({
       state.error = null;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(userSignUp.pending, (state) => {
+      .addCase(userSignUp.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -124,7 +122,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(userLogin.pending, (state) => {
+      .addCase(userLogin.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -137,7 +135,7 @@ const userSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(getUserDetails.pending, (state) => {
+      .addCase(getUserDetails.pending, state => {
         state.loading = true;
       })
       .addCase(getUserDetails.fulfilled, (state, { payload }) => {

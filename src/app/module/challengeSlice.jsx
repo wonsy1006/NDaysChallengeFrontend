@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import baseUrl from '../../utils/api';
 
 const initialState = {
   challenges: [],
@@ -34,7 +35,7 @@ export const createChallenge = createAsyncThunk(
         },
       };
       await axios.post(
-        'http://prod-ndc-api-service.us-west-2.elasticbeanstalk.com/challenge/create',
+        `${baseUrl}/challenge/create`,
         {
           id,
           name,
@@ -63,7 +64,7 @@ export const getChallengeList = createAsyncThunk(
   'challenge/get',
   async (args, { rejectWithValue }) => {
     try {
-      const data = await axios.get('http://localhost:8080/challenges');
+      const data = await axios.get(`${baseUrl}/challenge/list`);
       // console.log(data);
       return data;
     } catch (error) {
@@ -80,7 +81,7 @@ export const deleteChallenge = createAsyncThunk(
   'challenge/delete',
   async (id, { rejectWithValue }) => {
     try {
-      const data = await axios.delete(`http://localhost:8080/challenges/${id}`);
+      const data = await axios.delete(`${baseUrl}/challenges/${id}`);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -96,9 +97,9 @@ const challengeSlice = createSlice({
   name: 'challenge',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(createChallenge.pending, (state) => {
+      .addCase(createChallenge.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -111,7 +112,7 @@ const challengeSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(getChallengeList.pending, (state) => {
+      .addCase(getChallengeList.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -124,7 +125,7 @@ const challengeSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(deleteChallenge.pending, (state) => {
+      .addCase(deleteChallenge.pending, state => {
         state.loading = true;
         state.error = null;
       })

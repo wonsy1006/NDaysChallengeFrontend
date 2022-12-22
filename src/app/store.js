@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import challengeReducer from './module/challengeSlice';
 import friendsSlice from './module/friendsSlice';
 import modalReducer from './module/modalSlice';

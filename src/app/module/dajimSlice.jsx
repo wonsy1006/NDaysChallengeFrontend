@@ -12,7 +12,7 @@ export const updateDajim = createAsyncThunk(
   'dajim/updateDajim',
   async (args, { rejectWithValue }) => {
     try {
-      const data = await axios.post('http://localhost:8080/dajim', args, {
+      const data = await axios.post(`${baseUrl}dajim`, args, {
         headers: { 'Content-Type': 'application/json' },
       });
       return data;
@@ -30,7 +30,7 @@ export const getDajimFeed = createAsyncThunk(
   'dajim/getDajimFeed',
   async (data, { rejectWithValue }) => {
     try {
-      const data = await axios.get('http://localhost:8080/dajim');
+      const data = await axios.get(`${baseURL}/dajim`);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -46,9 +46,9 @@ const dajimSlice = createSlice({
   name: 'dajim',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(getDajimFeed.pending, (state) => {
+      .addCase(getDajimFeed.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
