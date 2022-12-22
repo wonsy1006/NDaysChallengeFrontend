@@ -11,7 +11,7 @@ import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 
 const LoginForm = () => {
-  const { loading, userInfo, error } = useSelector((state) => state.user);
+  const { loading, user, error } = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const LoginForm = () => {
 
   const [data, setData] = useState('');
 
-  const submitForm = (data) => {
+  const submitForm = data => {
     setData(JSON.stringify(data));
     console.log(data);
 
@@ -50,10 +50,10 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (userInfo) {
+    if (user) {
       navigate('/');
     }
-  }, [navigate, userInfo]);
+  }, [navigate, user]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>

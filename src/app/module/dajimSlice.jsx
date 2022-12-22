@@ -15,12 +15,16 @@ export const updateDajim = createAsyncThunk(
   'dajim/updateDajim',
   async (args, { rejectWithValue }) => {
     try {
-      const data = await axios.post(`${baseUrl}dajim`, args, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+      const data = await axios.post(
+        `${baseUrl}/challenge/${challengeId}`,
+        args,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
         },
-      });
+      );
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -36,7 +40,7 @@ export const getDajimFeed = createAsyncThunk(
   'dajim/getDajimFeed',
   async (data, { rejectWithValue }) => {
     try {
-      const data = await axios.get(`${baseUrl}/dajim`);
+      const data = await axios.get(`${baseUrl}/feed`);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {

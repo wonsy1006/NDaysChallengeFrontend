@@ -34,7 +34,7 @@ const MyPage = () => {
         <StyledLink
           onClick={() => {
             dispatch(logout());
-            navigate('/');
+            window.location.href = '/';
           }}
         >
           로그아웃

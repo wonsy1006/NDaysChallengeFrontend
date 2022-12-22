@@ -138,17 +138,17 @@ const userSlice = createSlice({
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+      })
+      .addCase(getUserDetails.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getUserDetails.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user = payload;
+      })
+      .addCase(getUserDetails.rejected, (state, { payload }) => {
+        state.loading = false;
       });
-    // .addCase(getUserDetails.pending, state => {
-    //   state.loading = true;
-    // })
-    // .addCase(getUserDetails.fulfilled, (state, { payload }) => {
-    //   state.loading = false;
-    //   state.user = payload;
-    // })
-    // .addCase(getUserDetails.rejected, (state, { payload }) => {
-    //   state.loading = false;
-    // });
   },
 });
 
