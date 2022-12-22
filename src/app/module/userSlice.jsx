@@ -110,7 +110,7 @@ const userSlice = createSlice({
       localStorage.removeItem('userPic');
       localStorage.removeItem('userNickname');
       state.loading = false;
-      state.userInfo = null;
+      state.user = null;
       state.accessToken = null;
       state.error = null;
     },
