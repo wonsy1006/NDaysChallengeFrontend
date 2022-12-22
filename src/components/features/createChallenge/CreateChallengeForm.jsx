@@ -8,8 +8,10 @@ import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 import axios from 'axios';
 import baseUrl from '../../../utils/api';
+import { useSelector } from 'react-redux';
 
 const CreateChallengeForm = () => {
+  const { user } = useSelector(state => state.user);
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
 
   const schema = yup.object().shape({

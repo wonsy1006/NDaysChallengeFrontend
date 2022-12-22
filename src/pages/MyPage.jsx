@@ -15,10 +15,7 @@ const MyPage = () => {
   return (
     <>
       <h2>내 정보</h2>
-      <UserProfile
-        profilePicNum={userInfo.image}
-        nickname={userInfo.nickname}
-      />
+      <UserProfile profilePicNum={user.image} nickname={user.nickname} />
       <PagesContainer>
         <Link to="/challenge-list">
           <h3>완료된 챌린지 보기</h3>
