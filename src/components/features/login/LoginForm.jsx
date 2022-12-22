@@ -39,6 +39,12 @@ const LoginForm = () => {
 
   const [data, setData] = useState('');
 
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [navigate, user]);
+
   const submitForm = data => {
     setData(JSON.stringify(data));
     console.log(data);
@@ -48,12 +54,6 @@ const LoginForm = () => {
     resetField('id');
     resetField('pw');
   };
-
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, [navigate, user]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
