@@ -9,7 +9,7 @@ const accessToken = localStorage.getItem('accessToken')
 const initialState = {
   loading: false,
   user: {}, // user 객체
-  accessToken: null, // JWT 저장
+  accessToken, // JWT 저장
   error: null,
   success: false, // signUp 과정 모니터
 };
