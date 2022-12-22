@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { userLogin } from '../../../app/module/userSlice';
 import styled from 'styled-components';
 import { ColumnWrapper } from '../../common/Wrapper';
@@ -13,7 +13,7 @@ import Button from '../../common/Button';
 const LoginForm = () => {
   const { loading, user, error } = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     id: yup
@@ -51,7 +51,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (user) {
-      history.replace('/');
+      navigate('/');
     }
   }, [navigate, user]);
 
