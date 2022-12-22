@@ -105,6 +105,10 @@ const userSlice = createSlice({
   reducers: {
     logout: state => {
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userPw');
+      localStorage.removeItem('userPic');
+      localStorage.removeItem('userNickname');
       state.loading = false;
       state.userInfo = null;
       state.accessToken = null;
