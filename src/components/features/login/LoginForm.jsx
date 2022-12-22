@@ -40,7 +40,7 @@ const LoginForm = () => {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    if (user) {
+    if (user.accessToken) {
       navigate('/');
     }
   }, [navigate, user]);
