@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import baseUrl from '../../utils/api';
 
 const initialState = {
   dajim: [],
@@ -30,7 +31,7 @@ export const getDajimFeed = createAsyncThunk(
   'dajim/getDajimFeed',
   async (data, { rejectWithValue }) => {
     try {
-      const data = await axios.get(`${baseURL}/dajim`);
+      const data = await axios.get(`${baseUrl}/dajim`);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
