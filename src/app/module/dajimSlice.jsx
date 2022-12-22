@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import baseUrl from '../../utils/api';
 
+const accessToken = localStorage.getItem('accessToken');
+
 const initialState = {
   dajim: [],
   message: '',
@@ -16,7 +18,7 @@ export const updateDajim = createAsyncThunk(
       const data = await axios.post(`${baseUrl}dajim`, args, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
       return data;
