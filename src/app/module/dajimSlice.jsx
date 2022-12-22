@@ -14,7 +14,10 @@ export const updateDajim = createAsyncThunk(
   async (args, { rejectWithValue }) => {
     try {
       const data = await axios.post(`${baseUrl}dajim`, args, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.accessToken}`,
+        },
       });
       return data;
     } catch (error) {

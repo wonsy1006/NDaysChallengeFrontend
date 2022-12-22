@@ -64,7 +64,12 @@ export const getChallengeList = createAsyncThunk(
   'challenge/get',
   async (args, { rejectWithValue }) => {
     try {
-      const data = await axios.get(`${baseUrl}/challenge/list`);
+      const data = await axios.get(`${baseUrl}/challenge/list`, args, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      });
       // console.log(data);
       return data;
     } catch (error) {
