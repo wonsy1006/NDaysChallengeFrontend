@@ -68,32 +68,36 @@ export const userLogin = createAsyncThunk(
   },
 );
 
-// export const getUserDetails = createAsyncThunk(
-//   'user/getUserDetails',
-//   async (arg, { getState, rejectWithValue }) => {
-//     try {
-//       // store에서 user data 가져오기
-//       const { user } = getState();
+export const getUserDetails = createAsyncThunk(
+  'user/getUserDetails',
+  async (arg, { getState, rejectWithValue }) => {
+    try {
+      // store에서 user data 가져오기
+      const { user } = getState();
 
-//       // configure authorization header with user's token
-//       const config = {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Authorization: `Bearer ${user.accessToken}`,
-//         },
-//       };
-//       const { data } = await axios.get(`${baseUrl}/user/details`, config);
-//       console.log({ data });
-//       return data;
-//     } catch (error) {
-//       if (error.response && error.response.data.message) {
-//         return rejectWithValue(error.response.data.message);
-//       } else {
-//         return rejectWithValue(error.message);
-//       }
-//     }
-//   },
-// );
+      // configure authorization header with user's token
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      };
+      const { data } = await axios.get(`${baseUrl}/user/details`, config);
+      localStorage.setItem('userId', data.id);
+      localStorage.setItem('userPw', data.pw);
+      localStorage.setItem('userPic', data.image);
+      localStorage.setItem('userNickname', data.nickname);
+      console.log({ data });
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);
 
 const userSlice = createSlice({
   name: 'user',
