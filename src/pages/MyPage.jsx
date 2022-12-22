@@ -10,15 +10,14 @@ const MyPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const { userInfo } = useSelector((state) => state.user);
+  const { user } = useSelector(state => state.user);
 
   return (
     <>
       <h2>내 정보</h2>
       <UserProfile
-        margin="0 auto 3.2rem"
-        nickname="nickname"
-        profilePicNum={1}
+        profilePicNum={userInfo.image}
+        nickname={userInfo.nickname}
       />
       <PagesContainer>
         <Link to="/challenge-list">

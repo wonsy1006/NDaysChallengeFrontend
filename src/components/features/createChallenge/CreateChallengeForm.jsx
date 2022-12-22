@@ -40,7 +40,10 @@ const CreateChallengeForm = () => {
 
     axios
       .post(`${baseUrl}/challenge/create`, data, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.accessToken}`,
+        },
       })
       .then(response => {
         console.log(response.data);
