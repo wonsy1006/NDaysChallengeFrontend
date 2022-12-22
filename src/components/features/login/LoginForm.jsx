@@ -49,11 +49,12 @@ const LoginForm = () => {
     resetField('pw');
   };
 
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, [navigate, user]);
+  console.log(user);
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate('/');
+  //   }
+  // }, [navigate, user]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
