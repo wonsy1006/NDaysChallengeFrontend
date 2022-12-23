@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import LoginForm from '../components/features/login/LoginForm';
 
 const Login = () => {
   const { userInfo } = useSelector(state => state.user);
+  const navigate = useNavigate('');
 
   useEffect(() => {
     if (userInfo) {
