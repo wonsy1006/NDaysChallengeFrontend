@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
 const ProtectedRoute = () => {
-  const { user } = useSelector(state => state.user);
+  const { userInfo } = useSelector(state => state.user);
   const navigate = useNavigate();
 
-  console.log(user);
+  console.log(userInfo);
 
   useEffect(() => {
-    if (!user) {
+    if (!userInfo) {
       navigate('/login');
     }
   }, [navigate, user]);
