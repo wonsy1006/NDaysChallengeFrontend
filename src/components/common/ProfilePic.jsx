@@ -9,17 +9,17 @@ import { ReactComponent as Pic6 } from '../../assets/images/profile_pics/pic6.sv
 const ProfilePic = props => {
   const picType = props.picType;
   switch (props.picType) {
-    case '1':
+    case 'pic1':
       return <Pic1 />;
-    case '2':
+    case 'pic2':
       return <Pic2 />;
-    case '3':
+    case 'pic3':
       return <Pic3 />;
-    case '4':
+    case 'pic4':
       return <Pic4 />;
-    case '5':
+    case 'pic5':
       return <Pic5 />;
-    case '6':
+    case 'pic6':
       return <Pic6 />;
     default:
       return null;

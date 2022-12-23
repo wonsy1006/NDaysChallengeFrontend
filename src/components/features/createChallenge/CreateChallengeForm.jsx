@@ -11,7 +11,7 @@ import baseUrl from '../../../utils/api';
 import { useSelector } from 'react-redux';
 
 const CreateChallengeForm = () => {
-  const { user } = useSelector(state => state.user);
+  const { userInfo, accessToken } = useSelector(state => state.user);
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
 
   const schema = yup.object().shape({
@@ -44,7 +44,7 @@ const CreateChallengeForm = () => {
       .post(`${baseUrl}/challenge/create`, data, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then(response => {

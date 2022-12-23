@@ -16,7 +16,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const { loading, userInfo, error, success } = useSelector(
-    (state) => state.user,
+    state => state.user,
   );
 
   const schema = yup.object().shape({
@@ -47,7 +47,7 @@ const SignUpForm = () => {
 
   const [data, setData] = useState('');
 
-  const submitForm = (data) => {
+  const submitForm = data => {
     setData(JSON.stringify(data));
     console.log(data);
 
@@ -99,28 +99,48 @@ const SignUpForm = () => {
           <ProfileLabel htmlFor="pic1">
             <ProfilePic picType="pic1" />
           </ProfileLabel>
-          <Radio {...register('image')} type="radio" value="pic2" id="pic2" />
+          <Radio
+            {...register('image', { valueAsNumber: true })}
+            type="radio"
+            value="2"
+            id="pic2"
+          />
           <ProfileLabel htmlFor="pic2">
             <ProfilePic picType="pic2" />
           </ProfileLabel>
           <Radio
-            {...register('profilePic')}
+            {...register('image', { valueAsNumber: true })}
             type="radio"
-            value="pic3"
+            value="3"
             id="pic3"
           />
           <ProfileLabel htmlFor="pic3">
             <ProfilePic picType="pic3" />
           </ProfileLabel>
-          <Radio {...register('image')} type="radio" value="pic4" id="pic4" />
+          <Radio
+            {...register('image', { valueAsNumber: true })}
+            type="radio"
+            value="4"
+            id="pic4"
+          />
           <ProfileLabel htmlFor="pic4">
             <ProfilePic picType="pic4" />
           </ProfileLabel>
-          <Radio {...register('image')} type="radio" value="pic5" id="pic5" />
+          <Radio
+            {...register('image', { valueAsNumber: true })}
+            type="radio"
+            value="5"
+            id="pic5"
+          />
           <ProfileLabel htmlFor="pic5">
             <ProfilePic picType="pic5" />
           </ProfileLabel>
-          <Radio {...register('image')} type="radio" value="pic6" id="pic6" />
+          <Radio
+            {...register('image', { valueAsNumber: true })}
+            type="radio"
+            value="6"
+            id="pic6"
+          />
           <ProfileLabel htmlFor="pic6">
             <ProfilePic picType="pic6" />
           </ProfileLabel>
