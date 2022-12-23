@@ -37,6 +37,7 @@ const ChallengeDetail = () => {
     <>
       {isOpen && <ChallengeModal content={challenges[challengeId.id]} />}
       <UserProfile
+        flexDirection="row"
         profilePicNum={userInfo?.image}
         nickname={userInfo?.nickname}
       />
