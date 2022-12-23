@@ -12,7 +12,7 @@ const ProtectedRoute = () => {
     if (!userInfo) {
       navigate('/login');
     }
-  }, [navigate, user]);
+  }, [navigate, userInfo]);
 
   return <Outlet />;
 };
