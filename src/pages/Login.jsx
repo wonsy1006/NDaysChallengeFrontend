@@ -6,14 +6,14 @@ import Button from '../components/common/Button';
 import LoginForm from '../components/features/login/LoginForm';
 
 const Login = () => {
-  const { userInfo } = useSelector(state => state.user);
-  const navigate = useNavigate('');
+  const { accessToken } = useSelector(state => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (userInfo) {
+    if (accessToken) {
       navigate('/');
     }
-  }, [navigate, userInfo]);
+  }, [navigate, accessToken]);
 
   return (
     <>
