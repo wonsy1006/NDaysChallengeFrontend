@@ -45,15 +45,15 @@ const LoginForm = () => {
 
     dispatch(userLogin(data));
 
-    useEffect(() => {
-      if (userInfo) {
-        navigate('/');
-      }
-    }, [navigate, userInfo]);
-
     resetField('id');
     resetField('pw');
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [navigate, userInfo]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
