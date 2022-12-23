@@ -15,12 +15,6 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate('/');
-  //   }
-  // }, [navigate, userInfo]);
-
   const schema = yup.object().shape({
     id: yup
       .string()
@@ -50,6 +44,12 @@ const LoginForm = () => {
     console.log(data);
 
     dispatch(userLogin(data));
+
+    useEffect(() => {
+      if (userInfo) {
+        navigate('/');
+      }
+    }, [navigate, userInfo]);
 
     resetField('id');
     resetField('pw');

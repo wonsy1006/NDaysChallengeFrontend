@@ -32,6 +32,7 @@ const ChallengeList = () => {
     return (
       <div>
         <UserProfile
+          margin="2.4rem"
           flexDirection="row"
           profilePicNum={userInfo?.image}
           nickname={userInfo?.nickname}
