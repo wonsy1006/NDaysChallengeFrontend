@@ -15,11 +15,11 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/');
-    }
-  }, [navigate, userInfo]);
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     navigate('/');
+  //   }
+  // }, [navigate, userInfo]);
 
   const schema = yup.object().shape({
     id: yup
