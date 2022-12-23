@@ -15,6 +15,12 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [navigate, userInfo]);
+
   const schema = yup.object().shape({
     id: yup
       .string()
@@ -48,12 +54,6 @@ const LoginForm = () => {
     resetField('id');
     resetField('pw');
   };
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/');
-    }
-  }, [navigate, userInfo]);
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>

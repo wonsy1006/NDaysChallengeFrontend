@@ -6,21 +6,20 @@ import { ReactComponent as Pic4 } from '../../assets/images/profile_pics/pic4.sv
 import { ReactComponent as Pic5 } from '../../assets/images/profile_pics/pic5.svg';
 import { ReactComponent as Pic6 } from '../../assets/images/profile_pics/pic6.svg';
 
-const ProfilePic = (props) => {
+const ProfilePic = props => {
   const picType = props.picType;
-  console.log(picType);
   switch (props.picType) {
-    case 'pic1':
+    case '1':
       return <Pic1 />;
-    case 'pic2':
+    case '2':
       return <Pic2 />;
-    case 'pic3':
+    case '3':
       return <Pic3 />;
-    case 'pic4':
+    case '4':
       return <Pic4 />;
-    case 'pic5':
+    case '5':
       return <Pic5 />;
-    case 'pic6':
+    case '6':
       return <Pic6 />;
     default:
       return null;
