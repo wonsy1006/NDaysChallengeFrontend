@@ -1,11 +1,19 @@
-import React from 'react';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import LoginForm from '../components/features/login/LoginForm';
 
 const Login = () => {
+  const { userInfo } = useSelector(state => state.user);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/');
+    }
+  }, [navigate, userInfo]);
+
   return (
     <>
       <h2>로그인</h2>
