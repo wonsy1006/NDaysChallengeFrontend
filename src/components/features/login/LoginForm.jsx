@@ -49,12 +49,6 @@ const LoginForm = () => {
     resetField('pw');
   };
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/');
-    }
-  }, [navigate, userInfo]);
-
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
       <ColumnWrapper margin="0 auto 1rem">

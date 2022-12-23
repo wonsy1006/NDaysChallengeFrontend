@@ -138,6 +138,12 @@ const userSlice = createSlice({
         state.loading = true;
         state.userInfo = payload;
         state.accessToken = payload.accessToken;
+
+        useEffect(() => {
+          if (userInfo) {
+            navigate('/');
+          }
+        }, [navigate, userInfo]);
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
