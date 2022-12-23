@@ -13,7 +13,7 @@ import { getChallengeList } from '../app/module/challengeSlice';
 const ChallengeList = () => {
   const dispatch = useDispatch();
 
-  const { userInfo } = useSelector((state) => state.user);
+  const { userInfo } = useSelector(state => state.user);
 
   useEffect(() => {
     dispatch(getChallengeList());
@@ -26,15 +26,15 @@ const ChallengeList = () => {
   // };
   // const individuals = challenges.filter(isIndividual);
 
-  const { challenges } = useSelector((state) => state.challenge);
+  const { challenges } = useSelector(state => state.challenge);
 
   if (challenges.length === 0) {
     return (
       <div>
-        {/* <UserProfile
-          profilePicNum={userInfo.image}
-          nickname={userInfo.nickname}
-        /> */}
+        <UserProfile
+          profilePicNum={userInfo?.image}
+          nickname={userInfo?.nickname}
+        />
         <Card>
           <NoChallenge></NoChallenge>
           <StyledText>
@@ -63,7 +63,7 @@ const ChallengeList = () => {
       <ListSection>
         <IndividualSection id="individualChallenge">
           <h3>개인 챌린지</h3>
-          {challenges.map((challenge) => {
+          {challenges.map(challenge => {
             return <ChallengeListItem key={challenge.id} {...challenge} />;
           })}
         </IndividualSection>

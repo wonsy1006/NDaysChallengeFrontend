@@ -8,8 +8,8 @@ const accessToken = localStorage.getItem('accessToken')
 
 const initialState = {
   loading: false,
-  user: {}, // user 객체
-  accessToken, // JWT 저장
+  userInfo: {}, // user 객체
+  accessToken: null, // JWT 저장
   error: null,
   success: false, // signUp 과정 모니터
 };
@@ -83,10 +83,10 @@ export const getUserDetails = createAsyncThunk(
         },
       };
       const { data } = await axios.get(`${baseUrl}/user/details`, config);
-      localStorage.setItem('userId', data.id);
-      localStorage.setItem('userPw', data.pw);
-      localStorage.setItem('userPic', data.image);
-      localStorage.setItem('userNickname', data.nickname);
+      // localStorage.setItem('userId', data.id);
+      // localStorage.setItem('userPw', data.pw);
+      // localStorage.setItem('userPic', data.image);
+      // localStorage.setItem('userNickname', data.nickname);
       console.log({ data });
       return data;
     } catch (error) {
@@ -105,10 +105,10 @@ const userSlice = createSlice({
   reducers: {
     logout: state => {
       localStorage.removeItem('accessToken');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('userPw');
-      localStorage.removeItem('userPic');
-      localStorage.removeItem('userNickname');
+      // localStorage.removeItem('userId');
+      // localStorage.removeItem('userPw');
+      // localStorage.removeItem('userPic');
+      // localStorage.removeItem('userNickname');
       state.loading = false;
       state.user = null;
       state.accessToken = null;
@@ -136,7 +136,7 @@ const userSlice = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
-        state.user = payload;
+        state.userInfo = payload;
         state.accessToken = payload.accessToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
@@ -148,7 +148,7 @@ const userSlice = createSlice({
       })
       .addCase(getUserDetails.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.user = payload;
+        state.userInfo = payload;
       })
       .addCase(getUserDetails.rejected, (state, { payload }) => {
         state.loading = false;

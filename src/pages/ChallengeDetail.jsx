@@ -11,16 +11,18 @@ import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import Tag from '../components/common/Tag';
 import { useParams } from 'react-router-dom';
 import { getChallengeList } from '../app/module/challengeSlice';
+import UserProfile from '../components/common/UserProfile';
 
 const ChallengeDetail = () => {
-  const { isOpen } = useSelector((store) => store.modal);
+  const { userInfo } = useSelector(state => state.user);
+  const { isOpen } = useSelector(store => store.modal);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getChallengeList());
   }, [dispatch]);
 
-  const { challenges } = useSelector((state) => state.challenge);
+  const { challenges } = useSelector(state => state.challenge);
 
   const challengeId = useParams();
 
@@ -34,13 +36,10 @@ const ChallengeDetail = () => {
   return (
     <>
       {isOpen && <ChallengeModal content={challenges[challengeId.id]} />}
-      <UserContainer>
-        <Pic1 />
-        <NicknameContainer>
-          <NicknameSpan>OOOOO</NicknameSpan>
-          <span>님의 챌린지</span>
-        </NicknameContainer>
-      </UserContainer>
+      <UserProfile
+        profilePicNum={userInfo?.image}
+        nickname={userInfo?.nickname}
+      />
       <ChallengeTitle>{challenges[challengeId.id].name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
         <Tag routine>규칙적인 생활</Tag>
