@@ -35,7 +35,7 @@ export const createChallenge = createAsyncThunk(
       const config = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       };
       await axios.post(
