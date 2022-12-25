@@ -39,16 +39,17 @@ export const createChallenge = createAsyncThunk(
       await axios.post(
         `${baseUrl}/challenge/create`,
         {
-          id,
           name,
           category,
           type,
           totalDays,
           startDate,
-          endDate,
           reward,
           passCount,
           status,
+          successCount,
+          usedPassCount,
+          memberNumber,
         },
         config,
       );
