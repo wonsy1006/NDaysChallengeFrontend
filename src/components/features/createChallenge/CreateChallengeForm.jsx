@@ -29,6 +29,7 @@ const CreateChallengeForm = () => {
     successCount: yup.number(),
     usedPassCount: yup.number(),
     memberNumber: yup.number(),
+    status: yup.string(),
   });
 
   const {
@@ -256,7 +257,11 @@ const CreateChallengeForm = () => {
           type="number"
           defaultValue="4"
         />
-        <StyledInput {...register('status')} defaultValue="continue" />
+        <StyledInput
+          {...register('status')}
+          type="text"
+          defaultValue="continue"
+        />
       </DisplayNoneWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button primary>챌린지 생성</Button>
