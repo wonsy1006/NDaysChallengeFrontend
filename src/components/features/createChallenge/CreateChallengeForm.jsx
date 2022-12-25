@@ -109,7 +109,7 @@ const CreateChallengeForm = () => {
         <InputLabel label="챌린지 기간" />
         <RadioWrapper>
           <Radio
-            {...register('totalDays')}
+            {...register('totalDays', { valueAsNumber: true })}
             type="radio"
             value="14"
             id="14days"
@@ -117,14 +117,14 @@ const CreateChallengeForm = () => {
           />
           <RadioLabel htmlFor="14days">14일</RadioLabel>
           <Radio
-            {...register('totalDays')}
+            {...register('totalDays', { valueAsNumber: true })}
             type="radio"
             value="30"
             id="30days"
           />
           <RadioLabel htmlFor="30days">30일</RadioLabel>
           <Radio
-            {...register('totalDays')}
+            {...register('totalDays', { valueAsNumber: true })}
             type="radio"
             value="60"
             id="60days"
@@ -135,7 +135,7 @@ const CreateChallengeForm = () => {
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="시작일 선택" />
         <StyledInput
-          {...register('startDate', { required: true })}
+          {...register('startDate', { required: true, valueAsDate: true })}
           type="date"
         />
       </ColumnWrapper>
