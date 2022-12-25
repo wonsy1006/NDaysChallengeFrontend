@@ -26,6 +26,8 @@ const CreateChallengeForm = () => {
     endDate: yup.date(),
     passCount: yup.number().min(0),
     reward: yup.string(),
+    successCount: yup.number(),
+    usedPassCount: yup.number(),
   });
 
   const {
@@ -137,17 +139,6 @@ const CreateChallengeForm = () => {
           type="date"
         />
       </ColumnWrapper>
-      <DisplayNoneWrapper>
-        <ColumnWrapper margin="0 auto 2.4rem auto">
-          <InputLabel label="종료일" />
-          <StyledInput
-            {...register('endDate')}
-            type="date"
-            disabled
-            defaultValue=""
-          />
-        </ColumnWrapper>
-      </DisplayNoneWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="패스 횟수 설정" />
         <RadioWrapper>
@@ -244,6 +235,18 @@ const CreateChallengeForm = () => {
           />
         )}
       </ColumnWrapper>
+      <DisplayNoneWrapper>
+        <StyledInput
+          {...register('successCount', { valueAsNumber: true })}
+          type="number"
+          defaultValue="0"
+        />
+        <StyledInput
+          {...register('usedPassCount', { valueAsNumber: true })}
+          type="number"
+          defaultValue="0"
+        />
+      </DisplayNoneWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button primary>챌린지 생성</Button>
       </ColumnWrapper>
