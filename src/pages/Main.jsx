@@ -11,7 +11,7 @@ const onChange = () => {};
 const Main = () => {
   return (
     <div>
-      <UserNameContainer justifyContent={flex - start}>
+      <UserNameContainer justifyContent="flex-start">
         <Pic1 />
         <StyledSpan>OOOOO 님</StyledSpan>
         <span>의 챌린지</span>
