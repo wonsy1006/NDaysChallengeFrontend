@@ -6,8 +6,7 @@ import styled from 'styled-components';
 import { ColumnWrapper } from '../../common/Wrapper';
 import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
-import axios from 'axios';
-import baseUrl from '../../../utils/api';
+import { toStringByFormatting } from '../../../utils/Date';
 import { useSelector, useDispatch } from 'react-redux';
 import { createChallenge } from '../../../app/module/challengeSlice';
 
@@ -139,8 +138,9 @@ const CreateChallengeForm = () => {
       <ColumnWrapper margin="0 auto 2.4rem auto">
         <InputLabel label="시작일 선택" />
         <StyledInput
-          {...register('startDate', { required: true, valueAsDate: true })}
+          {...register('startDate', { required: true })}
           type="date"
+          value={toStringByFormatting(value)}
         />
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
