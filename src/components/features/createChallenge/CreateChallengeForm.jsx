@@ -15,19 +15,19 @@ const CreateChallengeForm = () => {
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
 
   const schema = yup.object().shape({
-    type: yup
+    type: yup.string().required('챌린지 유형을 선택해 주세요'),
+    name: yup
       .string()
-      .max(30)
-      .required('챌린지 유형을 선택해 주세요'),
-    name: yup.string().required('챌린지 제목을 입력해 주세요'),
+      .required('챌린지 제목을 입력해 주세요')
+      .max(30),
     category: yup.string().required('챌린지 카테고리를 선택해 주세요'),
     totalDays: yup.string().required('챌린지 기간을 선택해 주세요'),
     startDate: yup.date().required('챌린지 시작일을 선택해 주세요'),
-    endDate: yup.date(),
     passCount: yup.number().min(0),
     reward: yup.string(),
     successCount: yup.number(),
     usedPassCount: yup.number(),
+    memberNumber: yup.number(),
   });
 
   const {
@@ -245,6 +245,11 @@ const CreateChallengeForm = () => {
           {...register('usedPassCount', { valueAsNumber: true })}
           type="number"
           defaultValue="0"
+        />
+        <StyledInput
+          {...register('memberNumber', { valueAsNumber: true })}
+          type="number"
+          defaultValue="1"
         />
       </DisplayNoneWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
