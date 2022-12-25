@@ -73,18 +73,18 @@ const CreateChallengeForm = () => {
             <Radio
               {...register('type')}
               type="radio"
-              value="individual"
-              id="individual"
+              value="SINGLE"
+              id="SINGLE"
               defaultChecked
             />
-            <RadioLabel htmlFor="individual">개인</RadioLabel>
+            <RadioLabel htmlFor="SINGLE">개인</RadioLabel>
             <Radio
               {...register('type')}
               type="radio"
-              value="group"
-              id="group"
+              value="GROUP"
+              id="GROUP"
             />
-            <RadioLabel htmlFor="group">단체</RadioLabel>
+            <RadioLabel htmlFor="GROUP">단체</RadioLabel>
           </RadioWrapper>
         </ColumnWrapper>
       </DisplayNoneWrapper>
