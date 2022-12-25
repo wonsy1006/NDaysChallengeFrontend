@@ -40,6 +40,7 @@ const CreateChallengeForm = () => {
   const [data, setData] = useState('');
 
   const submitForm = data => {
+    data.startDate = toStringByFormatting(data.startDate);
     setData(JSON.stringify(data));
     console.log(data);
 
@@ -140,7 +141,6 @@ const CreateChallengeForm = () => {
         <StyledInput
           {...register('startDate', { required: true })}
           type="date"
-          value={toStringByFormatting(value)}
         />
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem auto">
