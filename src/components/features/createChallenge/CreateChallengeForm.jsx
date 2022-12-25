@@ -255,7 +255,7 @@ const CreateChallengeForm = () => {
         <StyledInput
           {...register('memberNumber', { valueAsNumber: true })}
           type="number"
-          defaultValue="4"
+          defaultValue="5"
         />
         <StyledInput
           {...register('status')}
