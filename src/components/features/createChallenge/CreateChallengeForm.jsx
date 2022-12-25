@@ -44,7 +44,7 @@ const CreateChallengeForm = () => {
     setData(JSON.stringify(data));
     console.log(data);
 
-    dispatch(createChallenge());
+    dispatch(createChallenge(data));
 
     // axios
     //   .post(`${baseUrl}/challenge/create`, data, {
