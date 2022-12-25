@@ -17,16 +17,17 @@ export const createChallenge = createAsyncThunk(
   'challenge/create',
   async (
     {
-      id,
       name,
       category,
       type,
       totalDays,
       startDate,
-      endDate,
       reward,
       passCount,
       status,
+      successCount,
+      usedPassCount,
+      memberNumber,
     },
     { rejectWithValue },
   ) => {
