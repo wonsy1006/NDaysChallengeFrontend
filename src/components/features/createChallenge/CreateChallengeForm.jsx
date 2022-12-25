@@ -253,7 +253,7 @@ const CreateChallengeForm = () => {
         <StyledInput
           {...register('memberNumber', { valueAsNumber: true })}
           type="number"
-          defaultValue="1"
+          defaultValue="5"
         />
       </DisplayNoneWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
