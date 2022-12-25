@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FeedItem from '../components/features/feed/FeedItem';
 import { getDajimFeed } from '../app/module/dajimSlice';
