@@ -22,7 +22,7 @@ const CreateChallengeForm = () => {
       .required('챌린지 제목을 입력해 주세요')
       .max(30),
     category: yup.string().required('챌린지 카테고리를 선택해 주세요'),
-    totalDays: yup.string().required('챌린지 기간을 선택해 주세요'),
+    totalDays: yup.number().required('챌린지 기간을 선택해 주세요'),
     startDate: yup.date().required('챌린지 시작일을 선택해 주세요'),
     passCount: yup.number().min(0),
     reward: yup.string(),
