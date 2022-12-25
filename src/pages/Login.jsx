@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../components/common/Button';
 import LoginForm from '../components/features/login/LoginForm';
 
 const Login = () => {
