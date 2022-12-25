@@ -3,7 +3,6 @@ import axios from 'axios';
 import baseUrl from '../../utils/api';
 
 const accessToken = localStorage.getItem('accessToken');
-console.log(accessToken);
 
 const initialState = {
   challenges: [],
