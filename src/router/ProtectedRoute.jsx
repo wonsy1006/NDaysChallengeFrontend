@@ -6,8 +6,6 @@ const ProtectedRoute = () => {
   const { accessToken } = useSelector(state => state.user);
   const navigate = useNavigate();
 
-  console.log(user);
-
   useEffect(() => {
     if (!accessToken) {
       navigate('/login');
