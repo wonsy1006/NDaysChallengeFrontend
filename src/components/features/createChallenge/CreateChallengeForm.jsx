@@ -101,10 +101,11 @@ const CreateChallengeForm = () => {
         <InputLabel label="챌린지 카테고리" />
         <Select {...register('category', { required: true })}>
           <Option value="">카테고리를 선택하세요</Option>
+          <Option value="routine">일상생활</Option>
           <Option value="study">공부</Option>
           <Option value="workout">운동</Option>
           <Option value="hobby">취미</Option>
-          <Option value="mentalcare">멘탈케어</Option>
+          <Option value="mindfulness">멘탈케어</Option>
           <Option value="etc">기타</Option>
         </Select>
         <ErrorMessage>{errors.category?.message}</ErrorMessage>
