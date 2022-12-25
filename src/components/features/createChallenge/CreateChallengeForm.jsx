@@ -256,6 +256,7 @@ const CreateChallengeForm = () => {
           type="number"
           defaultValue="4"
         />
+        <StyledInput {...register('status')} defaultValue="continue" />
       </DisplayNoneWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button primary>챌린지 생성</Button>
