@@ -16,7 +16,7 @@ const MyPage = () => {
     <>
       <h2>내 정보</h2>
       <UserProfile
-        margin="2.4rem"
+        margin="2.4rem 0"
         profilePicNum={userInfo?.image}
         nickname={userInfo?.nickname}
       />
