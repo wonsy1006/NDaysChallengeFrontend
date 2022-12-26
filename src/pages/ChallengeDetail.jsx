@@ -22,12 +22,12 @@ const ChallengeDetail = () => {
     dispatch(getChallengeList());
   }, [dispatch]);
 
-  const { challenges } = useSelector(state => state.challenge);
+  const { challenges } = useSelector(state => state.challenge.challenges);
 
-  const number = useParams();
+  const roomNumber = useParams();
 
   console.log(challenges);
-  console.log(number);
+  console.log(roomNumber);
 
   // 현재 일차 수 계산
   const today = new Date();
