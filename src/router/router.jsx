@@ -27,9 +27,6 @@ import Report from '../pages/Report';
 import GroupChallenge from '../pages/GroupChallenge';
 import { useSelector } from 'react-redux';
 
-const { challenges } = useSelector((state) => state.challenge);
-const roomNumber = challenges.roomNumber;
-
 // 최초 방문 유저 판별
 const FirstPage = ({ children }) => {
   if (
@@ -42,6 +39,9 @@ const FirstPage = ({ children }) => {
 };
 
 const Router = () => {
+  const { challenges } = useSelector((state) => state.challenge);
+  const roomNumber = challenges.roomNumber;
+
   return (
     // <BrowserRouter>
     <Routes>
