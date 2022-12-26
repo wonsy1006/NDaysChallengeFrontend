@@ -23,11 +23,12 @@ const ChallengeDetail = () => {
   }, [dispatch]);
 
   const { challenges } = useSelector(state => state.challenge);
+  const { params } = useParams(roomNumber);
 
-  const roomNumber = useParams();
-
-  console.log(challenges);
-  console.log(challenges.roomNumber);
+  const challenge = challenges.find(
+    challenge => challenge.roomNumber === params,
+  );
+  console.log(challenge);
 
   // 현재 일차 수 계산
   const today = new Date();
@@ -38,7 +39,7 @@ const ChallengeDetail = () => {
 
   return (
     <>
-      {isOpen && <ChallengeModal content={challenges[challengeId.number]} />}
+      {/* {isOpen && <ChallengeModal content={challenges[challengeId.number]} />}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
@@ -75,7 +76,7 @@ const ChallengeDetail = () => {
       >
         <RemoveChallenge>챌린지 삭제하기</RemoveChallenge>
       </ColumnWrapper>
-      <Invite />
+      <Invite /> */}
     </>
   );
 };
