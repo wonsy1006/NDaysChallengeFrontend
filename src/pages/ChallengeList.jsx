@@ -14,11 +14,12 @@ const ChallengeList = () => {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector(state => state.user);
-  const { challenges } = useSelector(state => state.challenge);
 
   useEffect(() => {
     dispatch(getChallengeList());
-  }, [dispatch, challenges]);
+  }, [dispatch]);
+
+  const { challenges } = useSelector(state => state.challenge);
 
   // const isIndividual = (element) => {
   //   if (element.type === 'individual') {
