@@ -16,7 +16,7 @@ const ChallengeList = () => {
   const { userInfo } = useSelector(state => state.user);
 
   useEffect(() => {
-    dispatch(getChallengeList());
+    dispatch(getChallengeList(data));
   }, [dispatch]);
 
   // const isIndividual = (element) => {

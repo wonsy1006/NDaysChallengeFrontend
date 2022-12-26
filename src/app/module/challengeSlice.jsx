@@ -75,7 +75,7 @@ export const getChallengeList = createAsyncThunk(
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      // console.log(data);
+      console.log(data);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {

@@ -12,7 +12,7 @@ import { createChallenge } from '../../../app/module/challengeSlice';
 import { useNavigate } from 'react-router-dom';
 
 const CreateChallengeForm = () => {
-  const { success } = useSelector(state => state.challenge);
+  const success = useSelector(state => state.challenge.success);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
