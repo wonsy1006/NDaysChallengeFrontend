@@ -9,8 +9,6 @@ import { CloseIcon } from '../../common/Icon';
 const ChallengeModal = (props) => {
   const dispatch = useDispatch();
 
-  console.log(props.content);
-
   return (
     <ModalContainer>
       <Modal>
@@ -22,7 +20,7 @@ const ChallengeModal = (props) => {
           <br /> 성공하셨나요?
         </ModalText>
         <PassWrapper>
-          남은 패스 : <LeftPass>{props.content.passCount}</LeftPass> 회
+          남은 패스 : <LeftPass>{props.challenge.passCount}</LeftPass> 회
         </PassWrapper>
         <ButtonWrapper>
           <Button
