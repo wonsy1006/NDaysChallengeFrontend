@@ -22,7 +22,7 @@ const ChallengeDetail = () => {
     dispatch(getChallengeList());
   }, [dispatch]);
 
-  const { challenges } = useSelector(state => state.challenge.challenges);
+  const { challenges } = useSelector(state => state.challenge);
 
   const roomNumber = useParams();
 

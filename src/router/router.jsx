@@ -27,6 +27,9 @@ import Report from '../pages/Report';
 import GroupChallenge from '../pages/GroupChallenge';
 import { useSelector } from 'react-redux';
 
+const { challenges } = useSelector((state) => state.challenge);
+const roomNumber = challenges.roomNumber;
+
 // 최초 방문 유저 판별
 const FirstPage = ({ children }) => {
   if (
@@ -37,8 +40,6 @@ const FirstPage = ({ children }) => {
   }
   return children;
 };
-
-// 챌린지 보유 유저 판별
 
 const Router = () => {
   return (
@@ -60,7 +61,7 @@ const Router = () => {
       <Route element={<ProtectedRoute />}>
         <Route path="/challenge-list" element={<ChallengeList />} />
         <Route
-          path="/challenge-detail/:roomNumber"
+          path={`/challenge-detail/:${roomNumber}`}
           element={<ChallengeDetail />}
         />
         <Route path="/challenge-result" element={<ChallengeResult />} />
