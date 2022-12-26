@@ -47,6 +47,8 @@ const CreateChallengeForm = () => {
     dispatch(createChallenge(data));
   };
 
+  useEffect(() => {});
+
   // const [startDate, setStartDate] = useState('');
   // const getStartDate = (date) => {};
 
