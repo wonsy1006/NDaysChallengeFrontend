@@ -197,7 +197,8 @@ export const userSlice = createSlice({
       .addCase(reissueToken.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-      });
+      })
+      .addCase(PURGE, () => initialState);
   },
 });
 

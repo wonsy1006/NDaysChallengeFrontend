@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUserDetails, logout } from '../app/module/userSlice';
+import { logout } from '../app/module/userSlice';
 import UserProfile from '../components/common/UserProfile';
 
 const MyPage = () => {
@@ -11,6 +11,10 @@ const MyPage = () => {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector(state => state.user);
+
+  const purge = async () => {
+    await persistor.purge();
+  };
 
   return (
     <>
@@ -36,8 +40,9 @@ const MyPage = () => {
       </PagesContainer>
       <LogoutContainer>
         <StyledLink
-          onClick={() => {
-            dispatch(logout());
+          onClick={async () => {
+            await dispatch(logout());
+            await setTimeout(() => purge(), 200);
             window.location.href = '/';
           }}
         >
