@@ -56,17 +56,14 @@ const ChallengeDetail = () => {
       {challenge.reward === '' ? null : (
         <ChallengeReward content={challenge.reward} />
       )}
-      <ChallengeStamp
-        content={parseInt(challenge.totalDays)}
-        currentDay={currentDay}
-      />
+      <ChallengeStamp content={challenge.totalDays} currentDay={currentDay} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
-          남은 패스 : <LeftPass>{parseInt(challenge.passCount)}</LeftPass> 회
+          남은 패스 : <LeftPass>{challenge.passCount}</LeftPass> 회
         </PassWrapper>
         <CountWrapper>
           <Succeeded>{currentDay}</Succeeded> /{' '}
-          <Entire>{parsInt(challenge.totalDays)}</Entire>
+          <Entire>{challenge.totalDays}</Entire>
         </CountWrapper>
       </RowWrapper>
       <ColumnWrapper
