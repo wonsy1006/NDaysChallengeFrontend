@@ -23,7 +23,7 @@ const ChallengeDetail = () => {
   }, [dispatch]);
 
   const { challenges } = useSelector(state => state.challenge);
-  const { params } = useParams(roomNumber);
+  const params = useParams();
 
   const challenge = challenges.find(
     challenge => challenge.roomNumber === params,
