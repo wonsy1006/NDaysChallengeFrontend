@@ -36,6 +36,7 @@ const ChallengeDetail = () => {
     (endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
   );
 
+  console.log(today);
   console.log(endDate);
 
   return (
