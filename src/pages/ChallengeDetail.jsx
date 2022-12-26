@@ -41,34 +41,30 @@ const ChallengeDetail = () => {
 
   return (
     <>
-      {/* {isOpen && <ChallengeModal content={challenges[challengeId.number]} />}
+      {isOpen && <ChallengeModal content={challenge.number} />}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
         profilePicNum={userInfo?.image}
         nickname={userInfo?.nickname}
       />
-      <ChallengeTitle>{challenges[challengeId.number].name}</ChallengeTitle>
+      <ChallengeTitle>{challenge.name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
         <Tag routine>규칙적인 생활</Tag>
         <Tag individual>개인</Tag>
       </RowWrapper>
       <ChallengeDajim />
-      {challenges[challengeId.number].reward === '' ? null : (
-        <ChallengeReward content={challenges[challengeId.number].reward} />
+      {challenge.reward === '' ? null : (
+        <ChallengeReward content={challenge.reward} />
       )}
-      <ChallengeStamp
-        content={challenges[challengeId.number].totalDays}
-        currentDay={currentDay}
-      />
+      <ChallengeStamp content={challenge.totalDays} currentDay={currentDay} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
-          남은 패스 :{' '}
-          <LeftPass>{challenges[challengeId.number].passCount}</LeftPass> 회
+          남은 패스 : <LeftPass>{challenge.passCount}</LeftPass> 회
         </PassWrapper>
         <CountWrapper>
           <Succeeded>{currentDay}</Succeeded> /{' '}
-          <Entire>{challenges[challengeId.number].totalDays}</Entire>
+          <Entire>{challenge.totalDays}</Entire>
         </CountWrapper>
       </RowWrapper>
       <ColumnWrapper
@@ -78,7 +74,7 @@ const ChallengeDetail = () => {
       >
         <RemoveChallenge>챌린지 삭제하기</RemoveChallenge>
       </ColumnWrapper>
-      <Invite /> */}
+      <Invite />
     </>
   );
 };
