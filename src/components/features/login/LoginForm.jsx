@@ -41,7 +41,6 @@ const LoginForm = () => {
 
   const submitForm = data => {
     setData(JSON.stringify(data));
-    console.log(data);
 
     dispatch(userLogin(data));
 
