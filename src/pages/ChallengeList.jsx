@@ -55,13 +55,12 @@ const ChallengeList = () => {
 
   return (
     <>
-      <UserContainer>
-        <Pic1 />
-        <NicknameContainer>
-          <NicknameSpan>OOOOO</NicknameSpan>
-          <span>님의 챌린지</span>
-        </NicknameContainer>
-      </UserContainer>
+      <UserProfile
+        margin="2.4rem"
+        flexDirection="row"
+        profilePicNum={userInfo?.image}
+        nickname={userInfo?.nickname}
+      />
       <ListSection>
         <IndividualSection id="individualChallenge">
           <h3>개인 챌린지</h3>

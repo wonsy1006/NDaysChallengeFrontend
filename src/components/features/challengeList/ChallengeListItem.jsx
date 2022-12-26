@@ -21,7 +21,7 @@ const ChallengeListItem = ({ number, name, category, startDate, endDate }) => {
         <RowWrapper justifyContent="flex-end">
           <ChallengePeriod>
             <StartDate>{toStringByFormatting(new Date(startDate))}</StartDate>
-            <span> - </span>
+            <span> ~ </span>
             <EndDate>{toStringByFormatting(new Date(endDate))}</EndDate>
           </ChallengePeriod>
         </RowWrapper>
