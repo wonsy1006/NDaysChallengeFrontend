@@ -38,7 +38,7 @@ const ChallengeDetail = () => {
 
   return (
     <>
-      {/* {isOpen && <ChallengeModal content={challenges[challengeId.number]} />}
+      {isOpen && <ChallengeModal content={challenges[challengeId.number]} />}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
@@ -75,7 +75,7 @@ const ChallengeDetail = () => {
       >
         <RemoveChallenge>챌린지 삭제하기</RemoveChallenge>
       </ColumnWrapper>
-      <Invite /> */}
+      <Invite />
     </>
   );
 };

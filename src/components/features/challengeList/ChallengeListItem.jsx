@@ -6,8 +6,14 @@ import Tag from '../../common/Tag';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import { toStringByFormatting } from '../../../utils/Date';
 
-const ChallengeListItem = ({ number, name, category, startDate, endDate }) => {
-  const { params } = useParams(number);
+const ChallengeListItem = ({
+  roomNumber,
+  name,
+  category,
+  startDate,
+  endDate,
+}) => {
+  const { params } = useParams(roomNumber);
 
   return (
     <Card>
@@ -26,7 +32,7 @@ const ChallengeListItem = ({ number, name, category, startDate, endDate }) => {
           </ChallengePeriod>
         </RowWrapper>
         <RowWrapper justifyContent="flex-end">
-          <ChallengeDetailLink to={`/challenge-detail/${number}`}>
+          <ChallengeDetailLink to={`/challenge-detail/${roomNumber}`}>
             상세 보기
           </ChallengeDetailLink>
         </RowWrapper>
