@@ -61,7 +61,7 @@ const Router = () => {
       <Route element={<ProtectedRoute />}>
         <Route path="/challenge-list" element={<ChallengeList />} />
         <Route
-          path={`/challenge-detail/:${roomNumber}`}
+          path="/challenge-detail/:roomNumber"
           element={<ChallengeDetail />}
         />
         <Route path="/challenge-result" element={<ChallengeResult />} />
