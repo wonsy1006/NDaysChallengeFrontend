@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -7,11 +7,14 @@ import { ColumnWrapper } from '../../common/Wrapper';
 import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 import { toStringByFormatting } from '../../../utils/Date';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createChallenge } from '../../../app/module/challengeSlice';
+import { useNavigate } from 'react-router-dom';
 
 const CreateChallengeForm = () => {
+  const { success } = useSelector(state => state.challenge);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
 
   const schema = yup.object().shape({
@@ -47,7 +50,11 @@ const CreateChallengeForm = () => {
     dispatch(createChallenge(data));
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (success) {
+      navigate('/');
+    }
+  }, []);
 
   // const [startDate, setStartDate] = useState('');
   // const getStartDate = (date) => {};
