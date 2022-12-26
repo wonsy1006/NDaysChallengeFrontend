@@ -25,11 +25,10 @@ const ChallengeDetail = () => {
   const { challenges } = useSelector(state => state.challenge);
   const params = useParams();
 
-  console.log(params.roomNumber);
-
   const challenge = challenges.find(
     challenge => challenge.roomNumber === parseInt(params.roomNumber),
   );
+
   console.log(challenge);
 
   // 현재 일차 수 계산
@@ -57,14 +56,17 @@ const ChallengeDetail = () => {
       {challenge.reward === '' ? null : (
         <ChallengeReward content={challenge.reward} />
       )}
-      <ChallengeStamp content={challenge.totalDays} currentDay={currentDay} />
+      <ChallengeStamp
+        content={parseInt(challenge.totalDays)}
+        currentDay={currentDay}
+      />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
-          남은 패스 : <LeftPass>{challenge.passCount}</LeftPass> 회
+          남은 패스 : <LeftPass>{parseInt(challenge.passCount)}</LeftPass> 회
         </PassWrapper>
         <CountWrapper>
           <Succeeded>{currentDay}</Succeeded> /{' '}
-          <Entire>{challenge.totalDays}</Entire>
+          <Entire>{parsInt(challenge.totalDays)}</Entire>
         </CountWrapper>
       </RowWrapper>
       <ColumnWrapper
