@@ -25,10 +25,10 @@ const ChallengeDetail = () => {
   const { challenges } = useSelector(state => state.challenge);
   const params = useParams();
 
-  console.log(params);
+  console.log(params.roomNumber);
 
-  const { challenge } = challenges.find(
-    challenge => challenge.roomNumber === params.roomNumber,
+  const challenge = challenges.find(
+    challenge => challenge.roomNumber === parseInt(params.roomNumber),
   );
   console.log(challenge);
 
