@@ -12,7 +12,6 @@ const initialState = {
   success: false,
 };
 
-// 챌린지 생성
 export const createChallenge = createAsyncThunk(
   'challenge/create',
   async (
