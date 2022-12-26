@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getUserDetails } from '../../app/module/userSlice';
+import { getUserDetails, reissueToken } from '../../app/module/userSlice';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import { FriendIcon } from './Icon';
 
@@ -18,6 +18,10 @@ const Header = () => {
       dispatch(getUserDetails());
     }
   }, [accessToken, dispatch]);
+
+  useEffect(() => {
+    dispatch(reissueToken());
+  }, [dispatch]);
 
   // console.log(`header: ${user}, ${accessToken}`);
 

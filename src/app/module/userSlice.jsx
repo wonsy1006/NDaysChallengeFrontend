@@ -10,6 +10,7 @@ const initialState = {
   loading: false,
   userInfo: {}, // user 객체
   accessToken: null, // JWT 저장
+  refreshToken: null,
   error: null,
   success: false, // signUp 과정 모니터
 };
@@ -99,7 +100,39 @@ export const getUserDetails = createAsyncThunk(
   },
 );
 
-const userSlice = createSlice({
+export const reissueToken = createAsyncThunk(
+  'user/reissue',
+  async (arg, { rejectWithValue }) => {
+    try {
+      axios.interceptors.response.use(
+        success => success,
+        async error => {
+          const errorCode = error.response.data.code;
+
+          if (errorCode === 'TOKEN-0001') {
+            const originalRequest = error.config;
+
+            await axios
+              .post(`${baseUrl}/auth/reissue`)
+              .then(result => {
+                localStorage.setItem(
+                  'accessToken',
+                  result.data.response.accessToken,
+                );
+                window.location.reload();
+              })
+              .catch(error => {
+                localStorage.removeItem('accessToken');
+              });
+            return Promise.reject(error);
+          }
+        },
+      );
+    } catch (error) {}
+  },
+);
+
+export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -138,6 +171,7 @@ const userSlice = createSlice({
         state.loading = true;
         state.userInfo = payload;
         state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
@@ -152,6 +186,17 @@ const userSlice = createSlice({
       })
       .addCase(getUserDetails.rejected, (state, { payload }) => {
         state.loading = false;
+      })
+      .addCase(reissueToken.pending, state => {
+        state.loading = true;
+      })
+      .addCase(reissueToken.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.refreshToken = payload.refreshToken;
+      })
+      .addCase(reissueToken.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
       });
   },
 });
