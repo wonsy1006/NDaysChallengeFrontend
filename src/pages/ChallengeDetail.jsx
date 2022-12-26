@@ -27,7 +27,7 @@ const ChallengeDetail = () => {
   const roomNumber = useParams();
 
   console.log(challenges);
-  console.log(roomNumber);
+  console.log(challenges.roomNumber);
 
   // 현재 일차 수 계산
   const today = new Date();
