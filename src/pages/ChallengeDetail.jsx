@@ -31,7 +31,7 @@ const ChallengeDetail = () => {
 
   // 현재 일차 수 계산
   const today = new Date();
-  const endDate = challenge.startDate + challenge.totalDays;
+  const endDate = new Date(challenge.endDate);
   const currentDay = Math.ceil(
     (endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
   );
