@@ -29,14 +29,14 @@ const ChallengeDetail = () => {
     challenge => challenge.roomNumber === parseInt(params.roomNumber),
   );
 
-  console.log(challenge);
-
   // 현재 일차 수 계산
   const today = new Date();
-  const endDate = new Date(2022, 11, 31);
+  const endDate = challenge.startDate + challenge.totalDays;
   const currentDay = Math.ceil(
     (endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
   );
+
+  console.log(endDate);
 
   return (
     <>
