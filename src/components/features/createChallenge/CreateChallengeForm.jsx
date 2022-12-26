@@ -7,11 +7,10 @@ import { ColumnWrapper } from '../../common/Wrapper';
 import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 import { toStringByFormatting } from '../../../utils/Date';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createChallenge } from '../../../app/module/challengeSlice';
 
 const CreateChallengeForm = () => {
-  const { accessToken } = useSelector(state => state.user);
   const dispatch = useDispatch();
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
 
@@ -46,20 +45,6 @@ const CreateChallengeForm = () => {
     console.log(data);
 
     dispatch(createChallenge(data));
-
-    // axios
-    //   .post(`${baseUrl}/challenge/create`, data, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
-    //   })
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
   };
 
   // const [startDate, setStartDate] = useState('');
