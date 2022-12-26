@@ -28,7 +28,7 @@ const ChallengeDetail = () => {
   console.log(params);
 
   const { challenge } = challenges.find(
-    challenge => challenge.roomNumber === params,
+    challenge => challenge.roomNumber === params.roomNumber,
   );
   console.log(challenge);
 
