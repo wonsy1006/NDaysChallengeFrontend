@@ -192,7 +192,7 @@ export const userSlice = createSlice({
       })
       .addCase(reissueToken.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.refreshToken = payload.refreshToken;
+        state.refreshToken = payload;
       })
       .addCase(reissueToken.rejected, (state, { payload }) => {
         state.loading = false;
