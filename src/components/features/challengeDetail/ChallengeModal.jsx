@@ -13,7 +13,7 @@ const ChallengeModal = (props) => {
     <ModalContainer>
       <Modal>
         <ModalTitle>
-          도전 <DayHighlight></DayHighlight>일차
+          도전 <DayHighlight>{props.currentDay}</DayHighlight>일차
         </ModalTitle>
         <ModalText>
           오늘의 도전,

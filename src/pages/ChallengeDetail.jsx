@@ -40,7 +40,7 @@ const ChallengeDetail = () => {
 
   return (
     <>
-      {isOpen && <ChallengeModal content={challenge} />}
+      {isOpen && <ChallengeModal content={challenge} currentDay={currentDay} />}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
