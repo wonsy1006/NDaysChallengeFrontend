@@ -41,6 +41,9 @@ const CreateChallengeForm = () => {
 
   const submitForm = data => {
     data.startDate = toStringByFormatting(data.startDate);
+    const category = data.category;
+    category.toUpperCase();
+    data.category = category;
     setData(JSON.stringify(data));
     console.log(data);
 
