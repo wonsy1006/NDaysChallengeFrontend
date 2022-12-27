@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
@@ -16,12 +15,12 @@ const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
   const submitForm = (data) => {
     console.log(id);
     console.log(data);
-    resetField('openRange');
-    resetField('dajimContent');
+    resetField('open');
+    resetField('content');
 
     dispatch(updateDajim(data));
 
-    getDajimContent(data.dajimContent);
+    getDajimContent(data.content);
     getBackToEditMode(false);
   };
 
@@ -31,22 +30,22 @@ const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
         <InputLabel label="공개 여부" />
         <RadioWrapper>
           <Radio
-            {...register('openRange')}
+            {...register('open')}
             type="radio"
             value="public"
             id="public"
             defaultChecked
           />
           <RadioLabel htmlFor="public">전체 공개</RadioLabel>
-          <Radio
+          {/* <Radio
             {...register('openRange')}
             type="radio"
             value="openToFriends"
             id="openToFriends"
           />
-          <RadioLabel htmlFor="openToFriends">친구 공개</RadioLabel>
+          <RadioLabel htmlFor="openToFriends">친구 공개</RadioLabel> */}
           <Radio
-            {...register('openRange')}
+            {...register('open')}
             type="radio"
             value="closed"
             id="closed"
@@ -56,7 +55,7 @@ const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
       </ColumnWrapper>
       <ColumnWrapper alignItems="flex-start" margin="0 auto">
         <InputLabel label="다짐 내용" />
-        <StyledInput {...register('dajimContent')} type="text" />
+        <StyledInput {...register('content')} type="text" />
       </ColumnWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button small type="submit">
