@@ -25,7 +25,7 @@ export const updateDajim = createAsyncThunk(
         challenge => challenge.roomNumber === parseInt(params.roomNumber),
       );
       const data = await axios.post(
-        `${baseUrl}/challenge/${challenges.roomNumber}`,
+        `${baseUrl}/challenge/${challenge.roomNumber}`,
         args,
         {
           headers: {
