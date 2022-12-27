@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import baseUrl from '../../utils/api';
+import { useParams } from 'react-router-dom';
 
 const accessToken = localStorage.getItem('accessToken');
 
@@ -17,8 +18,14 @@ export const updateDajim = createAsyncThunk(
   async (args, { rejectWithValue }) => {
     try {
       const { challenges } = useSelector(state => state.challenge);
+
+      const params = useParams();
+
+      const challenge = challenges.find(
+        challenge => challenge.roomNumber === parseInt(params.roomNumber),
+      );
       const data = await axios.post(
-        `${baseUrl}/challenge/${challenges.number}`,
+        `${baseUrl}/challenge/${challenges.roomNumber}`,
         args,
         {
           headers: {
