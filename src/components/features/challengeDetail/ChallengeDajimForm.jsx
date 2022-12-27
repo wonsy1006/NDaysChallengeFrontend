@@ -15,6 +15,7 @@ const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
   const submitForm = (data) => {
     console.log(id);
     console.log(data);
+    setData(JSON.stringify(data));
     resetField('open');
     resetField('content');
 

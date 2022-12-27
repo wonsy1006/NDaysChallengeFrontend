@@ -50,11 +50,11 @@ const CreateChallengeForm = () => {
     dispatch(createChallenge(data));
   };
 
-  useEffect(() => {
-    if (success) {
-      navigate('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (success) {
+  //     navigate('/');
+  //   }
+  // }, []);
 
   // const [startDate, setStartDate] = useState('');
   // const getStartDate = (date) => {};
