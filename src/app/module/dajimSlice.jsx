@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import baseUrl from '../../utils/api';
 
 const accessToken = localStorage.getItem('accessToken');
+const { challenges } = useSelector(state => state.challenge);
 
 const initialState = {
   dajim: {},
@@ -16,12 +17,16 @@ export const updateDajim = createAsyncThunk(
   'dajim/updateDajim',
   async (args, { rejectWithValue }) => {
     try {
-      const data = await axios.post(`${baseUrl}/challenge`, args, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+      const data = await axios.post(
+        `${baseUrl}/challenge/${challenges.number}`,
+        args,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
         },
-      });
+      );
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
