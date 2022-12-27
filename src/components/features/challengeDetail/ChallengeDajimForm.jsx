@@ -27,6 +27,13 @@ const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
+      <DisplayNoneWrapper>
+        <StyledInput
+          {...register('dajimNumber', { valueAsNumber: true })}
+          type="number"
+          defaultValue=""
+        />
+      </DisplayNoneWrapper>
       <ColumnWrapper>
         <InputLabel label="공개 여부" />
         <RadioWrapper>
@@ -76,10 +83,6 @@ const StyledForm = styled.form`
   margin: 1.6rem auto;
 `;
 
-// const DajimFormLabel = styled(InputLabel)`
-//   font-size: ${({ theme }) => theme.fonts.size.small};
-// `;
-
 const RadioWrapper = styled(RowWrapper)`
   width: 95%;
   margin: 0 auto 2rem;
@@ -111,29 +114,6 @@ const RadioLabel = styled.label`
   }
 `;
 
-// const InputWrapper = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: relative;
-//   width: 100%;
-//   margin: 0 auto;
-// `;
-
-// const IconWrapper = styled.div`
-//   display: flex;
-//   justify-content: flex-end;
-//   align-items: center;
-
-//   position: absolute;
-//   top: -1.6rem;
-//   right: 0;
-//   left: 0;
-//   bottom: 0;
-
-//   margin-right: 3rem;
-
-//   & > * {
-//     cursor: pointer;
-//   }
-// `;
+const DisplayNoneWrapper = styled.div`
+  display: none;
+`;
