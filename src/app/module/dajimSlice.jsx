@@ -6,7 +6,7 @@ import baseUrl from '../../utils/api';
 const accessToken = localStorage.getItem('accessToken');
 
 const initialState = {
-  dajim: [],
+  dajim: {},
   message: '',
   error: '',
   isLoading: false,
