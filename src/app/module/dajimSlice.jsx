@@ -14,15 +14,15 @@ export const updateDajim = createAsyncThunk(
   'dajim/updateDajim',
   async ({ dajimNumber, open, content }, thunkAPI) => {
     try {
-      const { challenges } = useSelector(state => state.challenge);
+      // const { challenges } = useSelector(state => state.challenge);
 
-      const params = useParams();
+      // const params = useParams();
 
-      const challenge = challenges.find(
-        challenge => challenge.roomNumber === parseInt(params.roomNumber),
-      );
+      // const challenge = challenges.find(
+      //   challenge => challenge.roomNumber === parseInt(params.roomNumber),
+      // );
 
-      console.log(challenge);
+      // console.log(challenge);
 
       const data = await instance.post(`/challenge/${challenge.roomNumber}`, {
         dajimNumber,
