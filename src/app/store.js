@@ -16,6 +16,7 @@ import friendsSlice from './module/friendsSlice';
 import modalReducer from './module/modalSlice';
 import userReducer from './module/userSlice';
 import dajimReducer from './module/dajimSlice';
+import stampReducer from './module/stampSlice';
 
 const persistConfig = {
   key: 'root',
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
   dajim: dajimReducer,
+  stamp: stampReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
