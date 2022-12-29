@@ -52,12 +52,12 @@ export const userLogin = createAsyncThunk(
 
 export const getUserDetails = createAsyncThunk(
   'user/getUserDetails',
-  async (arg, { getState }, thunkAPI) => {
+  async (args, { getState }, thunkAPI) => {
     try {
       const { user } = getState();
 
-      const { data } = await instance.get(`/user/details`);
-      console.log({ data });
+      const { data } = await instance.get(`/user/details`, args);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -72,7 +72,7 @@ export const userSlice = createSlice({
     logout: state => {
       localStorage.removeItem('accessToken');
       state.loading = false;
-      state.user = null;
+      state.userInfo = null;
       state.accessToken = null;
       state.error = null;
     },
@@ -98,7 +98,6 @@ export const userSlice = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
-        console.log(payload);
         state.userInfo = payload;
         state.accessToken = payload.accessToken;
         state.refreshToken = payload.refreshToken;
@@ -113,9 +112,12 @@ export const userSlice = createSlice({
       .addCase(getUserDetails.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.userInfo = payload;
+        console.log(state.userInfo);
+        state.error = payload;
       })
       .addCase(getUserDetails.rejected, (state, { payload }) => {
         state.loading = false;
+        state.error = payload;
       })
       .addCase(PURGE, () => initialState);
   },
