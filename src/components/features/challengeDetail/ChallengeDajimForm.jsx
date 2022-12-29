@@ -21,11 +21,11 @@ const ChallengeDajimForm = ({
 
     dispatch(updateDajim(data));
 
-    // getDajimContent(data.content);
+    getDajimContent(data.content);
 
-    // resetField('open');
-    // resetField('content');
-    // getBackToEditMode(false);
+    resetField('open');
+    resetField('content');
+    getBackToEditMode(false);
   };
 
   return (
@@ -69,9 +69,7 @@ const ChallengeDajimForm = ({
         <StyledInput {...register('content')} type="text" />
       </ColumnWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
-        <Button small type="submit">
-          등록
-        </Button>
+        <Button small>등록</Button>
       </ColumnWrapper>
     </StyledForm>
   );
