@@ -21,11 +21,11 @@ const ChallengeDajimForm = ({
 
     dispatch(updateDajim(data));
 
-    getDajimContent(data.content);
+    // getDajimContent(data.content);
 
-    resetField('open');
-    resetField('content');
-    getBackToEditMode(false);
+    // resetField('open');
+    // resetField('content');
+    // getBackToEditMode(false);
   };
 
   return (
