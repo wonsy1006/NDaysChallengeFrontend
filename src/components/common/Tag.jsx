@@ -17,25 +17,25 @@ const StyledTag = styled.span`
   margin-right: 0.8rem;
 
   ${(props) =>
-    props.routine &&
+    props.category === 'routine' &&
     css`
       background: #bf5c5c;
     `}
 
   ${(props) =>
-    props.workout &&
+    props.category === 'workout' &&
     css`
       background: #a97140;
     `}
 
     ${(props) =>
-    props.diet &&
+    props.category === 'diet' &&
     css`
       background: #318335;
     `}
 
     ${(props) =>
-    props.mental &&
+    props.category === 'mindfulness' &&
     css`
       background: #553183;
     `}

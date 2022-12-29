@@ -67,7 +67,7 @@ export const deleteChallenge = createAsyncThunk(
   'challenge/delete',
   async (id, { rejectWithValue }) => {
     try {
-      const data = await axios.delete(`${baseUrl}/challenges/${id}`);
+      const data = await instance.delete(`${baseUrl}/challenges/${id}`);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
