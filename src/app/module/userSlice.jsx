@@ -50,10 +50,8 @@ export const userLogin = createAsyncThunk(
 
 export const getUserDetails = createAsyncThunk(
   'user/getUserDetails',
-  async (args, { getState }, thunkAPI) => {
+  async (args, thunkAPI) => {
     try {
-      const { user } = getState();
-
       const { data } = await instance.get(`/user/details`, args);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {

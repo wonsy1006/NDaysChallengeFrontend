@@ -12,7 +12,6 @@ import {
 
 const ChallengeModal = (props, { children }) => {
   const dispatch = useDispatch();
-  console.log(props.index);
 
   return (
     <ModalContainer>
