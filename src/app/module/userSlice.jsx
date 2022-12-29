@@ -40,8 +40,9 @@ export const userLogin = createAsyncThunk(
   async ({ id, pw }, thunkAPI) => {
     try {
       const { data } = await instance.post(`/auth/login`, { id, pw });
-      console.log(data);
+      console.log(data.accessToken);
       localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -82,7 +83,7 @@ export const userSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(userSignUp.fulfilled, (state, { payload }) => {
+      .addCase(userSignUp.fulfilled, state => {
         state.loading = false;
         state.error = null;
         state.success = true;
@@ -98,8 +99,8 @@ export const userSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
         state.userInfo = payload;
-        state.accessToken = payload.accessToken;
-        state.refreshToken = payload.refreshToken;
+        state.accessToken = payload.data.accessToken;
+        state.refreshToken = payload.data.refreshToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
