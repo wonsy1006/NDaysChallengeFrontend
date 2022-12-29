@@ -6,7 +6,6 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import UserProfile from '../components/common/UserProfile';
 import { ReactComponent as NoChallenge } from '../assets/images/nochallenge.svg';
-import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import ChallengeListItem from '../components/features/challengeList/ChallengeListItem';
 import { getChallengeList } from '../app/module/challengeSlice';
 
