@@ -12,11 +12,14 @@ import { getChallengeList } from '../app/module/challengeSlice';
 
 const ChallengeList = () => {
   const dispatch = useDispatch();
+  const { accessToken } = useSelector(state => state.user);
 
   const { userInfo } = useSelector(state => state.user);
 
   useEffect(() => {
-    dispatch(getChallengeList());
+    if (accessToken) {
+      dispatch(getChallengeList());
+    }
   }, [dispatch]);
 
   const { challenges } = useSelector(state => state.challenge);
