@@ -20,12 +20,13 @@ const ChallengeDajimForm = ({
     console.log(dajimNumber);
     console.log(data);
     setData(JSON.stringify(data));
-    resetField('open');
-    resetField('content');
 
     dispatch(updateDajim(data));
 
     getDajimContent(data.content);
+
+    resetField('open');
+    resetField('content');
     getBackToEditMode(false);
   };
 
