@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const Stamp = (props) => {
   return (
     <Circle status={props.status}>
-      <Day {...props}>{props.day}</Day>
+      <Day {...props}>{props.status === 'pass' ? 'pass' : props.day}</Day>
     </Circle>
   );
 };
