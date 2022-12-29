@@ -25,7 +25,7 @@ export const updateDajim = createAsyncThunk(
 
       console.log(challenge);
 
-      await instance.post(`/challenge/${challenge.roomNumber}`, {
+      const data = await instance.post(`/challenge/${challenge.roomNumber}`, {
         dajimNumber,
         open,
         content,

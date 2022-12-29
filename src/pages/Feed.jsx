@@ -10,13 +10,13 @@ const Feed = () => {
     dispatch(getDajimFeed());
   }, [dispatch]);
 
-  const { dajim } = useSelector((state) => state.dajim);
-  console.log(dajim);
+  const { feed } = useSelector((state) => state.dajim);
+  console.log(feed);
 
   return (
     <>
       <h2>오늘의 다짐</h2>
-      {/* {dajim.map((dj) => {
+      {/* {feed.map((dj) => {
         return (
           <FeedItem key={dj.id} user="user1" dajimContent={dj.dajimContent} />
         );
