@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const initialState = {
   dajim: {},
+  feed: [],
   message: '',
   error: '',
   isLoading: false,
@@ -14,15 +15,15 @@ export const updateDajim = createAsyncThunk(
   'dajim/update',
   async ({ dajimNumber, open, content }, thunkAPI) => {
     try {
-      // const { challenges } = useSelector(state => state.challenge);
+      const { challenges } = useSelector(state => state.challenge);
 
-      // const params = useParams();
+      const params = useParams();
 
-      // const challenge = challenges.find(
-      //   challenge => challenge.roomNumber === parseInt(params.roomNumber),
-      // );
+      const challenge = challenges.find(
+        challenge => challenge.roomNumber === parseInt(params.roomNumber),
+      );
 
-      // console.log(challenge);
+      console.log(challenge);
 
       await instance.post(`/challenge/${challenge.roomNumber}`, {
         dajimNumber,
@@ -58,9 +59,8 @@ const dajimSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(updateDajim.fulfilled, (state, { payload }) => {
+      .addCase(updateDajim.fulfilled, state => {
         state.isLoading = false;
-        state.data = payload;
         state.error = null;
       })
       .addCase(updateDajim.rejected, (state, { payload }) => {
@@ -74,7 +74,7 @@ const dajimSlice = createSlice({
       .addCase(getDajimFeed.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.dajim = payload.data;
+        state.feed = payload;
       })
       .addCase(getDajimFeed.rejected, (state, { payload }) => {
         state.isLoading = false;

@@ -66,9 +66,11 @@ export const userSlice = createSlice({
   reducers: {
     logout: state => {
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       state.loading = false;
       state.userInfo = null;
       state.accessToken = null;
+      state.refreshToken = null;
       state.error = null;
     },
   },
