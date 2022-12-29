@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import instance from './instance';
 import { useSelector } from 'react-redux';
-import baseUrl from '../../utils/api';
 import { useParams } from 'react-router-dom';
 
 const initialState = {
@@ -24,13 +22,13 @@ export const updateDajim = createAsyncThunk(
         challenge => challenge.roomNumber === parseInt(params.roomNumber),
       );
 
+      console.log(challenge);
+
       const data = await instance.post(`/challenge/${challenge.roomNumber}`, {
         dajimNumber,
         open,
         content,
       });
-
-      console.log(`다짐 데이터: ${data}`);
 
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
