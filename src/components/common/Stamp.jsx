@@ -72,6 +72,7 @@ const Day = styled.span`
     props.status === 'pass' &&
     css`
       color: #fff;
+      font-size: ${({ theme }) => theme.fonts.size.small};
     `}
 
   ${(props) =>
