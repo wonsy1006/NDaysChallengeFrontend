@@ -47,13 +47,13 @@ const CreateChallengeForm = () => {
     setData(JSON.stringify(data));
 
     dispatch(createChallenge(data));
-  };
 
-  useEffect(() => {
-    if (success) {
-      navigate('/');
-    }
-  }, [success]);
+    useEffect(() => {
+      if (success) {
+        navigate('/');
+      }
+    }, [success]);
+  };
 
   // const [startDate, setStartDate] = useState('');
   // const getStartDate = (date) => {};
