@@ -14,7 +14,7 @@ const initialState = {
 
 export const updateDajim = createAsyncThunk(
   'dajim/updateDajim',
-  async (args, thunkAPI) => {
+  async ({ dajimNumber, open, content }, thunkAPI) => {
     try {
       const { challenges } = useSelector(state => state.challenge);
 
@@ -24,10 +24,11 @@ export const updateDajim = createAsyncThunk(
         challenge => challenge.roomNumber === parseInt(params.roomNumber),
       );
 
-      const data = await instance.post(
-        `/challenge/${challenge.roomNumber}`,
-        args,
-      );
+      const data = await instance.post(`/challenge/${challenge.roomNumber}`, {
+        dajimNumber,
+        open,
+        content,
+      });
 
       console.log(`다짐 데이터: ${data}`);
 
