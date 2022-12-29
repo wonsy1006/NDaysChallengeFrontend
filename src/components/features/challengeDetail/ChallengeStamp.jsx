@@ -13,7 +13,7 @@ const ChallengeStamp = (props) => {
     return num.toString().padStart(2, '0');
   };
 
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('unchecked');
 
   return (
     <Card>
