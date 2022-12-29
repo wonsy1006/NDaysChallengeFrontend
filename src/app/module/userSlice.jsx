@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
 import axios from 'axios';
-import baseUrl from '../../utils/api';
+import instance from './instance';
 
 const accessToken = localStorage.getItem('accessToken')
   ? localStorage.getItem('accessToken')
@@ -9,37 +9,35 @@ const accessToken = localStorage.getItem('accessToken')
 
 const initialState = {
   loading: false,
-  userInfo: {}, // user 객체
-  accessToken: null, // JWT 저장
+  userInfo: {},
+  accessToken: null,
   refreshToken: null,
   error: null,
-  success: false, // signUp 과정 모니터
+  success: false,
 };
 
 export const userSignUp = createAsyncThunk(
   // action type string
   'user/signUp',
   // callback function
-  async ({ id, pw, nickname, image }, { rejectWithValue }) => {
+  async ({ id, pw, nickname, image }, thunkAPI) => {
     try {
-      // configure header's Content-Type as JSON
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      // make request to backend
-      await axios.post(
-        `${baseUrl}/auth/signup`,
-        { id, pw, nickname, image },
-        config,
-      );
+      // // configure header's Content-Type as JSON
+      // const config = {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      // };
+      // // make request to backend
+      const { data } = await instance.post('/auth/signup', {
+        id,
+        pw,
+        nickname,
+        image,
+      });
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
@@ -85,10 +83,6 @@ export const getUserDetails = createAsyncThunk(
         },
       };
       const { data } = await axios.get(`${baseUrl}/user/details`, config);
-      // localStorage.setItem('userId', data.id);
-      // localStorage.setItem('userPw', data.pw);
-      // localStorage.setItem('userPic', data.image);
-      // localStorage.setItem('userNickname', data.nickname);
       console.log({ data });
       return data;
     } catch (error) {
@@ -101,48 +95,12 @@ export const getUserDetails = createAsyncThunk(
   },
 );
 
-export const reissueToken = createAsyncThunk(
-  'user/reissue',
-  async (arg, { rejectWithValue }) => {
-    try {
-      axios.interceptors.response.use(
-        success => success,
-        async error => {
-          const errorCode = error.response.data.code;
-
-          if (errorCode === 'TOKEN-0001') {
-            const originalRequest = error.config;
-
-            await axios
-              .post(`${baseUrl}/auth/reissue`)
-              .then(result => {
-                localStorage.setItem(
-                  'accessToken',
-                  result.data.response.accessToken,
-                );
-                window.location.reload();
-              })
-              .catch(error => {
-                localStorage.removeItem('accessToken');
-              });
-            return Promise.reject(error);
-          }
-        },
-      );
-    } catch (error) {}
-  },
-);
-
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     logout: state => {
       localStorage.removeItem('accessToken');
-      // localStorage.removeItem('userId');
-      // localStorage.removeItem('userPw');
-      // localStorage.removeItem('userPic');
-      // localStorage.removeItem('userNickname');
       state.loading = false;
       state.user = null;
       state.accessToken = null;
@@ -188,17 +146,17 @@ export const userSlice = createSlice({
       .addCase(getUserDetails.rejected, (state, { payload }) => {
         state.loading = false;
       })
-      .addCase(reissueToken.pending, state => {
-        state.loading = true;
-      })
-      .addCase(reissueToken.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.refreshToken = payload;
-      })
-      .addCase(reissueToken.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
-      })
+      // .addCase(reissueToken.pending, state => {
+      //   state.loading = true;
+      // })
+      // .addCase(reissueToken.fulfilled, (state, { payload }) => {
+      //   state.loading = false;
+      //   state.refreshToken = payload;
+      // })
+      // .addCase(reissueToken.rejected, (state, { payload }) => {
+      //   state.loading = false;
+      //   state.error = payload;
+      // })
       .addCase(PURGE, () => initialState);
   },
 });

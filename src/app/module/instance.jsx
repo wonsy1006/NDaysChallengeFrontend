@@ -1,8 +1,8 @@
 import axios from 'axios';
+import baseUrl from '../../utils/api';
 
 const instance = axios.create({
-  headers: {},
-  baseURL: '',
+  baseURL: `${baseUrl}`,
   withCredentials: true,
 });
 
