@@ -14,13 +14,13 @@ const ChallengeListItem = ({
   endDate,
 }) => {
   const { params } = useParams(roomNumber);
-  const category = category.toLowerCase();
+  const lowerCategory = category.toLowerCase();
 
   return (
     <Card>
       <ColumnWrapper>
         <RowWrapper margin=".5rem">
-          <Tag category={category}>{category}</Tag>
+          <Tag category={lowerCategory}>{category}</Tag>
         </RowWrapper>
         <RowWrapper margin=".5rem">
           <ChallengeTitle>{name}</ChallengeTitle>
