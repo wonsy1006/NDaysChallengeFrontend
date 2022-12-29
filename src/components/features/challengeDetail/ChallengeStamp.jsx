@@ -12,6 +12,8 @@ const ChallengeStamp = (props) => {
     return num.toString().padStart(2, '0');
   };
 
+  const [status, setStatus] = useState('');
+
   return (
     <Card>
       <StampTitle>✔️ 챌린지 진척도</StampTitle>
@@ -22,7 +24,7 @@ const ChallengeStamp = (props) => {
           );
           return (
             <Stamp
-              unchecked
+              status={status}
               day={day[index]}
               key={index}
               onClick={() => dispatch(openModal(props.currentDay))}

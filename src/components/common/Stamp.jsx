@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 const Stamp = (props) => {
   return (
-    <Circle {...props}>
+    <Circle status={props.status}>
       <Day {...props}>{props.day}</Day>
     </Circle>
   );
@@ -19,7 +19,7 @@ const Circle = styled.div`
   border-radius: 50%;
 
   ${(props) =>
-    props.unchecked &&
+    props.status === 'unchecked' &&
     css`
       border: 2px solid ${({ theme }) => theme.colors.gr400};
       cursor: pointer;
@@ -30,21 +30,21 @@ const Circle = styled.div`
     `}
 
   ${(props) =>
-    props.success &&
+    props.status === 'success' &&
     css`
       border: 2px solid ${({ theme }) => theme.colors.bl500};
       background: ${({ theme }) => theme.colors.bl500};
     `}
 
   ${(props) =>
-    props.pass &&
+    props.status === 'pass' &&
     css`
       border: 2px solid ${({ theme }) => theme.colors.ye500};
       background: ${({ theme }) => theme.colors.ye500};
     `}
 
   ${(props) =>
-    props.fail &&
+    props.status === 'fail' &&
     css`
       border: 2px solid ${({ theme }) => theme.colors.rd};
       background: ${({ theme }) => theme.colors.rd};
@@ -57,25 +57,25 @@ const Day = styled.span`
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
 
   ${(props) =>
-    props.unchecked &&
+    props.status === 'unchecked' &&
     css`
       color: ${({ theme }) => theme.colors.gr400};
     `}
 
   ${(props) =>
-    props.success &&
+    props.status === 'success' &&
     css`
       color: #fff;
     `}
 
   ${(props) =>
-    props.pass &&
+    props.status === 'pass' &&
     css`
       color: #fff;
     `}
 
   ${(props) =>
-    props.fail &&
+    props.status === 'fail' &&
     css`
       color: #fff;
     `}
