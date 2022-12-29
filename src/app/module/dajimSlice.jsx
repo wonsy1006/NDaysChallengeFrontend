@@ -25,7 +25,7 @@ export const updateDajim = createAsyncThunk(
 
       console.log(challenge);
 
-      const data = await instance.post(`/challenge/${challenge.roomNumber}`, {
+      await instance.post(`/challenge/${challenge.roomNumber}`, {
         dajimNumber,
         open,
         content,
@@ -59,7 +59,7 @@ const dajimSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(updateDajim.fulfilled, state => {
+      .addCase(updateDajim.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
       })

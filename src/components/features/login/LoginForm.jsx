@@ -11,7 +11,6 @@ import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 
 const LoginForm = () => {
-  const { loading, userInfo, error } = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

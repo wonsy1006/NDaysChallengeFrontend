@@ -4,8 +4,6 @@ import instance from './instance';
 import { PURGE } from 'redux-persist';
 import baseUrl from '../../utils/api';
 
-const accessToken = localStorage.getItem('accessToken');
-
 const initialState = {
   challenges: [],
   message: '',

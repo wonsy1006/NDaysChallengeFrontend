@@ -7,16 +7,14 @@ import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { updateDajim } from '../../../app/module/dajimSlice';
 
-const ChallengeDajimForm = ({
-  dajimNumber,
-  getBackToEditMode,
-  getDajimContent,
-}) => {
+const ChallengeDajimForm = ({ getBackToEditMode, getDajimContent }) => {
   const { register, resetField, handleSubmit } = useForm();
   const [data, setData] = useState('');
   const dispatch = useDispatch();
 
   const submitForm = (data) => {
+    const open = data.open;
+    data.open = open.toUpperCase();
     setData(JSON.stringify(data));
 
     dispatch(updateDajim(data));
@@ -34,7 +32,7 @@ const ChallengeDajimForm = ({
         <StyledInput
           {...register('dajimNumber', { valueAsNumber: true })}
           type="number"
-          defaultValue=""
+          defaultValue="0"
         />
       </DisplayNoneWrapper>
       <ColumnWrapper>
