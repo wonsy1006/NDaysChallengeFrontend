@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../../app/module/modalSlice';
 import styled from 'styled-components';
