@@ -44,6 +44,7 @@ const CreateChallengeForm = () => {
 
   const submitForm = data => {
     data.startDate = toStringByFormatting(data.startDate);
+    data.category = data.category.toUpperCase();
     setData(JSON.stringify(data));
 
     dispatch(createChallenge(data));
@@ -89,7 +90,7 @@ const CreateChallengeForm = () => {
         <InputLabel label="챌린지 카테고리" />
         <Select {...register('category', { required: true })}>
           <Option value="">카테고리를 선택하세요</Option>
-          <Option value="ROUTINE">일상생활</Option>
+          <Option value="routine">일상생활</Option>
           <Option value="study">공부</Option>
           <Option value="workout">운동</Option>
           <Option value="hobby">취미</Option>
