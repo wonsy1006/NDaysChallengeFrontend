@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import challenges from '../../../challenges';
 
 const initialState = {
   status: 'unchecked',
