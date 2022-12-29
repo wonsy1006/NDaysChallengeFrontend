@@ -6,7 +6,7 @@ import Card from '../../common/Card';
 import Stamp from '../../common/Stamp';
 
 const ChallengeStamp = (props) => {
-  const { status } = useSelector((state) => state.stamp);
+  const status = useSelector((state) => state.stamp);
   const dispatch = useDispatch();
 
   const numberOfStamp = parseInt(props.content);
