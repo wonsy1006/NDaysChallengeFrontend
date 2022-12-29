@@ -9,6 +9,8 @@ const ChallengeStamp = (props) => {
   const status = useSelector((state) => state.stamp);
   const dispatch = useDispatch();
 
+  console.log(status);
+
   const numberOfStamp = parseInt(props.content);
   const leftPad = (num) => {
     return num.toString().padStart(2, '0');
