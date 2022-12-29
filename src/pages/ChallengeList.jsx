@@ -66,14 +66,14 @@ const ChallengeList = () => {
       />
       <ListSection>
         <IndividualSection id="individualChallenge">
-          <h3>개인 챌린지</h3>
+          {/* <h3>개인 챌린지</h3> */}
           {challenges.map(challenge => {
             return <ChallengeListItem key={challenge.number} {...challenge} />;
           })}
         </IndividualSection>
-        <GroupSection id="groupChallenge">
+        {/* <GroupSection id="groupChallenge">
           <h3>단체 챌린지</h3>
-        </GroupSection>
+        </GroupSection> */}
       </ListSection>
     </>
   );

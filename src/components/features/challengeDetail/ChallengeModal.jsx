@@ -5,8 +5,12 @@ import styled from 'styled-components';
 import { RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { CloseIcon } from '../../common/Icon';
+import {
+  changeStatusToPass,
+  changeStatusToSuccess,
+} from '../../../app/module/stampSlice';
 
-const ChallengeModal = (props) => {
+const ChallengeModal = (props, { children }) => {
   const dispatch = useDispatch();
 
   return (
@@ -26,8 +30,8 @@ const ChallengeModal = (props) => {
           <Button
             sub
             onClick={() => {
+              dispatch(changeStatusToPass());
               dispatch(closeModal());
-              dispatch();
             }}
           >
             패스 사용하기
@@ -35,6 +39,7 @@ const ChallengeModal = (props) => {
           <Button
             primary
             onClick={() => {
+              dispatch(changeStatusToSuccess());
               dispatch(closeModal());
             }}
           >

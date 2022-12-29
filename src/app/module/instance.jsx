@@ -54,6 +54,7 @@ instance.interceptors.response.use(
         console.log('Token reissue error');
       }
       return Promise.reject(err);
+    } else if (err.response && err.err.response.status == 500) {
     }
     return Promise.reject(err);
   },

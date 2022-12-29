@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../../app/module/modalSlice';
 import styled from 'styled-components';
 import Card from '../../common/Card';
 import Stamp from '../../common/Stamp';
 
 const ChallengeStamp = (props) => {
+  const { status } = useSelector((state) => state.stamp);
   const dispatch = useDispatch();
 
   const numberOfStamp = parseInt(props.content);
   const leftPad = (num) => {
     return num.toString().padStart(2, '0');
   };
-
-  const [status, setStatus] = useState('unchecked');
 
   return (
     <Card>
@@ -28,7 +27,7 @@ const ChallengeStamp = (props) => {
               status={status}
               day={day[index]}
               key={index}
-              onClick={() => dispatch(openModal(props.currentDay))}
+              onClick={() => dispatch(openModal(props.currentDay, index))}
             />
           );
         })}
