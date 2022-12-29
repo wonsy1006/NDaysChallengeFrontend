@@ -7,13 +7,17 @@ import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { updateDajim } from '../../../app/module/dajimSlice';
 
-const ChallengeDajimForm = ({ id, getBackToEditMode, getDajimContent }) => {
+const ChallengeDajimForm = ({
+  dajimNumber,
+  getBackToEditMode,
+  getDajimContent,
+}) => {
   const { register, resetField, handleSubmit } = useForm();
   const [data, setData] = useState('');
   const dispatch = useDispatch();
 
   const submitForm = (data) => {
-    console.log(id);
+    console.log(dajimNumber);
     console.log(data);
     setData(JSON.stringify(data));
     resetField('open');

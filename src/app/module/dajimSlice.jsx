@@ -23,10 +23,14 @@ export const updateDajim = createAsyncThunk(
       const challenge = challenges.find(
         challenge => challenge.roomNumber === parseInt(params.roomNumber),
       );
+
       const data = await instance.post(
         `/challenge/${challenge.roomNumber}`,
         args,
       );
+
+      console.log(`다짐 데이터: ${data}`);
+
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
