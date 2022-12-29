@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const updateDajim = createAsyncThunk(
-  'dajim/updateDajim',
+  'dajim/update',
   async ({ dajimNumber, open, content }, thunkAPI) => {
     try {
       // const { challenges } = useSelector(state => state.challenge);
@@ -60,7 +60,7 @@ const dajimSlice = createSlice({
       })
       .addCase(updateDajim.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.dajim = payload;
+        state.data = payload;
         state.error = null;
       })
       .addCase(updateDajim.rejected, (state, { payload }) => {
