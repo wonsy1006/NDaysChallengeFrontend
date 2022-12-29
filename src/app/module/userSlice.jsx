@@ -99,8 +99,8 @@ export const userSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
         state.userInfo = payload;
-        state.accessToken = payload.data.accessToken;
-        state.refreshToken = payload.data.refreshToken;
+        state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;

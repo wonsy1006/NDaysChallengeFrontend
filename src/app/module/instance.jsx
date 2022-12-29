@@ -6,15 +6,16 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(function (config) {
-  const token = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
 
-  if (!token) {
+  if (!accessToken && !refreshToken) {
     config.headers['accessToken'] = null;
     config.headers['refreshToken'] = null;
     return config;
   }
-  if (config.headers && token) {
-    const { accessToken, refreshToken } = JSON.parse(token);
+
+  if (config.headers && accessToken && refreshToken) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
     config.headers['refreshToken'] = `Bearer ${refreshToken}`;
     return config;
@@ -41,7 +42,11 @@ instance.interceptors.response.use(
         if (data) {
           localStorage.setItem(
             'accessToken',
-            JSON.stringify(data.data, ['accessToken', 'refreshToken']),
+            JSON.stringify(data.data, ['accessToken']),
+          );
+          localStorage.setItem(
+            'refreshToken',
+            JSON.stringify(data.data, ['refreshToken']),
           );
           return await instance.request(originalConfig);
         }

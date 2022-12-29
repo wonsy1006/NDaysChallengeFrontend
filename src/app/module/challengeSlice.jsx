@@ -48,11 +48,7 @@ export const createChallenge = createAsyncThunk(
       });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
