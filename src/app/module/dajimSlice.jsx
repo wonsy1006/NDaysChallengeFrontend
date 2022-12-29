@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import instance from './instance';
 import { useSelector } from 'react-redux';
 import baseUrl from '../../utils/api';
 import { useParams } from 'react-router-dom';
-
-const accessToken = localStorage.getItem('accessToken');
 
 const initialState = {
   dajim: {},
@@ -15,7 +14,7 @@ const initialState = {
 
 export const updateDajim = createAsyncThunk(
   'dajim/updateDajim',
-  async (args, { rejectWithValue }) => {
+  async (args, thunkAPI) => {
     try {
       const { challenges } = useSelector(state => state.challenge);
 
@@ -24,39 +23,25 @@ export const updateDajim = createAsyncThunk(
       const challenge = challenges.find(
         challenge => challenge.roomNumber === parseInt(params.roomNumber),
       );
-      const data = await axios.post(
-        `${baseUrl}/challenge/${challenge.roomNumber}`,
+      const data = await instance.post(
+        `/challenge/${challenge.roomNumber}`,
         args,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
       );
-      return data;
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
 
 export const getDajimFeed = createAsyncThunk(
   'dajim/getDajimFeed',
-  async (data, { rejectWithValue }) => {
+  async (args, thunkAPI) => {
     try {
-      const data = await axios.get(`${baseUrl}/feed`);
-      return data;
+      const data = await instance.get(`/feed`, args);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      thunkAPI.rejectWithValue(error);
     }
   },
 );
@@ -67,6 +52,19 @@ const dajimSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(updateDajim.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateDajim.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.dajim = payload;
+        state.error = null;
+      })
+      .addCase(updateDajim.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
       .addCase(getDajimFeed.pending, state => {
         state.isLoading = true;
         state.error = null;
