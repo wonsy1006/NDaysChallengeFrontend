@@ -22,13 +22,6 @@ export const userSignUp = createAsyncThunk(
   // callback function
   async ({ id, pw, nickname, image }, thunkAPI) => {
     try {
-      // // configure header's Content-Type as JSON
-      // const config = {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      // };
-      // // make request to backend
       const { data } = await instance.post('/auth/signup', {
         id,
         pw,
@@ -44,53 +37,28 @@ export const userSignUp = createAsyncThunk(
 
 export const userLogin = createAsyncThunk(
   'user/login',
-  async ({ id, pw }, { rejectWithValue }) => {
+  async ({ id, pw }, thunkAPI) => {
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const { data } = await axios.post(
-        `${baseUrl}/auth/login`,
-        { id, pw },
-        config,
-      );
+      const { data } = await instance.post(`/auth/login`, { id, pw });
       localStorage.setItem('accessToken', data.accessToken);
-      return data;
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
 
 export const getUserDetails = createAsyncThunk(
   'user/getUserDetails',
-  async (arg, { getState, rejectWithValue }) => {
+  async (arg, { getState }, thunkAPI) => {
     try {
-      // store에서 user data 가져오기
       const { user } = getState();
 
-      // configure authorization header with user's token
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      };
-      const { data } = await axios.get(`${baseUrl}/user/details`, config);
+      const { data } = await instance.get(`/user/details`);
       console.log({ data });
-      return data;
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );

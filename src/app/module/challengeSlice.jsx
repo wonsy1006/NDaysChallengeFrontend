@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import instance from './instance';
 import { PURGE } from 'redux-persist';
 import baseUrl from '../../utils/api';
 
@@ -29,32 +30,23 @@ export const createChallenge = createAsyncThunk(
       usedPassCount,
       memberNumber,
     },
-    { rejectWithValue },
+    thunkAPI,
   ) => {
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        },
-      };
-      await axios.post(
-        `${baseUrl}/challenge/create`,
-        {
-          name,
-          category,
-          type,
-          totalDays,
-          startDate,
-          reward,
-          passCount,
-          status,
-          successCount,
-          usedPassCount,
-          memberNumber,
-        },
-        config,
-      );
+      await instance.post(`/challenge/create`, {
+        name,
+        category,
+        type,
+        totalDays,
+        startDate,
+        reward,
+        passCount,
+        status,
+        successCount,
+        usedPassCount,
+        memberNumber,
+      });
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -67,21 +59,12 @@ export const createChallenge = createAsyncThunk(
 
 export const getChallengeList = createAsyncThunk(
   'challenge/list',
-  async (args, { rejectWithValue }) => {
+  async (args, thunkAPI) => {
     try {
-      const data = await axios.get(`${baseUrl}/challenge/list`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      return data;
+      const data = await instance.get(`/challenge/list`, args);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
