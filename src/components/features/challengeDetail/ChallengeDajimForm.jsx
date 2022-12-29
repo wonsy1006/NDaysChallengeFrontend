@@ -17,8 +17,6 @@ const ChallengeDajimForm = ({
   const dispatch = useDispatch();
 
   const submitForm = (data) => {
-    console.log(dajimNumber);
-    console.log(data);
     setData(JSON.stringify(data));
 
     dispatch(updateDajim(data));
