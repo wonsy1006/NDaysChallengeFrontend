@@ -40,7 +40,7 @@ export const userLogin = createAsyncThunk(
   async ({ id, pw }, thunkAPI) => {
     try {
       const { data } = await instance.post(`/auth/login`, { id, pw });
-      console.log(data.accessToken);
+      console.log(data);
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
       return thunkAPI.fulfillWithValue(data);
@@ -98,6 +98,7 @@ export const userSlice = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
+        console.log(payload);
         state.userInfo = payload;
         state.accessToken = payload.accessToken;
         state.refreshToken = payload.refreshToken;
