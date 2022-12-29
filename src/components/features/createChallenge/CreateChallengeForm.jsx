@@ -45,7 +45,6 @@ const CreateChallengeForm = () => {
   const submitForm = data => {
     data.startDate = toStringByFormatting(data.startDate);
     setData(JSON.stringify(data));
-    console.log(data);
 
     dispatch(createChallenge(data));
   };

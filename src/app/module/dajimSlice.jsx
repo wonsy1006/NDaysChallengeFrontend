@@ -24,12 +24,11 @@ export const updateDajim = createAsyncThunk(
 
       // console.log(challenge);
 
-      const data = await instance.post(`/challenge/${challenge.roomNumber}`, {
+      await instance.post(`/challenge/${challenge.roomNumber}`, {
         dajimNumber,
         open,
         content,
       });
-
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
