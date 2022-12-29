@@ -40,6 +40,7 @@ export const userLogin = createAsyncThunk(
   async ({ id, pw }, thunkAPI) => {
     try {
       const { data } = await instance.post(`/auth/login`, { id, pw });
+      console.log(data);
       localStorage.setItem('accessToken', data.accessToken);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
