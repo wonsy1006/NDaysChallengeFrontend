@@ -53,7 +53,7 @@ const CreateChallengeForm = () => {
     if (success) {
       navigate('/');
     }
-  }, []);
+  }, [success]);
 
   // const [startDate, setStartDate] = useState('');
   // const getStartDate = (date) => {};
