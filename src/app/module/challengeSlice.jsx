@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { PURGE } from 'redux-persist';
 import baseUrl from '../../utils/api';
 
 const accessToken = localStorage.getItem('accessToken');
@@ -148,7 +149,8 @@ const challengeSlice = createSlice({
       .addCase(deleteChallenge.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-      });
+      })
+      .addCase(PURGE, () => initialState);
   },
 });
 

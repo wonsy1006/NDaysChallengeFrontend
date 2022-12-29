@@ -146,17 +146,6 @@ export const userSlice = createSlice({
       .addCase(getUserDetails.rejected, (state, { payload }) => {
         state.loading = false;
       })
-      // .addCase(reissueToken.pending, state => {
-      //   state.loading = true;
-      // })
-      // .addCase(reissueToken.fulfilled, (state, { payload }) => {
-      //   state.loading = false;
-      //   state.refreshToken = payload;
-      // })
-      // .addCase(reissueToken.rejected, (state, { payload }) => {
-      //   state.loading = false;
-      //   state.error = payload;
-      // })
       .addCase(PURGE, () => initialState);
   },
 });
