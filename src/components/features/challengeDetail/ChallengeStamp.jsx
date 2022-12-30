@@ -6,8 +6,8 @@ import Card from '../../common/Card';
 import Stamp from '../../common/Stamp';
 
 const ChallengeStamp = (props) => {
-  const { status } = useSelector((state) => state.stamp);
   const dispatch = useDispatch();
+  const [status, setStatus] = useState('unchecked');
 
   const numberOfStamp = parseInt(props.content);
   const leftPad = (num) => {
@@ -29,10 +29,15 @@ const ChallengeStamp = (props) => {
   });
 
   return (
-    <Card>
-      <StampTitle>✔️ 챌린지 진척도</StampTitle>
-      <StampArea>{stamps}</StampArea>
-    </Card>
+    <>
+      {isOpen && (
+        <ChallengeModal content={props.content} currentDay={props.currentDay} />
+      )}
+      <Card>
+        <StampTitle>✔️ 챌린지 진척도</StampTitle>
+        <StampArea>{stamps}</StampArea>
+      </Card>
+    </>
   );
 };
 

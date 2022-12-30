@@ -34,12 +34,12 @@ const ChallengeDetail = () => {
   const endDate = new Date(challenge.endDate);
   const startDate = new Date(challenge.startDate);
   const currentDay = Math.ceil(
-    (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1,
+    (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
   );
 
   return (
     <>
-      {isOpen && <ChallengeModal content={challenge} currentDay={currentDay} />}
+      {/* {isOpen && <ChallengeModal content={challenge} currentDay={currentDay} />} */}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
@@ -55,7 +55,7 @@ const ChallengeDetail = () => {
       {challenge.reward === '' ? null : (
         <ChallengeReward content={challenge.reward} />
       )}
-      <ChallengeStamp content={challenge.totalDays} currentDay={currentDay} />
+      <ChallengeStamp content={challenge} currentDay={currentDay} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
           남은 패스 : <LeftPass>{challenge.passCount}</LeftPass> 회
