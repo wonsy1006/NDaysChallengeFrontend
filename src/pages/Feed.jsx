@@ -16,11 +16,15 @@ const Feed = () => {
   return (
     <>
       <h2>오늘의 다짐</h2>
-      {/* {feed.map((dj) => {
+      {feed.map((dj) => {
         return (
-          <FeedItem key={dj.id} user="user1" dajimContent={dj.dajimContent} />
+          <FeedItem
+            key={dj.dajimNumber}
+            user="user1"
+            dajimContent={dj.content}
+          />
         );
-      })} */}
+      })}
     </>
   );
 };
