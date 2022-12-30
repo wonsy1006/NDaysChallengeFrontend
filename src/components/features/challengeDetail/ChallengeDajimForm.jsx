@@ -34,7 +34,7 @@ const ChallengeDajimForm = ({ getBackToEditMode }) => {
         <StyledInput
           {...register('dajimNumber', { valueAsNumber: true })}
           type="number"
-          defaultValue="0"
+          defaultValue=""
         />
         <StyledInput
           {...register('challengeId', { valueAsNumber: true })}
