@@ -67,7 +67,9 @@ const ChallengeList = () => {
         <IndividualSection id="individualChallenge">
           {/* <h3>개인 챌린지</h3> */}
           {challenges.map(challenge => {
-            return <ChallengeListItem key={challenge.number} {...challenge} />;
+            return (
+              <ChallengeListItem key={challenge.roomNumber} {...challenge} />
+            );
           })}
         </IndividualSection>
         {/* <GroupSection id="groupChallenge">
