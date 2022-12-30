@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import ChallengeDajimForm from './ChallengeDajimForm';
 import Card from '../../common/Card';
 import { WriteIcon, ArrowUpIcon } from '../../common/Icon';
@@ -14,8 +15,11 @@ const ChallengeDajim = ({ children }) => {
     setEditMode(value);
   };
 
+  const params = useParams();
+  const challengeId = parseInt(params.roomNumber);
+
   useEffect(() => {
-    dispatch(getDajim());
+    dispatch(getDajim(challengeId));
   }, [dispatch]);
 
   const { dajim } = useSelector((state) => state.dajim);
