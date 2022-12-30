@@ -29,7 +29,10 @@ export const getDajim = createAsyncThunk(
   'dajim/getDajim',
   async (challengeId, thunkAPI) => {
     try {
-      const data = await instance.get(`/challenge/${challengeId}/dajim`);
+      const data = await instance.get(
+        `/challenge/${challengeId}/dajim`,
+        challengeId,
+      );
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -88,7 +91,7 @@ const dajimSlice = createSlice({
       .addCase(getDajimFeed.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.feed = payload.data;
+        state.feed = payload.data.reverse();
       })
       .addCase(getDajimFeed.rejected, (state, { payload }) => {
         state.isLoading = false;
