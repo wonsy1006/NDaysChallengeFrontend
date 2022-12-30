@@ -11,7 +11,6 @@ const Feed = () => {
   }, [dispatch]);
 
   const { feed } = useSelector((state) => state.dajim);
-  console.log(feed);
 
   return (
     <>
@@ -20,7 +19,7 @@ const Feed = () => {
         return (
           <FeedItem
             key={dj.dajimNumber}
-            user={dj.nickName}
+            user={dj.nickname}
             dajimContent={dj.content}
           />
         );
