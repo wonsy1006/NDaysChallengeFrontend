@@ -13,13 +13,14 @@ import UserProfile from '../components/common/UserProfile';
 
 const ChallengeDetail = () => {
   const { userInfo } = useSelector(state => state.user);
-
   const dispatch = useDispatch();
 
   const params = useParams();
   const challengeId = parseInt(params.roomNumber);
 
-  dispatch(getChallengeDetail(challengeId));
+  useEffect(() => {
+    dispatch(getChallengeDetail(challengeId));
+  }, [dispatch]);
 
   const { challengeDetail } = useSelector(state => state.challenge);
 
