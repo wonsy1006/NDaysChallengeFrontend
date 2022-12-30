@@ -6,11 +6,15 @@ import { StyledInput, InputLabel } from '../../common/Input';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { updateDajim } from '../../../app/module/dajimSlice';
+import { useParams } from 'react-router-dom';
 
 const ChallengeDajimForm = ({ getBackToEditMode, getDajimContent }) => {
   const { register, resetField, handleSubmit } = useForm();
   const [data, setData] = useState('');
   const dispatch = useDispatch();
+
+  const params = useParams();
+  const challengeId = parseInt(params.roomNumber);
 
   const submitForm = (data) => {
     const open = data.open;
@@ -33,6 +37,11 @@ const ChallengeDajimForm = ({ getBackToEditMode, getDajimContent }) => {
           {...register('dajimNumber', { valueAsNumber: true })}
           type="number"
           defaultValue="0"
+        />
+        <StyledInput
+          {...register('challengeId', { valueAsNumber: true })}
+          type="number"
+          defaultValue={challengeId}
         />
       </DisplayNoneWrapper>
       <ColumnWrapper>

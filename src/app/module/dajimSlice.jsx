@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import instance from './instance';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 const initialState = {
   dajim: {},
@@ -13,19 +11,9 @@ const initialState = {
 
 export const updateDajim = createAsyncThunk(
   'dajim/update',
-  async ({ dajimNumber, open, content }, thunkAPI) => {
+  async ({ challengeId, dajimNumber, open, content }, thunkAPI) => {
     try {
-      const { challenges } = useSelector(state => state.challenge);
-
-      const params = useParams();
-
-      const challenge = challenges.find(
-        challenge => challenge.roomNumber === parseInt(params.roomNumber),
-      );
-
-      console.log(challenge);
-
-      await instance.post(`/challenge/3`, {
+      await instance.post(`/challenge/${challengeId}`, {
         dajimNumber,
         open,
         content,
