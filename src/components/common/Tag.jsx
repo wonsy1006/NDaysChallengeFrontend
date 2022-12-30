@@ -2,7 +2,23 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const Tag = (props) => {
-  return <StyledTag {...props} />;
+  const category = props.category;
+
+  const getTagName = (category) => {
+    let tagName;
+
+    switch (category) {
+      case 'routine':
+        return (tagName = '일상생활');
+      case 'exercise':
+        return (tagName = '운동');
+      case 'mindfulness':
+        return (tagName = '멘탈케어');
+      case 'etc':
+        return (tagName = '기타');
+    }
+  };
+  return <StyledTag {...props}>{getTagName(category)}</StyledTag>;
 };
 
 export default Tag;
@@ -23,19 +39,19 @@ const StyledTag = styled.span`
     `}
 
   ${(props) =>
-    props.category === 'workout' &&
+    props.category === 'exercise' &&
     css`
       background: #a97140;
     `}
 
     ${(props) =>
-    props.category === 'diet' &&
+    props.category === 'mindfulness' &&
     css`
       background: #318335;
     `}
 
     ${(props) =>
-    props.category === 'mindfulness' &&
+    props.category === 'etc' &&
     css`
       background: #553183;
     `}

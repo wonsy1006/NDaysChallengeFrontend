@@ -4,10 +4,8 @@ import styled from 'styled-components';
 import ChallengeDajim from '../components/features/challengeDetail/ChallengeDajim';
 import ChallengeReward from '../components/features/challengeDetail/ChallengeReward';
 import ChallengeStamp from '../components/features/challengeDetail/ChallengeStamp';
-import ChallengeModal from '../components/features/challengeDetail/ChallengeModal';
 import Invite from '../components/features/invite/Invite';
 import { ColumnWrapper, RowWrapper } from '../components/common/Wrapper';
-import { ReactComponent as Pic1 } from '../assets/images/profile_pics/pic1.svg';
 import Tag from '../components/common/Tag';
 import { useParams } from 'react-router-dom';
 import { getChallengeList } from '../app/module/challengeSlice';
@@ -38,7 +36,6 @@ const ChallengeDetail = () => {
 
   return (
     <>
-      {/* {isOpen && <ChallengeModal content={challenge} currentDay={currentDay} />} */}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
