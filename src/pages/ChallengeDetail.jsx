@@ -16,10 +16,12 @@ const ChallengeDetail = () => {
 
   const dispatch = useDispatch();
 
+  const params = useParams();
+  console.log(params);
+
   dispatch(getChallengeDetail());
 
   const { challengeDetail } = useSelector(state => state.challenge);
-  const params = useParams();
 
   console.log(challengeDetail);
   // 현재 일차 수 계산
