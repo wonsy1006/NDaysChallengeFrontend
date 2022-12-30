@@ -27,7 +27,7 @@ export const updateDajim = createAsyncThunk(
 
 export const getDajim = createAsyncThunk(
   'dajim/getDajim',
-  async (args, thunkAPI) => {
+  async (challengeId, thunkAPI) => {
     try {
       const data = await instance.get(`/challenge/${challengeId}/dajim`);
       console.log(data);
