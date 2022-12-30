@@ -15,7 +15,6 @@ import UserProfile from '../components/common/UserProfile';
 
 const ChallengeDetail = () => {
   const { userInfo } = useSelector(state => state.user);
-  const { isOpen } = useSelector(store => store.modal);
   const dispatch = useDispatch();
 
   useEffect(() => {

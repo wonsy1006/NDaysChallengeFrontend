@@ -7,6 +7,7 @@ import Stamp from '../../common/Stamp';
 
 const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
+  const { isOpen } = useSelector((state) => state.modal);
   const [status, setStatus] = useState('unchecked');
 
   const numberOfStamp = parseInt(props.content.totalDays);
