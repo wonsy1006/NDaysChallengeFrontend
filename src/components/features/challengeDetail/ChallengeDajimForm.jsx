@@ -8,7 +8,7 @@ import Button from '../../common/Button';
 import { updateDajim } from '../../../app/module/dajimSlice';
 import { useParams } from 'react-router-dom';
 
-const ChallengeDajimForm = ({ getBackToEditMode, getDajimContent }) => {
+const ChallengeDajimForm = ({ getBackToEditMode }) => {
   const { register, resetField, handleSubmit } = useForm();
   const [data, setData] = useState('');
   const dispatch = useDispatch();
@@ -22,8 +22,6 @@ const ChallengeDajimForm = ({ getBackToEditMode, getDajimContent }) => {
     setData(JSON.stringify(data));
 
     dispatch(updateDajim(data));
-
-    getDajimContent(data.content);
 
     resetField('open');
     resetField('content');

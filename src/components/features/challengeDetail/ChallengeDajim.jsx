@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ChallengeDajimForm from './ChallengeDajimForm';
 import Card from '../../common/Card';
 import { WriteIcon, ArrowUpIcon } from '../../common/Icon';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDajim } from '../../../app/module/dajimSlice';
 
 const ChallengeDajim = ({ children }) => {
   // WriteIcon 클릭 시 다짐 입력 input 표시
+  const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
   const getBackToEditMode = (value) => {
     setEditMode(value);
   };
 
-  const [dajimContent, setDajimContent] = useState('');
-  const getDajimContent = (value) => {
-    setDajimContent(value);
-  };
+  useEffect(() => {
+    dispatch(getDajim());
+  }, [dispatch]);
+
+  const { dajim } = useSelector((state) => state.dajim);
 
   return (
     <Card>
@@ -40,7 +44,7 @@ const ChallengeDajim = ({ children }) => {
       </IconWrapper>
       {!editMode ? (
         <DajimContent>
-          {dajimContent === '' ? '다짐을 입력해 보세요' : dajimContent}
+          {dajim.content === '' ? '다짐을 입력해 보세요' : dajim.content}
         </DajimContent>
       ) : (
         <ChallengeDajimForm

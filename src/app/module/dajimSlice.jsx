@@ -10,14 +10,26 @@ const initialState = {
 };
 
 export const updateDajim = createAsyncThunk(
-  'dajim/update',
+  'dajim/updateDajim',
   async ({ challengeId, dajimNumber, open, content }, thunkAPI) => {
     try {
-      await instance.post(`/challenge/${challengeId}`, {
+      await instance.post(`/challenge/${challengeId}/dajim`, {
         dajimNumber,
         open,
         content,
       });
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const getDajim = createAsyncThunk(
+  'dajim/getDajim',
+  async (args, thunkAPI) => {
+    try {
+      const data = await instance.get(`/challenge/${challengeId}/dajim`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -52,6 +64,19 @@ const dajimSlice = createSlice({
         state.error = null;
       })
       .addCase(updateDajim.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getDajim.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getDajim.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.dajim = payload.data;
+      })
+      .addCase(getDajim.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
