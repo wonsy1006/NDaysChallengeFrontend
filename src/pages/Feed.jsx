@@ -12,6 +12,7 @@ const Feed = () => {
 
   const { feed } = useSelector((state) => state.dajim);
   const feedItems = feed.data;
+  console.log(feedItems);
 
   return (
     <>
