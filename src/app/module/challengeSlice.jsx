@@ -67,7 +67,7 @@ export const getChallengeDetail = createAsyncThunk(
   'challenge/getChallengeDetail',
   async (payload, thunkAPI) => {
     try {
-      const response = await instance.get(`/challenge/${payload.roomNumber}`);
+      const response = await instance.get(`/challenge/{challengeId}`);
       console.log(response.data);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
