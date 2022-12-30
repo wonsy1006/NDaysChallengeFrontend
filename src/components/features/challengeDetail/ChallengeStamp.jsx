@@ -28,7 +28,7 @@ const ChallengeStamp = (props) => {
     );
   });
 
-  console.log(stamps[day]);
+  console.log(stamps[index]);
 
   return (
     <Card>
