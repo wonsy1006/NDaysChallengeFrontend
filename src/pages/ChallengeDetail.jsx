@@ -18,10 +18,10 @@ const ChallengeDetail = () => {
 
   dispatch(getChallengeDetail());
 
-  const { challenge } = useSelector(state => state.challenge);
+  const { challengeDetail } = useSelector(state => state.challenge);
   const params = useParams();
 
-  console.log(challenge);
+  console.log(challengeDetail);
   // 현재 일차 수 계산
   const today = new Date();
   const endDate = new Date(challenge.endDate);
