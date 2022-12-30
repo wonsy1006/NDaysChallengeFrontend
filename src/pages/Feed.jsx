@@ -11,12 +11,12 @@ const Feed = () => {
   }, [dispatch]);
 
   const { feed } = useSelector((state) => state.dajim);
-  console.log(feed);
+  const feedItems = feed.data;
 
   return (
     <>
       <h2>오늘의 다짐</h2>
-      {feed.map((dj) => {
+      {feedItems.map((dj) => {
         return (
           <FeedItem
             key={dj.dajimNumber}
