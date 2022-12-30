@@ -20,7 +20,7 @@ const Feed = () => {
         return (
           <FeedItem
             key={dj.dajimNumber}
-            user="user1"
+            user={dj.nickName}
             dajimContent={dj.content}
           />
         );
