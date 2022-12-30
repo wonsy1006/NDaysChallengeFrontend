@@ -16,9 +16,7 @@ const ChallengeDetail = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getChallengeDetail());
-  }, [dispatch]);
+  dispatch(getChallengeDetail());
 
   const { challenge } = useSelector(state => state.challenge);
   const params = useParams();

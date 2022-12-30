@@ -5,7 +5,7 @@ import baseUrl from '../../utils/api';
 
 const initialState = {
   challenges: [],
-  challenge: {},
+  challengeDetail: {},
   message: '',
   error: '',
   loading: false,
@@ -52,7 +52,7 @@ export const createChallenge = createAsyncThunk(
 );
 
 export const getChallengeList = createAsyncThunk(
-  'challenge/list',
+  'challenge/getChallengeList',
   async (args, thunkAPI) => {
     try {
       const data = await instance.get(`/challenge/list`, args);
@@ -67,6 +67,7 @@ export const getChallengeDetail = createAsyncThunk(
   'challenge/getChallengeDetail',
   async (payload, thunkAPI) => {
     try {
+      console.log(`payload : ${payload}`);
       const response = await instance.get(`/challenge/${payload.roomNumber}`);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
