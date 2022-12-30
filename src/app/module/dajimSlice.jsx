@@ -30,6 +30,7 @@ export const getDajim = createAsyncThunk(
   async (args, thunkAPI) => {
     try {
       const data = await instance.get(`/challenge/${challengeId}/dajim`);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
