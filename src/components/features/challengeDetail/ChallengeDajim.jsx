@@ -47,10 +47,7 @@ const ChallengeDajim = ({ children }) => {
           {dajim.content === '' ? '다짐을 입력해 보세요' : dajim.content}
         </DajimContent>
       ) : (
-        <ChallengeDajimForm
-          getBackToEditMode={getBackToEditMode}
-          getDajimContent={getDajimContent}
-        />
+        <ChallengeDajimForm getBackToEditMode={getBackToEditMode} />
       )}
     </Card>
   );
