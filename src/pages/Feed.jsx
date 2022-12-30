@@ -10,7 +10,7 @@ const Feed = () => {
     dispatch(getDajimFeed());
   }, [dispatch]);
 
-  const { feed } = useSelector((state) => state.dajim.feed);
+  const { feed } = useSelector((state) => state.dajim);
   console.log(feed);
 
   return (
