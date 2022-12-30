@@ -9,7 +9,7 @@ const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
   const [status, setStatus] = useState('unchecked');
 
-  const numberOfStamp = parseInt(props.content);
+  const numberOfStamp = parseInt(props.content.totalDays);
   const leftPad = (num) => {
     return num.toString().padStart(2, '0');
   };
