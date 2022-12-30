@@ -13,7 +13,7 @@ export const updateDajim = createAsyncThunk(
   'dajim/updateDajim',
   async ({ challengeId, dajimNumber, open, content }, thunkAPI) => {
     try {
-      await instance.post(`/challenge/${challengeId}/dajim`, {
+      const data = await instance.post(`/challenge/${challengeId}/dajim`, {
         dajimNumber,
         open,
         content,
@@ -66,6 +66,8 @@ const dajimSlice = createSlice({
       .addCase(updateDajim.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.dajim = payload.data;
+        console.log(payload.data);
       })
       .addCase(updateDajim.rejected, (state, { payload }) => {
         state.isLoading = false;
