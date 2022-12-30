@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import instance from './instance';
 import { PURGE } from 'redux-persist';
 import baseUrl from '../../utils/api';
 
 const initialState = {
   challenges: [],
+  challenge: {},
   message: '',
   error: '',
   loading: false,
@@ -63,8 +63,20 @@ export const getChallengeList = createAsyncThunk(
   },
 );
 
+export const getChallengeDetail = createAsyncThunk(
+  'challenge/getChallengeDetail',
+  async (args, thunkAPI) => {
+    try {
+      const data = await instance.get(`/challenge/${args.roomNumber}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 export const deleteChallenge = createAsyncThunk(
-  'challenge/delete',
+  'challenge/deleteChallenge',
   async (id, { rejectWithValue }) => {
     try {
       const data = await instance.delete(`${baseUrl}/challenges/${id}`);
@@ -109,6 +121,19 @@ const challengeSlice = createSlice({
         state.challenges = payload.data;
       })
       .addCase(getChallengeList.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(getChallengeDetail.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getChallengeDetail.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.challenge = payload.data;
+        state.error = null;
+      })
+      .addCase(getChallengeDetail.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       })

@@ -8,23 +8,20 @@ import Invite from '../components/features/invite/Invite';
 import { ColumnWrapper, RowWrapper } from '../components/common/Wrapper';
 import Tag from '../components/common/Tag';
 import { useParams } from 'react-router-dom';
-import { getChallengeList } from '../app/module/challengeSlice';
+import { getChallengeDetail } from '../app/module/challengeSlice';
 import UserProfile from '../components/common/UserProfile';
 
 const ChallengeDetail = () => {
   const { userInfo } = useSelector(state => state.user);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getChallengeList());
+    dispatch(getChallengeDetail());
   }, [dispatch]);
 
-  const { challenges } = useSelector(state => state.challenge);
+  const { challenge } = useSelector(state => state.challenge);
   const params = useParams();
-
-  const challenge = challenges.find(
-    challenge => challenge.roomNumber === parseInt(params.roomNumber),
-  );
 
   // 현재 일차 수 계산
   const today = new Date();
@@ -44,6 +41,8 @@ const ChallengeDetail = () => {
       />
       <ChallengeTitle>{challenge.name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
+        <Tag category={lowerCategory}>{category}</Tag>
+        <Tag category={lowerCategory}>{category}</Tag>
         <Tag routine>규칙적인 생활</Tag>
         <Tag individual>개인</Tag>
       </RowWrapper>
