@@ -9,31 +9,31 @@ const ChallengeStamp = (props) => {
   const { status } = useSelector((state) => state.stamp);
   const dispatch = useDispatch();
 
-  console.log(status);
-
   const numberOfStamp = parseInt(props.content);
   const leftPad = (num) => {
     return num.toString().padStart(2, '0');
   };
 
+  const stamps = [...Array(numberOfStamp)].map((n, index) => {
+    const day = [...Array(numberOfStamp)].map((v, i) =>
+      i < 10 ? leftPad(i + 1) : i + 1,
+    );
+    return (
+      <Stamp
+        status={status}
+        day={day[index]}
+        key={index}
+        onClick={() => dispatch(openModal(props.currentDay))}
+      />
+    );
+  });
+
+  console.log(stamps[day]);
+
   return (
     <Card>
       <StampTitle>✔️ 챌린지 진척도</StampTitle>
-      <StampArea>
-        {[...Array(numberOfStamp)].map((n, index) => {
-          const day = [...Array(numberOfStamp)].map((v, i) =>
-            i < 10 ? leftPad(i + 1) : i + 1,
-          );
-          return (
-            <Stamp
-              status={status}
-              day={day[index]}
-              key={index}
-              onClick={() => dispatch(openModal(props.currentDay))}
-            />
-          );
-        })}
-      </StampArea>
+      <StampArea>{stamps}</StampArea>
     </Card>
   );
 };
