@@ -28,8 +28,6 @@ const ChallengeStamp = (props) => {
     );
   });
 
-  console.log(stamps[1]);
-
   return (
     <Card>
       <StampTitle>✔️ 챌린지 진척도</StampTitle>

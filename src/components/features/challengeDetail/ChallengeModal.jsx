@@ -30,7 +30,6 @@ const ChallengeModal = (props, { children }) => {
           <Button
             sub
             onClick={() => {
-              dispatch(changeStatusToPass());
               dispatch(closeModal());
             }}
           >
@@ -39,7 +38,6 @@ const ChallengeModal = (props, { children }) => {
           <Button
             primary
             onClick={() => {
-              dispatch(changeStatusToSuccess());
               dispatch(closeModal());
             }}
           >

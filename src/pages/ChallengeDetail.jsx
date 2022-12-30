@@ -34,7 +34,7 @@ const ChallengeDetail = () => {
   const endDate = new Date(challenge.endDate);
   const startDate = new Date(challenge.startDate);
   const currentDay = Math.ceil(
-    (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
+    (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1,
   );
 
   return (
