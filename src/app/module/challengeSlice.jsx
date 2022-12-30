@@ -67,7 +67,7 @@ export const getChallengeDetail = createAsyncThunk(
   'challenge/getChallengeDetail',
   async (payload, thunkAPI) => {
     try {
-      const response = await instance.get(`/challenge/{challengeId}`);
+      const response = await instance.get(`/challenge/${payload.roomNumber}`);
       console.log(response.data);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
@@ -131,7 +131,7 @@ const challengeSlice = createSlice({
       })
       .addCase(getChallengeDetail.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.challenge = payload.data;
+        state.challengeDetail = payload.data;
         state.error = null;
       })
       .addCase(getChallengeDetail.rejected, (state, { payload }) => {
