@@ -41,7 +41,7 @@ export const getDajimFeed = createAsyncThunk(
   'dajim/getDajimFeed',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get(`/feed`, args);
+      const data = await instance.get(`/feed`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       thunkAPI.rejectWithValue(error);
