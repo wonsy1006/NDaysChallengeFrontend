@@ -24,14 +24,18 @@ const ChallengeDetail = () => {
 
   const { challengeDetail } = useSelector(state => state.challenge);
 
-  console.log(challengeDetail);
   // 현재 일차 수 계산
   const today = new Date();
-  const endDate = new Date(challenge.endDate);
-  const startDate = new Date(challenge.startDate);
+  const endDate = new Date(challengeDetail.endDate);
+  const startDate = new Date(challengeDetail.startDate);
   const currentDay = Math.ceil(
     (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
   );
+
+  const category = challengeDetail.category;
+  const lowerCategory = category.toLowerCase();
+  const type = challengeDetail.type;
+  const lowerType = type.toLowerCase;
 
   return (
     <>
@@ -41,25 +45,23 @@ const ChallengeDetail = () => {
         profilePicNum={userInfo?.image}
         nickname={userInfo?.nickname}
       />
-      <ChallengeTitle>{challenge.name}</ChallengeTitle>
+      <ChallengeTitle>{challengeDetail.name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
-        <Tag category={lowerCategory}>{category}</Tag>
-        <Tag category={lowerCategory}>{category}</Tag>
-        <Tag routine>규칙적인 생활</Tag>
-        <Tag individual>개인</Tag>
+        <Tag category={lowerCategory} />
+        <Tag category={lowerType} />
       </RowWrapper>
       <ChallengeDajim />
-      {challenge.reward === '' ? null : (
-        <ChallengeReward content={challenge.reward} />
+      {challengeDetail.reward === '' ? null : (
+        <ChallengeReward content={challengeDetail.reward} />
       )}
-      <ChallengeStamp content={challenge} currentDay={currentDay} />
+      <ChallengeStamp content={challengeDetail} currentDay={currentDay} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
-          남은 패스 : <LeftPass>{challenge.passCount}</LeftPass> 회
+          남은 패스 : <LeftPass>{challengeDetail.passCount}</LeftPass> 회
         </PassWrapper>
         <CountWrapper>
           <Succeeded>{currentDay}</Succeeded> /{' '}
-          <Entire>{challenge.totalDays}</Entire>
+          <Entire>{challengeDetail.totalDays}</Entire>
         </CountWrapper>
       </RowWrapper>
       <ColumnWrapper
