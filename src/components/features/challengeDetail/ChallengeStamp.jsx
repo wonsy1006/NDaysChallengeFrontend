@@ -32,7 +32,8 @@ const ChallengeStamp = (props) => {
   });
 
   console.log(stamps);
-  console.log(stamps.find((stamp) => stamp.key === props.currentDay));
+  const stamp = stamps.find((stamp) => stamp.key === props.currentDay);
+  console.log(stamp);
 
   const changeStatus = (status) => {
     if (status === 'pass') {
