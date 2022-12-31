@@ -10,7 +10,7 @@ const ChallengeModal = (props, { changeStatus }) => {
   const dispatch = useDispatch();
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
-  console.log(currentDayStr);
+  console.log(typeof currentDayStr);
 
   return (
     <ModalContainer>
