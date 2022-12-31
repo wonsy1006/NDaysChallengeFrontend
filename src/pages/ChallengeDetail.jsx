@@ -24,6 +24,7 @@ const ChallengeDetail = () => {
   }, [dispatch]);
 
   const { challengeDetail } = useSelector(state => state.challenge);
+  console.log(challengeDetail);
 
   // 현재 일차 수 계산
   const today = new Date();
@@ -35,7 +36,6 @@ const ChallengeDetail = () => {
 
   // 카테고리, 타입 lowercase로 전환
   const category = challengeDetail.category;
-  console.log(category);
   const lowerCategory = category.toLowerCase();
   const type = challengeDetail.type;
   const lowerType = type.toLowerCase();
