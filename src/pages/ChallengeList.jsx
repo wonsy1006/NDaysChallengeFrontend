@@ -8,6 +8,7 @@ import UserProfile from '../components/common/UserProfile';
 import { ReactComponent as NoChallenge } from '../assets/images/nochallenge.svg';
 import ChallengeListItem from '../components/features/challengeList/ChallengeListItem';
 import { getChallengeList } from '../app/module/challengeSlice';
+import { persistor } from '../app/store.js';
 
 const ChallengeList = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const ChallengeList = () => {
     if (accessToken) {
       dispatch(getChallengeList());
     } else {
-      // purge();
-      // window.location.href = '/';
+      purge();
+      window.location.href = '/';
     }
   }, [dispatch]);
 

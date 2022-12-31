@@ -5,7 +5,6 @@ import { PURGE } from 'redux-persist';
 const initialState = {
   challenges: [],
   challengeDetail: {},
-  stamps: [],
   message: '',
   error: '',
   loading: false,
