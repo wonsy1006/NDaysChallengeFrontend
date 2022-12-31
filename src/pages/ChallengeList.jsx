@@ -23,8 +23,8 @@ const ChallengeList = () => {
     if (accessToken) {
       dispatch(getChallengeList());
     } else {
-      purge();
-      window.location.href = '/';
+      // purge();
+      // window.location.href = '/';
     }
   }, [dispatch]);
 
