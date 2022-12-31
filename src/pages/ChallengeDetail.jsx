@@ -19,9 +19,9 @@ const ChallengeDetail = () => {
   const challengeId = parseInt(params.roomNumber);
   console.log(challengeId);
 
-  useEffect(() => {
-    dispatch(getChallengeDetail(challengeId));
-  }, [dispatch]);
+  // useEffect(() => {
+  dispatch(getChallengeDetail(challengeId));
+  // }, [dispatch]);
 
   const { challengeDetail } = useSelector(state => state.challenge);
   console.log(challengeDetail);
