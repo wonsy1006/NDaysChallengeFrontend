@@ -40,7 +40,6 @@ const FirstPage = ({ children }) => {
 
 const Router = () => {
   const { challenges } = useSelector((state) => state.challenge);
-  const roomNumber = challenges.roomNumber;
 
   return (
     // <BrowserRouter>
@@ -57,6 +56,7 @@ const Router = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/*" element={<ErrorPage />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/feed" element={<Feed />} />
       <Route path="/welcome" element={<Welcome />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/challenge-list" element={<ChallengeList />} />
@@ -67,7 +67,6 @@ const Router = () => {
         <Route path="/challenge-result" element={<ChallengeResult />} />
         <Route path="/create-challenge" element={<CreateChallenge />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/feed" element={<Feed />} />
         <Route path="/friends-list" element={<FriendsList />} />
         <Route path="/group-challenge" element={<GroupChallenge />} />
         <Route path="/mypage" element={<MyPage />} />
