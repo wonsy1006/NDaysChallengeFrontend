@@ -64,7 +64,6 @@ const dajimSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.dajim = payload.data;
-        console.log(payload.data);
       })
       .addCase(updateDajim.rejected, (state, { payload }) => {
         state.isLoading = false;
