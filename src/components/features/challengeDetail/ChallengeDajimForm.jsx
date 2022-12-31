@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { StyledInput, InputLabel } from '../../common/Input';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
-import { updateDajim } from '../../../app/module/dajimSlice';
+import { createDajim } from '../../../app/module/dajimSlice';
 import { useParams } from 'react-router-dom';
 
 const ChallengeDajimForm = ({ getBackToEditMode }) => {
@@ -23,7 +23,7 @@ const ChallengeDajimForm = ({ getBackToEditMode }) => {
     data.open = open.toUpperCase();
     setData(JSON.stringify(data));
 
-    dispatch(updateDajim(data));
+    dispatch(createDajim(data));
 
     resetField('open');
     resetField('content');
