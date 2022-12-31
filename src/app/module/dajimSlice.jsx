@@ -10,8 +10,8 @@ const initialState = {
   isLoading: false,
 };
 
-export const updateDajim = createAsyncThunk(
-  'dajim/updateDajim',
+export const createDajim = createAsyncThunk(
+  'dajim/createDajim',
   async ({ challengeId, dajimNumber, open, content }, thunkAPI) => {
     try {
       const data = await instance.post(`/challenge/${challengeId}/dajim`, {
@@ -19,6 +19,18 @@ export const updateDajim = createAsyncThunk(
         open,
         content,
       });
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const patchDajim = createAsyncThunk(
+  'dajim/patchDajim',
+  async (challengeId, thunkAPI) => {
+    try {
+      const data = await instance.patch(`/challenge/${challengeId}/dajim`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -56,16 +68,16 @@ const dajimSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(updateDajim.pending, state => {
+      .addCase(createDajim.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(updateDajim.fulfilled, (state, { payload }) => {
+      .addCase(createDajim.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         state.dajim = payload.data;
       })
-      .addCase(updateDajim.rejected, (state, { payload }) => {
+      .addCase(createDajim.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
@@ -77,11 +89,19 @@ const dajimSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.dajim = payload.data;
-        state.dajimNumber = payload.data.dajimNumber;
       })
       .addCase(getDajim.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(patchDajim.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(patchDajim.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.dajim = payload.data;
       })
       .addCase(getDajimFeed.pending, state => {
         state.isLoading = true;

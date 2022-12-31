@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../../common/Card';
 import styled from 'styled-components';
-import { ReactComponent as Pic1 } from '../../../assets/images/profile_pics/pic1.svg';
+import ProfilePic from '../../common/ProfilePic';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import {
   Like,
@@ -16,7 +16,7 @@ const FeedItem = (props) => {
   return (
     <Card>
       <UserContainer>
-        <Pic1 />
+        <ProfilePic picType={`pic${props.pic}`} />
         <NicknameContainer>
           <NicknameSpan>{props.user}</NicknameSpan>
           <span>님이 다짐을 공유했습니다.</span>
