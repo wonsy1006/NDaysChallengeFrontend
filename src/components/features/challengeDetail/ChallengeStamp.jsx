@@ -36,12 +36,10 @@ const ChallengeStamp = (props) => {
   console.log(stamp);
   stamp.props.status = 'success';
 
-  const changeStatus = (status) => {
-    if (status === 'pass') {
-      status = 'pass';
-    } else if (status === 'success') {
-      status = 'success';
-    }
+  const changeStatus = (currentDay, status) => {
+    const stamp = stamps.find((stamp) => stamp.key === currentDay);
+    stamp.props.status = status;
+    stamp.props.onClick = '';
   };
 
   return (

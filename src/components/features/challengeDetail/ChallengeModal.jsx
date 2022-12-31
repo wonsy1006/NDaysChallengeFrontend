@@ -5,13 +5,12 @@ import styled from 'styled-components';
 import { RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { CloseIcon } from '../../common/Icon';
-import {
-  changeStatusToPass,
-  changeStatusToSuccess,
-} from '../../../app/module/stampSlice';
+import { current } from '@reduxjs/toolkit';
 
 const ChallengeModal = (props, { changeStatus }) => {
   const dispatch = useDispatch();
+  const currentDay = props.currentDay;
+  const currentDayStr = currentDay.toString();
 
   return (
     <ModalContainer>
@@ -30,7 +29,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             sub
             onClick={() => {
-              changeStatus('pass');
+              changeStatus(currentDay, 'pass');
               dispatch(closeModal());
             }}
           >
@@ -39,7 +38,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             primary
             onClick={() => {
-              changeStatus('success');
+              changeStatus(currentDay, 'success');
               dispatch(closeModal());
             }}
           >
