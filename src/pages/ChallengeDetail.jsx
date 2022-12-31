@@ -36,7 +36,7 @@ const ChallengeDetail = () => {
   const category = challengeDetail.category;
   const lowerCategory = category.toLowerCase();
   const type = challengeDetail.type;
-  const lowerType = type.toLowerCase;
+  const lowerType = type.toLowerCase();
 
   return (
     <>
