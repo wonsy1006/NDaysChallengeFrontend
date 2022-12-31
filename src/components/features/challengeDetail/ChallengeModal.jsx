@@ -29,7 +29,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             sub
             onClick={() => {
-              changeStatus(currentDay, 'pass');
+              changeStatus(currentDayStr, 'pass');
               dispatch(closeModal());
             }}
           >
@@ -38,7 +38,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             primary
             onClick={() => {
-              changeStatus(currentDay, 'success');
+              changeStatus(currentDayStr, 'success');
               dispatch(closeModal());
             }}
           >
