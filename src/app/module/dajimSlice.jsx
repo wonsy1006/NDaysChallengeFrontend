@@ -3,6 +3,7 @@ import instance from './instance';
 
 const initialState = {
   dajim: {},
+  dajimNumber: null,
   feed: [],
   message: '',
   error: '',
@@ -81,6 +82,7 @@ const dajimSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.dajim = payload.data;
+        state.dajimNumber = payload.data.dajimNumber;
       })
       .addCase(getDajim.rejected, (state, { payload }) => {
         state.isLoading = false;

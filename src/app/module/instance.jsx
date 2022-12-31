@@ -44,10 +44,10 @@ instance.interceptors.response.use(
             'accessToken',
             JSON.stringify(data.data, ['accessToken']),
           );
-          localStorage.setItem(
-            'refreshToken',
-            JSON.stringify(data.data, ['refreshToken']),
-          );
+          // localStorage.setItem(
+          //   'refreshToken',
+          //   JSON.stringify(data.data, ['refreshToken']),
+          // );
           return await instance.request(originalConfig);
         }
       } catch (err) {
