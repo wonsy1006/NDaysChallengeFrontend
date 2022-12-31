@@ -24,6 +24,7 @@ const ChallengeList = () => {
       dispatch(getChallengeList());
     } else {
       purge();
+      window.location.href = '/';
     }
   }, [dispatch]);
 

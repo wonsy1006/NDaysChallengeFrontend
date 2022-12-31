@@ -9,6 +9,12 @@ import Stamp from '../../common/Stamp';
 const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
+
+  const numberOfStamp = parseInt(props.content.totalDays);
+  const leftPad = (num) => {
+    return num.toString().padStart(2, '0');
+  };
+
   const [status, setStatus] = useState('unchecked');
   const [stamps, setStamps] = useState(
     [...Array(numberOfStamp)].map((n, index) => {
@@ -26,11 +32,6 @@ const ChallengeStamp = (props) => {
       );
     }),
   );
-
-  const numberOfStamp = parseInt(props.content.totalDays);
-  const leftPad = (num) => {
-    return num.toString().padStart(2, '0');
-  };
 
   // console.log(stamps);
   // const stamp = stamps.find((stamp) => stamp.key === '1');

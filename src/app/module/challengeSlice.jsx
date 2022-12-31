@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import instance from './instance';
 import { PURGE } from 'redux-persist';
-import baseUrl from '../../utils/api';
 
 const initialState = {
   challenges: [],

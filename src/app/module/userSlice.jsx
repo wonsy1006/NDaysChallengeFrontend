@@ -16,9 +16,7 @@ const initialState = {
 };
 
 export const userSignUp = createAsyncThunk(
-  // action type string
   'user/signUp',
-  // callback function
   async ({ id, pw, nickname, image }, thunkAPI) => {
     try {
       const { data } = await instance.post('/auth/signup', {
