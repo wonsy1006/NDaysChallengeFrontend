@@ -5,12 +5,12 @@ import styled from 'styled-components';
 import { RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { CloseIcon } from '../../common/Icon';
-import { current } from '@reduxjs/toolkit';
 
 const ChallengeModal = (props, { changeStatus }) => {
   const dispatch = useDispatch();
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
+  console.log(currentDayStr);
 
   return (
     <ModalContainer>
@@ -28,7 +28,7 @@ const ChallengeModal = (props, { changeStatus }) => {
         <ButtonWrapper>
           <Button
             sub
-            onClick={() => {
+            onClick={({}) => {
               changeStatus(currentDayStr, 'pass');
               dispatch(closeModal());
             }}
@@ -37,7 +37,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           </Button>
           <Button
             primary
-            onClick={() => {
+            onClick={({}) => {
               changeStatus(currentDayStr, 'success');
               dispatch(closeModal());
             }}
