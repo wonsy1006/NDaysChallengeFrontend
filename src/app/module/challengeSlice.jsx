@@ -126,7 +126,6 @@ const challengeSlice = createSlice({
       .addCase(getChallengeDetail.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.challengeDetail = payload.data;
-        console.log(payload.data);
         state.error = null;
       })
       .addCase(getChallengeDetail.rejected, (state, { payload }) => {
