@@ -40,7 +40,6 @@ const ChallengeStamp = (props) => {
     const stamp = stamps.find((stamp) => stamp.key === currentDay);
     console.log(stamp);
     stamp.props.status = status;
-    stamp.props.onClick = '';
   };
 
   return (
