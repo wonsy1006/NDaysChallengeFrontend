@@ -42,7 +42,7 @@ instance.interceptors.response.use(
         if (data) {
           localStorage.setItem(
             'accessToken',
-            JSON.stringify(data.data, ['accessToken']),
+            JSON.stringify(data.accessToken, ['accessToken']),
           );
           // localStorage.setItem(
           //   'refreshToken',
