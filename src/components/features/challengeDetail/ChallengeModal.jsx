@@ -13,14 +13,6 @@ import {
 const ChallengeModal = (props, { changeStatus }) => {
   const dispatch = useDispatch();
 
-  const changeStatus = (status) => {
-    if (status === 'pass') {
-      status = 'pass';
-    } else if (status === 'success') {
-      status = 'success';
-    }
-  };
-
   return (
     <ModalContainer>
       <Modal>
@@ -38,7 +30,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             sub
             onClick={() => {
-              changeStatusToPass();
+              changeStatus('pass');
               dispatch(closeModal());
             }}
           >
@@ -47,6 +39,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             primary
             onClick={() => {
+              changeStatus('success');
               dispatch(closeModal());
             }}
           >

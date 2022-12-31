@@ -34,6 +34,14 @@ const ChallengeStamp = (props) => {
   console.log(stamps);
   console.log(stamps.find(key === props.currentDay));
 
+  const changeStatus = (status) => {
+    if (status === 'pass') {
+      status = 'pass';
+    } else if (status === 'success') {
+      status = 'success';
+    }
+  };
+
   return (
     <>
       {isOpen && (
