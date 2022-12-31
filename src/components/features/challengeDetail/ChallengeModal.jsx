@@ -10,8 +10,16 @@ import {
   changeStatusToSuccess,
 } from '../../../app/module/stampSlice';
 
-const ChallengeModal = (props, { children }) => {
+const ChallengeModal = (props, { changeStatus }) => {
   const dispatch = useDispatch();
+
+  const changeStatus = (status) => {
+    if (status === 'pass') {
+      status = 'pass';
+    } else if (status === 'success') {
+      status = 'success';
+    }
+  };
 
   return (
     <ModalContainer>
@@ -30,6 +38,7 @@ const ChallengeModal = (props, { children }) => {
           <Button
             sub
             onClick={() => {
+              changeStatusToPass();
               dispatch(closeModal());
             }}
           >

@@ -24,11 +24,15 @@ const ChallengeStamp = (props) => {
       <Stamp
         status={status}
         day={day[index]}
-        key={index}
+        key={day[index]}
+        changeStatus={changeStatus}
         onClick={() => dispatch(openModal())}
       />
     );
   });
+
+  console.log(stamps);
+  console.log(stamps.find(key === props.currentDay));
 
   return (
     <>

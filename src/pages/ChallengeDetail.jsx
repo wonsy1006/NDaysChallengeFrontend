@@ -32,6 +32,7 @@ const ChallengeDetail = () => {
     (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
   );
 
+  // 카테고리, 타입 lowercase로 전환
   const category = challengeDetail.category;
   const lowerCategory = category.toLowerCase();
   const type = challengeDetail.type;

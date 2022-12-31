@@ -49,7 +49,7 @@ const ChallengeDajim = ({ children }) => {
       </IconWrapper>
       {!editMode ? (
         <DajimContent>
-          {dajim.content === '' ? '다짐을 입력해 보세요' : dajim.content}
+          {dajim.content === null ? '다짐을 입력해 보세요' : dajim.content}
         </DajimContent>
       ) : (
         <ChallengeDajimForm getBackToEditMode={getBackToEditMode} />
