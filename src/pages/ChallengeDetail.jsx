@@ -17,7 +17,6 @@ const ChallengeDetail = () => {
 
   const params = useParams();
   const challengeId = parseInt(params.roomNumber);
-  console.log(challengeId);
 
   // useEffect(() => {
   dispatch(getChallengeDetail(challengeId));
@@ -36,6 +35,7 @@ const ChallengeDetail = () => {
 
   // 카테고리, 타입 lowercase로 전환
   const category = challengeDetail.category;
+  console.log(typeof category);
   const lowerCategory = category.toLowerCase();
   const type = challengeDetail.type;
   const lowerType = type.toLowerCase();
