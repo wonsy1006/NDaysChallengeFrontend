@@ -10,7 +10,6 @@ const ChallengeModal = (props, { changeStatus }) => {
   const dispatch = useDispatch();
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
-  console.log(typeof currentDayStr);
 
   return (
     <ModalContainer>
@@ -28,7 +27,7 @@ const ChallengeModal = (props, { changeStatus }) => {
         <ButtonWrapper>
           <Button
             sub
-            onClick={({}) => {
+            onClick={() => {
               changeStatus(currentDayStr, 'pass');
               dispatch(closeModal());
             }}
@@ -37,7 +36,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           </Button>
           <Button
             primary
-            onClick={({}) => {
+            onClick={() => {
               changeStatus(currentDayStr, 'success');
               dispatch(closeModal());
             }}

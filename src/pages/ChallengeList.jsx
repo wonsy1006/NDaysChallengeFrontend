@@ -15,9 +15,15 @@ const ChallengeList = () => {
 
   const { userInfo } = useSelector(state => state.user);
 
+  const purge = async () => {
+    await persistor.purge();
+  };
+
   useEffect(() => {
     if (accessToken) {
       dispatch(getChallengeList());
+    } else {
+      purge();
     }
   }, [dispatch]);
 
@@ -82,28 +88,6 @@ const ChallengeList = () => {
 
 export default ChallengeList;
 
-const UserContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  width: 90%;
-  margin: 0 auto 1.5rem auto;
-`;
-
-const NicknameContainer = styled.span`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 0.5rem;
-`;
-
-const NicknameSpan = styled.span`
-  color: ${({ theme }) => theme.colors.bl500};
-  font-size: 1.7rem;
-  font-weight: 700;
-`;
-
 const ListSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -126,24 +110,4 @@ const StyledText = styled.p`
   font-weight: 500;
   line-height: 1.5;
   text-align: center;
-`;
-
-const UserNameContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  width: 90%;
-  margin: 0 auto 1rem auto;
-
-  & + & {
-    margin: 0.5rem;
-  }
-`;
-
-const StyledSpan = styled.span`
-  margin: 0 0.5rem 0 1rem;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.bl500};
 `;

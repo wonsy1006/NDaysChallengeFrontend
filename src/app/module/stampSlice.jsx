@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  status: 'unchecked',
+  stamps: [],
   message: '',
   errorMessage: '',
   isLoading: true,
@@ -11,9 +11,7 @@ const stampSlice = createSlice({
   name: 'stamp',
   initialState,
   reducers: {
-    changeStatusToSuccess: state => {
-      state.status = 'success';
-    },
+    createStamps: (state, action) => {},
     changeStatusToPass: state => {
       state.status = 'pass';
     },

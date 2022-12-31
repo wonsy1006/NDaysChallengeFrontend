@@ -6,6 +6,7 @@ import baseUrl from '../../utils/api';
 const initialState = {
   challenges: [],
   challengeDetail: {},
+  stamps: [],
   message: '',
   error: '',
   loading: false,
@@ -77,16 +78,12 @@ export const getChallengeDetail = createAsyncThunk(
 
 export const deleteChallenge = createAsyncThunk(
   'challenge/deleteChallenge',
-  async (id, { rejectWithValue }) => {
+  async (challengeId, thunkAPI) => {
     try {
-      const data = await instance.delete(`${baseUrl}/challenges/${id}`);
-      return data;
+      const data = await instance.delete(`/challenge/${challengeId}`);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
@@ -144,9 +141,7 @@ const challengeSlice = createSlice({
       .addCase(deleteChallenge.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        // state.challenges = state.challenges.filter(
-        //   (_) => _.id !== payload.data,
-        // );
+        state.challenges = payload.data;
       })
       .addCase(deleteChallenge.rejected, (state, { payload }) => {
         state.loading = false;
