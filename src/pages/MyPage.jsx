@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { logout } from '../app/module/userSlice';
 import UserProfile from '../components/common/UserProfile';
+import { persistor } from '../app/store';
 
 const MyPage = () => {
   const navigate = useNavigate();

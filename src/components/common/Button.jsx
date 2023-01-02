@@ -80,7 +80,7 @@ const StyledButton = styled.button`
       border-radius: 0.8rem;
       background: transparent;
       color: ${({ theme }) => theme.colors.gr};
-      font-size: ${({ theme }) => theme.fonts.size.small};
+      font-size: 1.4rem;
       &:hover {
         background: ${({ theme }) => theme.colors.gr};
         color: ${({ theme }) => theme.colors.gr000};
@@ -98,7 +98,7 @@ const StyledButton = styled.button`
       border-radius: 0.8rem;
       background: transparent;
       color: ${({ theme }) => theme.colors.rd};
-      font-size: ${({ theme }) => theme.fonts.size.small};
+      font-size: 1.4rem;
       &:hover {
         background: ${({ theme }) => theme.colors.rd};
         color: ${({ theme }) => theme.colors.gr000};

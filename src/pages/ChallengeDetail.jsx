@@ -8,7 +8,10 @@ import Invite from '../components/features/invite/Invite';
 import { ColumnWrapper, RowWrapper } from '../components/common/Wrapper';
 import Tag from '../components/common/Tag';
 import { useParams } from 'react-router-dom';
-import { getChallengeDetail } from '../app/module/challengeSlice';
+import {
+  getChallengeDetail,
+  deleteChallenge,
+} from '../app/module/challengeSlice';
 import UserProfile from '../components/common/UserProfile';
 
 const ChallengeDetail = () => {
@@ -70,7 +73,14 @@ const ChallengeDetail = () => {
         alignItems="center"
         margin="2rem auto"
       >
-        <RemoveChallenge>챌린지 삭제하기</RemoveChallenge>
+        <RemoveChallenge
+          onClick={() => {
+            deleteChallenge(challengeId);
+            window.location.reload('/');
+          }}
+        >
+          챌린지 삭제하기
+        </RemoveChallenge>
       </ColumnWrapper>
       <Invite />
     </>

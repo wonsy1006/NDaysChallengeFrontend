@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
   dajim: dajimReducer,
-  stamp: stampReducer,
+  // stamp: stampReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

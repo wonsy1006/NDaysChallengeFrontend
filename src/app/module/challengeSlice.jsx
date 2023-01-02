@@ -43,7 +43,7 @@ export const createChallenge = createAsyncThunk(
         usedPassCount,
         memberNumber,
       });
-      return thunkAPI.fulfillWithValue(data);
+      return thunkAPI.fulfillWithValue();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

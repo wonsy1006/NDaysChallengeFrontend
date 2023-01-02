@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
@@ -23,11 +23,13 @@ const ChallengeDajimForm = ({ getBackToEditMode }) => {
     data.open = open.toUpperCase();
     setData(JSON.stringify(data));
 
-    // if (dajim.dajimNumber) {
-    //   dispatch(patchDajim(data));
-    // } else {
-    //   dispatch(createDajim(data));
-    // }
+    useEffect(() => {
+      if (dajim.dajimNumber) {
+        dispatch(patchDajim(data));
+      } else {
+        dispatch(createDajim(data));
+      }
+    }, [dispatch]);
 
     resetField('open');
     resetField('content');
