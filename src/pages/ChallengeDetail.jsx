@@ -24,6 +24,12 @@ const ChallengeDetail = () => {
 
   const { challengeDetail } = useSelector(state => state.challenge);
 
+  // 카테고리, 타입 lowercase로 전환
+  const category = challengeDetail.category;
+  const lowerCategory = category.toLowerCase();
+  const type = challengeDetail.type;
+  const lowerType = type.toLowerCase();
+
   // 현재 일차 수 계산
   const today = new Date();
   const endDate = new Date(challengeDetail.endDate);
@@ -31,12 +37,6 @@ const ChallengeDetail = () => {
   const currentDay = Math.ceil(
     (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
   );
-
-  // 카테고리, 타입 lowercase로 전환
-  const category = challengeDetail.category;
-  const lowerCategory = category.toLowerCase();
-  const type = challengeDetail.type;
-  const lowerType = type.toLowerCase();
 
   return (
     <>
