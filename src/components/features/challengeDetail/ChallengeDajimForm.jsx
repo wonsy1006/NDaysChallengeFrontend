@@ -23,13 +23,11 @@ const ChallengeDajimForm = ({ getBackToEditMode }) => {
     data.open = open.toUpperCase();
     setData(JSON.stringify(data));
 
-    useEffect(() => {
-      if (dajim.dajimNumber) {
-        dispatch(patchDajim(data));
-      } else {
-        dispatch(createDajim(data));
-      }
-    }, [dispatch]);
+    if (dajim.dajimNumber) {
+      dispatch(patchDajim(data));
+    } else {
+      dispatch(createDajim(data));
+    }
 
     resetField('open');
     resetField('content');
