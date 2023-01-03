@@ -61,7 +61,7 @@ export const getFriendsList = createAsyncThunk(
   'friends/getFriendsList',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get();
+      const data = await instance.get('/friends/list');
     } catch (error) {}
   },
 );

@@ -19,7 +19,9 @@ import FriendsList from '../pages/FriendsList';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
 import MyPage from '../pages/MyPage';
-import Onboarding from '../pages/Onboarding';
+import OnBoarding1 from '../pages/OnBoarding1';
+import OnBoarding2 from '../pages/OnBoarding2';
+import OnBoarding3 from '../pages/OnBoarding3';
 import SignUp from '../pages/SignUp';
 import Welcome from '../pages/Welcome';
 import Withdraw from '../pages/Withdraw';
@@ -52,12 +54,14 @@ const Router = () => {
           </FirstPage>
         }
       />
-      <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/login" element={<Login />} />
       <Route path="/*" element={<ErrorPage />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/feed" element={<Feed />} />
       <Route path="/welcome" element={<Welcome />} />
+      <Route path="/onboarding1" element={<OnBoarding1 />} />
+      <Route path="/onboarding2" element={<OnBoarding2 />} />
+      <Route path="/onboarding3" element={<OnBoarding3 />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/challenge-list" element={<ChallengeList />} />
         <Route

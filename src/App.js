@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Router from './router/router';
@@ -11,9 +11,19 @@ const App = () => {
 
   return (
     <Layout>
-      {location.pathname === '/welcome' ? null : <Header />}
+      {location.pathname === '/welcome' ||
+      location.pathname === '/onboarding1' ||
+      location.pathname === '/onboarding2' ||
+      location.pathname === '/onboarding3' ? null : (
+        <Header />
+      )}
       <Router />
-      {location.pathname === '/welcome' ? null : <Navigation />}
+      {location.pathname === '/welcome' ||
+      location.pathname === '/onboarding1' ||
+      location.pathname === '/onboarding2' ||
+      location.pathname === '/onboarding3' ? null : (
+        <Navigation />
+      )}
     </Layout>
   );
 };
