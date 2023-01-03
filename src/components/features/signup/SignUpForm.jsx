@@ -49,7 +49,6 @@ const SignUpForm = () => {
 
   const submitForm = data => {
     setData(JSON.stringify(data));
-    console.log(data);
 
     if (data.pw !== data.pwCheck) {
       alert('패스워드가 일치하지 않습니다.');
