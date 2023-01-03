@@ -51,8 +51,8 @@ const ChallengeDetail = () => {
       />
       <ChallengeTitle>{challengeDetail.name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
-        <Tag category={lowerCategory} />
-        <Tag category={lowerType} />
+        <Tag category={challengeDetail.category} />
+        <Tag category={challengeDetail.type} />
       </RowWrapper>
       <ChallengeDajim />
       {challengeDetail.reward === '' ? null : (
