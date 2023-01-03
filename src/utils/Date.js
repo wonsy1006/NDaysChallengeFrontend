@@ -7,6 +7,7 @@ function leftPad(value) {
 }
 
 export function toStringByFormatting(source, delimiter = '-') {
+  source.setHours(0, 0, 0, 0);
   const year = source.getFullYear();
   const month = leftPad(source.getMonth() + 1);
   const day = leftPad(source.getDate());
