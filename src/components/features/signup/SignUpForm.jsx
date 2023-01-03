@@ -66,9 +66,10 @@ const SignUpForm = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
-      <ColumnWrapper margin="0 auto 2.4rem">
+      <ColumnWrapper margin="0 auto 2.4rem" position="relative">
         <InputLabel label="이메일" />
         <StyledInput {...register('id')} type="email" />
+        <StyledSpan>이메일 중복 확인</StyledSpan>
         <ErrorMessage>{errors.id?.message}</ErrorMessage>
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
@@ -81,9 +82,10 @@ const SignUpForm = () => {
         <StyledInput {...register('pwCheck')} type="password" />
         <ErrorMessage>{errors.pwCheck?.message}</ErrorMessage>
       </ColumnWrapper>
-      <ColumnWrapper margin="0 auto 2.4rem">
+      <ColumnWrapper margin="0 auto 2.4rem" position="relative">
         <InputLabel label="닉네임" />
         <StyledInput {...register('nickname')} type="text" />
+        <StyledSpan>닉네임 중복 확인</StyledSpan>
         <ErrorMessage>{errors.nickname?.message}</ErrorMessage>
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
@@ -159,6 +161,16 @@ export default SignUpForm;
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+`;
+
+const StyledSpan = styled.span`
+  position: absolute;
+  right: 4rem;
+  bottom: 4rem;
+  width: 11rem;
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.colors.bl500};
+  cursor: pointer;
 `;
 
 const RadioWrapper = styled.div`

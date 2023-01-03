@@ -58,6 +58,42 @@ export const getUserDetails = createAsyncThunk(
   },
 );
 
+export const checkId = createAsyncThunk(
+  'user/checkId',
+  async (args, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/auth/id-check`, args);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const checkNickname = createAsyncThunk(
+  'user/checkNickname',
+  async (args, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/auth/nickname-check`, args);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const logout = createAsyncThunk(
+  'user/logout',
+  async (args, thunkAPI) => {
+    try {
+      const { data } = await instance.post(`/auth/logout`, args);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -117,5 +153,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
+// export const { logout } = userSlice.actions;
 export default userSlice.reducer;
