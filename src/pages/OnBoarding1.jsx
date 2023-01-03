@@ -12,11 +12,7 @@ const OnBoarding1 = () => {
         <img src={Onboarding1} alt="" />
         <h2></h2>
         <StyledH3>나만의 챌린지를 만들어 매일 체크해봐요</StyledH3>
-        <StyledP>
-          Onboarding Investment App designed by salestinus sustyo h for
-          Paperpillar. Connect with them on Dribbble; the global community for
-          designers and creative professionals.
-        </StyledP>
+        <StyledP>챌린지 기간 동안 매일 출석하며 챌린지를 완성해가요.</StyledP>
       </ColumnWrapper>
       <RowWrapper width="90%" justifyContent="center" alignItems="center">
         <EllipsisWrapper>

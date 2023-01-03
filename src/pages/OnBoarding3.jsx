@@ -21,9 +21,8 @@ const OnBoarding3 = () => {
         <h2></h2>
         <StyledH3>오늘은 어떻게 하루를 보낼지 다짐을 적어봐요</StyledH3>
         <StyledP>
-          Onboarding Investment App designed by salestinus sustyo h for
-          Paperpillar. Connect with them on Dribbble; the global community for
-          designers and creative professionals.
+          챌린지를 성공하겠다는 다짐을 적어봐요. 여러 사람들과 공유하고 싶다면
+          전체공개 설정도 가능하답니다.
         </StyledP>
       </ColumnWrapper>
       <RowWrapper width="90%" justifyContent="center" alignItems="center">

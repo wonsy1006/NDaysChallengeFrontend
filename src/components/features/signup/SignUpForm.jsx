@@ -43,7 +43,7 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
 
   const [data, setData] = useState('');
 
@@ -66,10 +66,12 @@ const SignUpForm = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit(submitForm)}>
-      <ColumnWrapper margin="0 auto 2.4rem" position="relative">
-        <InputLabel label="이메일" />
-        <StyledInput {...register('id')} type="email" />
-        <StyledSpan>이메일 중복 확인</StyledSpan>
+      <ColumnWrapper margin="0 auto 2.4rem">
+        <ColumnWrapper position="relative">
+          <InputLabel label="이메일" />
+          <StyledInput {...register('id')} type="email" />
+          <StyledSpan>이메일 중복 확인</StyledSpan>
+        </ColumnWrapper>
         <ErrorMessage>{errors.id?.message}</ErrorMessage>
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
@@ -82,10 +84,12 @@ const SignUpForm = () => {
         <StyledInput {...register('pwCheck')} type="password" />
         <ErrorMessage>{errors.pwCheck?.message}</ErrorMessage>
       </ColumnWrapper>
-      <ColumnWrapper margin="0 auto 2.4rem" position="relative">
-        <InputLabel label="닉네임" />
-        <StyledInput {...register('nickname')} type="text" />
-        <StyledSpan>닉네임 중복 확인</StyledSpan>
+      <ColumnWrapper margin="0 auto 2.4rem">
+        <ColumnWrapper position="relative">
+          <InputLabel label="닉네임" />
+          <StyledInput {...register('nickname')} type="text" />
+          <StyledSpan>닉네임 중복 확인</StyledSpan>
+        </ColumnWrapper>
         <ErrorMessage>{errors.nickname?.message}</ErrorMessage>
       </ColumnWrapper>
       <ColumnWrapper margin="0 auto 2.4rem">
@@ -166,7 +170,7 @@ const StyledForm = styled.form`
 const StyledSpan = styled.span`
   position: absolute;
   right: 4rem;
-  bottom: 4rem;
+  bottom: 1.6rem;
   width: 11rem;
   font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.bl500};

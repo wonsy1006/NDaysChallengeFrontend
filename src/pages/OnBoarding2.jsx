@@ -11,12 +11,11 @@ const OnBoarding2 = () => {
       <ColumnWrapper width="90%" justifyContent="center" alignItems="center">
         <img src={Onboarding2} alt="" />
         <h2></h2>
-        <StyledH3>오늘은 성공하지 못할 것 같다면 패스를 사용해봐요</StyledH3>
-        <StyledP>
-          Onboarding Investment App designed by salestinus sustyo h for
-          Paperpillar. Connect with them on Dribbble; the global community for
-          designers and creative professionals.
-        </StyledP>
+        <StyledH3>
+          오늘은 성공하지 못할 것 같다면 <br />
+          패스를 사용해봐요
+        </StyledH3>
+        <StyledP>정말 피곤한 하루였다면, 패스를 사용해 잠시 쉬어 가요.</StyledP>
       </ColumnWrapper>
       <RowWrapper width="90%" justifyContent="center" alignItems="center">
         <EllipsisWrapper>
@@ -55,6 +54,7 @@ const StyledSection = styled.section`
 
 const StyledH3 = styled.h3`
   width: 100%;
+  line-height: 1.6;
   font-family: ${({ theme }) => theme.fonts.family.accent};
 `;
 
