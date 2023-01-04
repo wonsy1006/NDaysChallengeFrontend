@@ -34,9 +34,7 @@ const FriendsList = () => {
     setData(JSON.stringify(data));
     console.log(data);
 
-    useEffect(() => {
-      dispatch(searchFriends(data));
-    });
+    dispatch(searchFriends(data));
   };
 
   return (
