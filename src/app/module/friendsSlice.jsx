@@ -2,18 +2,20 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import instance from './instance';
 
 const initialState = {
+  isLoading: null,
   message: '',
   errorMessage: '',
-  friends: [],
-  request: [],
-  acceptance: [],
+  friendsList: [],
+  searchResult: [],
+  requests: [],
+  acceptances: [],
 };
 
 export const searchFriends = createAsyncThunk(
-  'friends/search',
-  async ({}, thunkAPI) => {
+  'friends/searchFriends',
+  async ({ id, nickname }, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/find');
+      const data = await instance.get('/friends/find', { id, nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -23,9 +25,9 @@ export const searchFriends = createAsyncThunk(
 
 export const sendRequestToFriend = createAsyncThunk(
   'friends/sendRequest',
-  async (args, thunkAPI) => {
+  async ({ id, nickname }, thunkAPI) => {
     try {
-      const data = await instance.post('/friends/request');
+      const data = await instance.post('/friends/request', { id, nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -35,9 +37,13 @@ export const sendRequestToFriend = createAsyncThunk(
 
 export const acceptFriendRequest = createAsyncThunk(
   'friends/acceptRequest',
-  async (args, thunkAPI) => {
+  async ({ id, nickname, image }, thunkAPI) => {
     try {
-      const data = await instance.post('/friends/accept');
+      const data = await instance.post('/friends/accept', {
+        id,
+        nickname,
+        image,
+      });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -47,9 +53,9 @@ export const acceptFriendRequest = createAsyncThunk(
 
 export const rejectFriendRequest = createAsyncThunk(
   'friends/rejectRequest',
-  async (args, thunkAPI) => {
+  async ({ id, nickname }, thunkAPI) => {
     try {
-      const data = await instance.delete('/friends/request');
+      const data = await instance.delete('/friends/request', { id, nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -70,6 +76,57 @@ const friendsSlice = createSlice({
   name: 'friends',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(searchFriends.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(searchFriends.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.searchResult = payload.data;
+        state.error = null;
+      })
+      .addCase(searchFriends.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(sendRequestToFriend.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(sendRequestToFriend.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.request = payload.data;
+        state.error = null;
+      })
+      .addCase(sendRequestToFriend.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(acceptFriendRequest.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(acceptFriendRequest.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.request = payload.data;
+        state.error = null;
+      })
+      .addCase(acceptFriendRequest.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getFriendsList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getFriendsList.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.request = payload.data;
+        state.error = null;
+      })
+      .addCase(getFriendsList.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      });
+  },
 });
 
 export default friendsSlice.reducer;

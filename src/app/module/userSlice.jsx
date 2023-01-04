@@ -13,6 +13,7 @@ const initialState = {
   refreshToken: null,
   error: null,
   success: false,
+  result: null,
 };
 
 export const userSignUp = createAsyncThunk(
@@ -60,9 +61,9 @@ export const getUserDetails = createAsyncThunk(
 
 export const checkId = createAsyncThunk(
   'user/checkId',
-  async (args, thunkAPI) => {
+  async ({ id }, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/auth/id-check`, args);
+      const { data } = await instance.get(`/auth/id-check`, { id });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -72,9 +73,9 @@ export const checkId = createAsyncThunk(
 
 export const checkNickname = createAsyncThunk(
   'user/checkNickname',
-  async (args, thunkAPI) => {
+  async ({ nickname }, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/auth/nickname-check`, args);
+      const { data } = await instance.get(`/auth/nickname-check`, { nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -82,17 +83,17 @@ export const checkNickname = createAsyncThunk(
   },
 );
 
-export const logout = createAsyncThunk(
-  'user/logout',
-  async (args, thunkAPI) => {
-    try {
-      const { data } = await instance.post(`/auth/logout`, args);
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  },
-);
+// export const logout = createAsyncThunk(
+//   'user/logout',
+//   async (args, thunkAPI) => {
+//     try {
+//       const { data } = await instance.post(`/auth/logout`, args);
+//       return thunkAPI.fulfillWithValue(data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   },
+// );
 
 export const userSlice = createSlice({
   name: 'user',
@@ -149,9 +150,20 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
+      .addCase(checkId, pending, state => {
+        state.loading = true;
+      })
+      .addCase(checkId.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.result = payload.data;
+      })
+      .addCase(checkId.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
       .addCase(PURGE, () => initialState);
   },
 });
 
-// export const { logout } = userSlice.actions;
+export const { logout } = userSlice.actions;
 export default userSlice.reducer;

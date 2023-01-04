@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChallengeModal from '../components/features/challengeDetail/ChallengeModal';
+import { openModal, closeModal } from '../app/module/modalSlice';
 
 const Withdraw = () => {
   return (
     <div>
-      <ChallengeModal />
-      계정 삭제
+      <h2>계정 삭제</h2>
     </div>
   );
 };

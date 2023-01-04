@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
@@ -6,9 +6,17 @@ import { SearchInput } from '../components/common/Input';
 import { ColumnWrapper, RowWrapper } from '../components/common/Wrapper';
 import ProfilePic from '../components/common/ProfilePic';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  acceptFriendRequest,
+  rejectFriendRequest,
+} from '../app/module/friendsSlice';
 
 const FriendsList = () => {
   const dispatch = useDispatch();
+  const searchResult = useSelector((state) => state.friends.searchResult);
+  const requests = useSelector((state) => state.friends.requests);
+  const acceptances = useSelector((state) => state.friends.acceptances);
+  const friendsList = useSelector((state) => state.friends.friendsList);
 
   return (
     <>
@@ -23,17 +31,31 @@ const FriendsList = () => {
           </p>
         </RowWrapper>
         <RowWrapper justifyContent="center">
-          <Button refuse>거절</Button>
-          <Button accept>수락</Button>
+          <Button
+            refuse
+            onClick={() => {
+              useEffect(() => {
+                dispatch(rejectFriendRequest());
+              }, [dispatch]);
+            }}
+          >
+            거절
+          </Button>
+          <Button
+            accept
+            onClick={() => {
+              useEffect(() => {
+                dispatch(acceptFriendRequest());
+              }, [dispatch]);
+            }}
+          >
+            수락
+          </Button>
         </RowWrapper>
       </Card>
       <h3>친구 추가</h3>
       <RequestContainer>
-        <SearchInput
-          onClick={() => {
-            console.log('clicked');
-          }}
-        />
+        <SearchInput />
         <h4>검색 결과</h4>
         <ResultContainer>
           <ResultListContainer>

@@ -15,7 +15,12 @@ export const TextInput = (props) => {
 
 export const SearchInput = (props) => {
   return (
-    <RowWrapper width="90%" margin="1rem auto 2.4rem" alignItems="center">
+    <RowWrapper
+      width="90%"
+      margin="1rem auto 2.4rem"
+      alignItems="center"
+      {...props}
+    >
       <StyledInput />
       <IconWrapper>
         <SearchIcon size={28} onClick={props.onClick} />
