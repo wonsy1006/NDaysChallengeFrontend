@@ -23,7 +23,7 @@ const FriendsList = () => {
     resetField,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm();
   // const searchResult = useSelector((state) => state.friends.searchResult);
   // const requests = useSelector((state) => state.friends.requests);
   // const acceptances = useSelector((state) => state.friends.acceptances);
