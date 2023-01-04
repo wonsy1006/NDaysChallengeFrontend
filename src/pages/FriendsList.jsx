@@ -63,7 +63,7 @@ const FriendsList = () => {
             justifyContent="center"
             margin="1.2rem auto 2.4rem"
           >
-            <StyledInput {...register('idOrNickname')} type="text" />
+            <StyledInput {...register('nickname')} type="text" />
             <IconWrapper>
               <Button>검색</Button>
             </IconWrapper>
