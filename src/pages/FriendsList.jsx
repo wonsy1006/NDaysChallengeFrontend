@@ -14,7 +14,6 @@ import {
   searchFriends,
 } from '../app/module/friendsSlice';
 import { SearchIcon } from '../components/common/Icon';
-import FormContainer from '../components/common/Form';
 
 const FriendsList = () => {
   const dispatch = useDispatch();
@@ -53,26 +52,8 @@ const FriendsList = () => {
           </p>
         </RowWrapper>
         <RowWrapper justifyContent="center">
-          <Button
-            refuse
-            onClick={() => {
-              useEffect(() => {
-                dispatch(rejectFriendRequest());
-              }, [dispatch]);
-            }}
-          >
-            거절
-          </Button>
-          <Button
-            accept
-            onClick={() => {
-              useEffect(() => {
-                dispatch(acceptFriendRequest());
-              }, [dispatch]);
-            }}
-          >
-            수락
-          </Button>
+          <Button refuse>거절</Button>
+          <Button accept>수락</Button>
         </RowWrapper>
       </Card>
       <h3>친구 추가</h3>
