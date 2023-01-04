@@ -86,7 +86,7 @@ const FriendsList = () => {
           >
             <StyledInput {...register('idOrNickname')} type="text" />
             <IconWrapper>
-              <SearchIcon size={28} onClick={getResult()} />
+              <SearchIcon size={28} />
             </IconWrapper>
           </RowWrapper>
         </StyledForm>
