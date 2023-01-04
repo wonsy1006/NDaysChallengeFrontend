@@ -64,6 +64,7 @@ const FriendsList = () => {
             margin="1.2rem auto 2.4rem"
           >
             <StyledInput {...register('nickname')} type="text" />
+            <StyledInput {...register('id')} type="email" />
             <IconWrapper>
               <Button>검색</Button>
             </IconWrapper>
