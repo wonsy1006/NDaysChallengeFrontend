@@ -2,21 +2,43 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
-import { SearchInput } from '../components/common/Input';
+import { StyledInput } from '../components/common/Input';
 import { ColumnWrapper, RowWrapper } from '../components/common/Wrapper';
 import ProfilePic from '../components/common/ProfilePic';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import {
   acceptFriendRequest,
+  getFriendsList,
   rejectFriendRequest,
+  searchFriends,
 } from '../app/module/friendsSlice';
+import { SearchIcon } from '../components/common/Icon';
+import FormContainer from '../components/common/Form';
 
 const FriendsList = () => {
   const dispatch = useDispatch();
-  const searchResult = useSelector((state) => state.friends.searchResult);
-  const requests = useSelector((state) => state.friends.requests);
-  const acceptances = useSelector((state) => state.friends.acceptances);
-  const friendsList = useSelector((state) => state.friends.friendsList);
+  const {
+    register,
+    resetField,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+  // const searchResult = useSelector((state) => state.friends.searchResult);
+  // const requests = useSelector((state) => state.friends.requests);
+  // const acceptances = useSelector((state) => state.friends.acceptances);
+  // const friendsList = useSelector((state) => state.friends.friendsList);
+
+  const [data, setData] = useState('');
+
+  const submitForm = (data) => {
+    setData(JSON.stringify(data));
+    console.log(data);
+
+    useEffect(() => {
+      dispatch(searchFriends(data));
+    });
+  };
 
   return (
     <>
@@ -55,7 +77,19 @@ const FriendsList = () => {
       </Card>
       <h3>친구 추가</h3>
       <RequestContainer>
-        <SearchInput />
+        <StyledForm onSubmit={handleSubmit(submitForm)}>
+          <RowWrapper
+            width="90%"
+            alignItems="center"
+            justifyContent="center"
+            margin="1.2rem auto 2.4rem"
+          >
+            <StyledInput {...register('idOrNickname')} type="text" />
+            <IconWrapper>
+              <SearchIcon size={28} onClick={getResult()} />
+            </IconWrapper>
+          </RowWrapper>
+        </StyledForm>
         <h4>검색 결과</h4>
         <ResultContainer>
           <ResultListContainer>
@@ -141,4 +175,15 @@ const UserName = styled.span`
 
 const FriendsListContainer = styled.section`
   width: 100%;
+`;
+
+const IconWrapper = styled(RowWrapper)`
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
 `;

@@ -13,9 +13,9 @@ const initialState = {
 
 export const searchFriends = createAsyncThunk(
   'friends/searchFriends',
-  async ({ id, nickname }, thunkAPI) => {
+  async ({ idOrNickname }, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/find', { id, nickname });
+      const data = await instance.get('/friends/find', { idOrNickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -84,6 +84,7 @@ const friendsSlice = createSlice({
       .addCase(searchFriends.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.searchResult = payload.data;
+        console.log(payload.data);
         state.error = null;
       })
       .addCase(searchFriends.rejected, (state, { payload }) => {

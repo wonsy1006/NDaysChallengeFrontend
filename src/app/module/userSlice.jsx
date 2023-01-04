@@ -150,7 +150,7 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(checkId, pending, state => {
+      .addCase(checkId.pending, state => {
         state.loading = true;
       })
       .addCase(checkId.fulfilled, (state, { payload }) => {
