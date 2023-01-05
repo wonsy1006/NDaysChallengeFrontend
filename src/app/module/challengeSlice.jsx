@@ -64,9 +64,11 @@ export const getChallengeList = createAsyncThunk(
 
 export const getChallengeDetail = createAsyncThunk(
   'challenge/getChallengeDetail',
-  async (challengeId, thunkAPI) => {
+  async ({ challengeId }, thunkAPI) => {
     try {
-      const data = await instance.get(`/challenge/${challengeId}`);
+      const data = await instance.get(`/challenge/${challengeId}`, {
+        challengeId,
+      });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -78,7 +80,10 @@ export const deleteChallenge = createAsyncThunk(
   'challenge/deleteChallenge',
   async (challengeId, thunkAPI) => {
     try {
-      const data = await instance.delete(`/challenge/${challengeId}`);
+      const data = await instance.delete(
+        `/challenge/${challengeId}`,
+        challengeId,
+      );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -139,7 +144,7 @@ const challengeSlice = createSlice({
       .addCase(deleteChallenge.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        state.challenges = payload.data;
+        console.log(payload.data);
       })
       .addCase(deleteChallenge.rejected, (state, { payload }) => {
         state.loading = false;
