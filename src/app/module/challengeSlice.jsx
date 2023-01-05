@@ -64,11 +64,9 @@ export const getChallengeList = createAsyncThunk(
 
 export const getChallengeDetail = createAsyncThunk(
   'challenge/getChallengeDetail',
-  async ({ challengeId }, thunkAPI) => {
+  async (challengeId, thunkAPI) => {
     try {
-      const data = await instance.get(`/challenge/${challengeId}`, {
-        challengeId,
-      });
+      const data = await instance.get(`/challenge/${challengeId}`, challengeId);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
