@@ -22,8 +22,8 @@ const ChallengeDetail = () => {
   const challengeId = parseInt(params.roomNumber);
 
   useEffect(() => {
-    dispatch(getChallengeDetail(challengeId), [dispatch]);
-  });
+    dispatch(getChallengeDetail(challengeId));
+  }, [dispatch]);
 
   const { challengeDetail } = useSelector(state => state.challenge);
 
