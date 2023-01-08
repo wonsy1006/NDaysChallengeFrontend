@@ -89,13 +89,25 @@ export const deleteChallenge = createAsyncThunk(
   },
 );
 
+export const getStamps = createAsyncThunk(
+  'challenge/getStamps',
+  async (args, thunkAPI) => {
+    try {
+      const data = await instance.get('/challenge/stamp', args);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const challengeSlice = createSlice({
   name: 'challenge',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(createChallenge.pending, state => {
+      .addCase(createChallenge.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -109,7 +121,7 @@ const challengeSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(getChallengeList.pending, state => {
+      .addCase(getChallengeList.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -122,7 +134,7 @@ const challengeSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(getChallengeDetail.pending, state => {
+      .addCase(getChallengeDetail.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -135,7 +147,7 @@ const challengeSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(deleteChallenge.pending, state => {
+      .addCase(deleteChallenge.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
