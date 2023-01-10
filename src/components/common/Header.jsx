@@ -9,7 +9,7 @@ import { FriendIcon } from './Icon';
 // 친구 요청 있을 시, 아이콘 바꾸기
 
 const Header = () => {
-  const { accessToken } = useSelector(state => state.user);
+  const { accessToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   // accessToken 보유 시에 사용자 정보 dispatch
@@ -18,8 +18,6 @@ const Header = () => {
       dispatch(getUserDetails());
     }
   }, [accessToken, dispatch]);
-
-  // console.log(`header: ${user}, ${accessToken}`);
 
   return (
     <>
