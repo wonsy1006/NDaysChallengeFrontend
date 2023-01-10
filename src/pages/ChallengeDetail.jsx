@@ -13,9 +13,11 @@ import {
   deleteChallenge,
 } from '../app/module/challengeSlice';
 import UserProfile from '../components/common/UserProfile';
+import Loading from '../utils/Loading';
 
 const ChallengeDetail = () => {
-  const { userInfo } = useSelector(state => state.user);
+  const { userInfo } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state.challenge);
   const dispatch = useDispatch();
 
   const params = useParams();
@@ -25,7 +27,7 @@ const ChallengeDetail = () => {
     dispatch(getChallengeDetail(challengeId));
   }, [dispatch]);
 
-  const { challengeDetail } = useSelector(state => state.challenge);
+  const { challengeDetail } = useSelector((state) => state.challenge);
 
   // 카테고리, 타입 lowercase로 전환
   // const category = challengeDetail.category;
@@ -43,6 +45,7 @@ const ChallengeDetail = () => {
 
   return (
     <>
+      {loading && <Loading />}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
