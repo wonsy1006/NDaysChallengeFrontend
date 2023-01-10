@@ -14,8 +14,8 @@ function Loading() {
 export default Loading;
 
 const LoaderWrapper = styled(RowWrapper)`
-  position: 'fixed';
-  top: '50%';
-  left: '50%';
-  transform: 'translate(-50%, -50%)';
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 `;

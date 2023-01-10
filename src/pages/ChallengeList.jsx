@@ -21,8 +21,6 @@ const ChallengeList = () => {
     await persistor.purge();
   };
 
-  const { loading } = useSelector((state) => state.challenge);
-
   useEffect(() => {
     if (accessToken) {
       dispatch(getChallengeList());
@@ -31,7 +29,7 @@ const ChallengeList = () => {
     }
   }, [dispatch]);
 
-  const { challenges } = useSelector((state) => state.challenge);
+  const { challenges, loading } = useSelector((state) => state.challenge);
 
   // const isIndividual = (element) => {
   //   if (element.type === 'individual') {
@@ -39,11 +37,9 @@ const ChallengeList = () => {
   //   }
   // };
   // const individuals = challenges.filter(isIndividual);
-
   if (challenges.length === 0) {
     return (
       <div>
-        {Loading && <Loading />}
         <UserProfile
           margin="2.4rem"
           flexDirection="row"
@@ -68,7 +64,7 @@ const ChallengeList = () => {
 
   return (
     <>
-      {Loading && <Loading />}
+      {loading && <Loading />}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
