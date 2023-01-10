@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../../app/module/modalSlice';
+import { sendStamps } from '../../../app/module/stampSlice';
 import ChallengeModal from './ChallengeModal';
 import styled from 'styled-components';
 import Card from '../../common/Card';
