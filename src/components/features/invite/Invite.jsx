@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
+import { shareKakaotalk } from '../../../utils/Kakao';
 import {
   TwitterIcon,
   KakaotalkIcon,
@@ -16,8 +17,6 @@ const Invite = () => {
       'https://twitter.com/intent/tweet?text=' + sendText + '&url=' + sendUrl,
     );
   };
-
-  const shareKakaotalk = () => {};
 
   const shareInstagram = () => {};
 

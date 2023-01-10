@@ -30,3 +30,4 @@ yarn-error.log*
 
 # base url
 /src/utils/api.js
+/src/utils/Kakao.js
