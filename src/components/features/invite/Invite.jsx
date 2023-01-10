@@ -33,20 +33,20 @@ const Invite = () => {
       if (!kakao.isInitialized()) {
         kakao.init(kakaoKey);
       }
-    }
 
-    kakao.link.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '...',
-        description: '...',
-        imageUrl: `${baseUrl}/src/assets/images/logo.svg`,
-        link: {
-          mobileWebUrl: 'http://ndayschallenge.com',
-          webUrl: 'http://ndayschallenge.com',
+      kakao.link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '...',
+          description: '...',
+          imageUrl: `${baseUrl}/src/assets/images/logo.svg`,
+          link: {
+            mobileWebUrl: 'http://ndayschallenge.com',
+            webUrl: 'http://ndayschallenge.com',
+          },
         },
-      },
-    });
+      });
+    }
   };
 
   const shareInstagram = () => {};
