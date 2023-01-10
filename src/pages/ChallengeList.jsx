@@ -9,16 +9,19 @@ import { ReactComponent as NoChallenge } from '../assets/images/nochallenge.svg'
 import ChallengeListItem from '../components/features/challengeList/ChallengeListItem';
 import { getChallengeList } from '../app/module/challengeSlice';
 import { persistor } from '../app/store.js';
+import Loading from '../utils/Loading';
 
 const ChallengeList = () => {
   const dispatch = useDispatch();
-  const { accessToken } = useSelector(state => state.user);
+  const { accessToken } = useSelector((state) => state.user);
 
-  const { userInfo } = useSelector(state => state.user);
+  const { userInfo } = useSelector((state) => state.user);
 
   const purge = async () => {
     await persistor.purge();
   };
+
+  const { loading } = useSelector((state) => state.challenge);
 
   useEffect(() => {
     if (accessToken) {
@@ -28,7 +31,7 @@ const ChallengeList = () => {
     }
   }, [dispatch]);
 
-  const { challenges } = useSelector(state => state.challenge);
+  const { challenges } = useSelector((state) => state.challenge);
 
   // const isIndividual = (element) => {
   //   if (element.type === 'individual') {
@@ -40,6 +43,7 @@ const ChallengeList = () => {
   if (challenges.length === 0) {
     return (
       <div>
+        {Loading && <Loading />}
         <UserProfile
           margin="2.4rem"
           flexDirection="row"
@@ -64,6 +68,7 @@ const ChallengeList = () => {
 
   return (
     <>
+      {Loading && <Loading />}
       <UserProfile
         margin="2.4rem"
         flexDirection="row"
@@ -73,7 +78,7 @@ const ChallengeList = () => {
       <ListSection>
         <IndividualSection id="individualChallenge">
           {/* <h3>개인 챌린지</h3> */}
-          {challenges.map(challenge => {
+          {challenges.map((challenge) => {
             return (
               <ChallengeListItem key={challenge.roomNumber} {...challenge} />
             );
