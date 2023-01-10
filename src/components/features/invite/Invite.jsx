@@ -30,10 +30,9 @@ const Invite = () => {
   const shareKakaotalk = () => {
     if (window.Kakao) {
       const kakao = window.Kakao;
-    }
-
-    if (!kakao.isInitialized()) {
-      kakao.init(kakaoKey);
+      if (!kakao.isInitialized()) {
+        kakao.init(kakaoKey);
+      }
     }
 
     kakao.link.sendDefault({
