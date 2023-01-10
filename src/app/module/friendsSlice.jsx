@@ -53,9 +53,9 @@ export const acceptFriendRequest = createAsyncThunk(
 
 export const rejectFriendRequest = createAsyncThunk(
   'friends/rejectRequest',
-  async ({ id, nickname }, thunkAPI) => {
+  async ({ nickname }, thunkAPI) => {
     try {
-      const data = await instance.delete('/friends/request');
+      const data = await instance.delete('/friends/request', { nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
