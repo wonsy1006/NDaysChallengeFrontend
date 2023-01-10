@@ -30,10 +30,18 @@ const Invite = () => {
     <ColumnWrapper id="invite" margin="3.2rem 0">
       <h3>친구 초대하기</h3>
       <InviteIconsWrapper width="100%" margin="0 auto">
-        <TwitterIcon size={48} onClick={shareTwitter()} />
-        <KakaotalkIcon size={48} onClick={shareKakaotalk()} />
-        <InstagramIcon size={48} onClick={shareInstagram()} />
-        <FacebookIcon size={48} onClick={shareFacebook()} />
+        <IconWrapper onClick={shareTwitter()}>
+          <TwitterIcon size={48} />
+        </IconWrapper>
+        <IconWrapper onClick={shareKakaotalk()}>
+          <KakaotalkIcon size={48} />
+        </IconWrapper>
+        <IconWrapper onClick={shareInstagram()}>
+          <InstagramIcon size={48} />
+        </IconWrapper>
+        <IconWrapper onClick={shareFacebook()}>
+          <FacebookIcon size={48} />
+        </IconWrapper>
       </InviteIconsWrapper>
     </ColumnWrapper>
   );
@@ -50,4 +58,9 @@ const InviteIconsWrapper = styled(RowWrapper)`
   & > * {
     cursor: pointer;
   }
+`;
+
+const IconWrapper = styled.div`
+  width: 48px;
+  height: 48px;
 `;
