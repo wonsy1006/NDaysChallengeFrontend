@@ -34,7 +34,7 @@ const Invite = () => {
         kakao.init(kakaoKey);
       }
 
-      kakao.link.sendDefault({
+      kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
           title: '...',
