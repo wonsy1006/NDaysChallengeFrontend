@@ -33,7 +33,7 @@ const Invite = () => {
     }
 
     if (!kakao.isInitialized()) {
-      kakao.init(`${kakaoKey}`);
+      kakao.init(kakaoKey);
     }
 
     kakao.link.sendDefault({
