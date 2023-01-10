@@ -63,15 +63,6 @@ export const rejectFriendRequest = createAsyncThunk(
   },
 );
 
-export const getFriendsList = createAsyncThunk(
-  'friends/getFriendsList',
-  async (args, thunkAPI) => {
-    try {
-      const data = await instance.get('/friends/list');
-    } catch (error) {}
-  },
-);
-
 const friendsSlice = createSlice({
   name: 'friends',
   initialState,
@@ -112,18 +103,6 @@ const friendsSlice = createSlice({
         state.error = null;
       })
       .addCase(acceptFriendRequest.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-      .addCase(getFriendsList.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getFriendsList.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.request = payload.data;
-        state.error = null;
-      })
-      .addCase(getFriendsList.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

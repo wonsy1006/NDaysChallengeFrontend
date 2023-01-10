@@ -17,6 +17,6 @@ const LoaderWrapper = styled(RowWrapper)`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh- (8rem + 9.6rem));
+  height: calc(100vh - (8rem + 9.6rem));
   color: ${({ theme }) => theme.colors.ye50};
 `;
