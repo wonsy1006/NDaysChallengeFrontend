@@ -7,9 +7,10 @@ import Loading from '../utils/Loading';
 const Feed = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.dajim);
+
   useEffect(() => {
     dispatch(getDajimFeed());
-  }, [dispatch, loading]);
+  }, [dispatch]);
 
   const { feed } = useSelector((state) => state.dajim);
 
