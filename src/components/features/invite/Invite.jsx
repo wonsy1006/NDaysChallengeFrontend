@@ -36,11 +36,7 @@ const Invite = () => {
         >
           <TwitterIcon size={48} />
         </IconWrapper>
-        <IconWrapper
-          onClick={() => {
-            shareKakaotalk();
-          }}
-        >
+        <IconWrapper onClick={shareKakaotalk}>
           <KakaotalkIcon size={48} />
         </IconWrapper>
         <IconWrapper
