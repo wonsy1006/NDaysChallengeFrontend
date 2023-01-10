@@ -37,8 +37,8 @@ const Invite = () => {
       kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
-          title: '...',
-          description: '...',
+          title: '엔챌',
+          description: '엔챌에서 나만의 챌린지를 만들어 보세요!',
           imageUrl: `${baseUrl}/src/assets/images/logo.svg`,
           link: {
             mobileWebUrl: 'http://ndayschallenge.com',
