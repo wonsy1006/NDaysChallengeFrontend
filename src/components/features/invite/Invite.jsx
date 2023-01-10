@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
-import { shareKakaotalk } from '../../../utils/Kakao';
+import { kakaoKey } from '../../../utils/api';
+import { baseUrl } from '../../../utils/api';
 import {
   TwitterIcon,
   KakaotalkIcon,
@@ -16,6 +17,37 @@ const Invite = () => {
     window.open(
       'https://twitter.com/intent/tweet?text=' + sendText + '&url=' + sendUrl,
     );
+  };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
+
+  const shareKakaotalk = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+    }
+
+    if (!kakao.isInitialized()) {
+      kakao.init(`${kakaoKey}`);
+    }
+
+    kakao.link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '...',
+        description: '...',
+        imageUrl: `${baseUrl}/src/assets/images/logo.svg`,
+        link: {
+          mobileWebUrl: 'http://ndayschallenge.com',
+          webUrl: 'http://ndayschallenge.com',
+        },
+      },
+    });
   };
 
   const shareInstagram = () => {};
@@ -36,7 +68,11 @@ const Invite = () => {
         >
           <TwitterIcon size={48} />
         </IconWrapper>
-        <IconWrapper onClick={shareKakaotalk}>
+        <IconWrapper
+          onClick={() => {
+            shareKakaotalk();
+          }}
+        >
           <KakaotalkIcon size={48} />
         </IconWrapper>
         <IconWrapper
