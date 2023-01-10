@@ -13,9 +13,9 @@ const initialState = {
 
 export const searchFriends = createAsyncThunk(
   'friends/searchFriends',
-  async ({ id, nickname }, thunkAPI) => {
+  async ({ nickname }, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/find', { id, nickname });
+      const data = await instance.get('/friends/find', { nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -87,7 +87,7 @@ const friendsSlice = createSlice({
       })
       .addCase(sendRequestToFriend.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.request = payload.data;
+        state.requests = payload.data;
         state.error = null;
       })
       .addCase(sendRequestToFriend.rejected, (state, { payload }) => {
@@ -99,7 +99,7 @@ const friendsSlice = createSlice({
       })
       .addCase(acceptFriendRequest.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.request = payload.data;
+        state.requests = payload.data;
         state.error = null;
       })
       .addCase(acceptFriendRequest.rejected, (state, { payload }) => {
