@@ -16,8 +16,8 @@ const ChallengeStamp = (props) => {
     dispatch(
       sendStamps({
         roomNumber: 1,
-        stampNumber: 30,
-        day: '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0',
+        stampNumber: 14,
+        day: '0,0,0,0,0,0,0,0,0,0,0,0,0,0',
       }),
     );
   });
