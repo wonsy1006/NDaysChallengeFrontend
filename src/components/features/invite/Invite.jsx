@@ -30,16 +30,32 @@ const Invite = () => {
     <ColumnWrapper id="invite" margin="3.2rem 0">
       <h3>친구 초대하기</h3>
       <InviteIconsWrapper width="100%" margin="0 auto">
-        <IconWrapper onClick={shareTwitter()}>
+        <IconWrapper
+          onClick={() => {
+            shareTwitter();
+          }}
+        >
           <TwitterIcon size={48} />
         </IconWrapper>
-        <IconWrapper onClick={shareKakaotalk()}>
+        <IconWrapper
+          onClick={() => {
+            shareKakaotalk();
+          }}
+        >
           <KakaotalkIcon size={48} />
         </IconWrapper>
-        <IconWrapper onClick={shareInstagram()}>
+        <IconWrapper
+          onClick={() => {
+            shareInstagram();
+          }}
+        >
           <InstagramIcon size={48} />
         </IconWrapper>
-        <IconWrapper onClick={shareFacebook()}>
+        <IconWrapper
+          onClick={() => {
+            shareFacebook();
+          }}
+        >
           <FacebookIcon size={48} />
         </IconWrapper>
       </InviteIconsWrapper>
