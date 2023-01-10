@@ -1,7 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 const ChallengeResult = () => {
-  return <div>챌린지 결과</div>;
+  const status = useSelector((state) => state.challenge.status);
+  if (status === 'success') {
+    return <div>success</div>;
+  } else {
+    return <div>fail</div>;
+  }
 };
 
 export default ChallengeResult;

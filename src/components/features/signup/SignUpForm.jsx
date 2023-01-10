@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import styled from 'styled-components';
-import { ColumnWrapper } from '../../common/Wrapper';
+import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import { InputLabel, StyledInput } from '../../common/Input';
 import Button from '../../common/Button';
 import ProfilePic from '../../common/ProfilePic';
@@ -16,7 +16,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const { loading, userInfo, error, success } = useSelector(
-    state => state.user,
+    (state) => state.user,
   );
 
   const schema = yup.object().shape({
@@ -47,7 +47,7 @@ const SignUpForm = () => {
 
   const [data, setData] = useState('');
 
-  const submitForm = data => {
+  const submitForm = (data) => {
     setData(JSON.stringify(data));
 
     if (data.pw !== data.pwCheck) {

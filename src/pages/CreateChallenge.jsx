@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Button from '../components/common/Button';
-import { QuestionIcon } from '../components/common/Icon';
-import { todayDate } from '../utils/Date';
 import CreateChallengeForm from '../components/features/createChallenge/CreateChallengeForm';
 
 const CreateChallenge = () => {

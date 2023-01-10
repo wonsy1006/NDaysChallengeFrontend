@@ -2,20 +2,21 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import instance from './instance';
 
 const initialState = {
-  isLoading: null,
+  loading: false,
   message: '',
   errorMessage: '',
   friendsList: [],
   searchResult: {},
-  requests: [],
+  requests: {},
   acceptances: [],
 };
 
 export const searchFriends = createAsyncThunk(
   'friends/searchFriends',
-  async ({ nickname, id }, thunkAPI) => {
+  async ({ id, nickname }, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/find', { nickname, id });
+      console.log({ id, nickname });
+      const data = await instance.get('/friends/find', { id, nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -70,40 +71,40 @@ const friendsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(searchFriends.pending, (state) => {
-        state.isLoading = true;
+        state.loading = true;
       })
       .addCase(searchFriends.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.loading = false;
         state.searchResult = payload.data;
         console.log(payload.data);
         state.error = null;
       })
       .addCase(searchFriends.rejected, (state, { payload }) => {
-        state.isLoading = false;
+        state.loading = false;
         state.error = payload;
       })
       .addCase(sendRequestToFriend.pending, (state) => {
-        state.isLoading = true;
+        state.loading = true;
       })
       .addCase(sendRequestToFriend.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.loading = false;
         state.requests = payload.data;
         state.error = null;
       })
       .addCase(sendRequestToFriend.rejected, (state, { payload }) => {
-        state.isLoading = false;
+        state.loading = false;
         state.error = payload;
       })
       .addCase(acceptFriendRequest.pending, (state) => {
-        state.isLoading = true;
+        state.loading = true;
       })
       .addCase(acceptFriendRequest.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.loading = false;
         state.requests = payload.data;
         state.error = null;
       })
       .addCase(acceptFriendRequest.rejected, (state, { payload }) => {
-        state.isLoading = false;
+        state.loading = false;
         state.error = payload;
       });
   },
