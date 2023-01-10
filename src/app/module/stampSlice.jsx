@@ -1,37 +1,46 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { baseUrl } from '../../utils/api';
+import instance from './instance';
 
 const initialState = {
-  challengeId: '',
   stamps: [],
-  message: '',
-  errorMessage: '',
-  isLoading: true,
+  loading: false,
+  error: null,
 };
+
+export const sendStamps = createAsyncThunk(
+  'challenge/sendStamps',
+  async ({ roomNumber, stampNumber, day }, thunkAPI) => {
+    try {
+      const data = await instance.post(`${baseUrl}/challenge/stamp`, {
+        roomNumber,
+        stampNumber,
+        day,
+      });
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(data);
+    }
+  },
+);
 
 const stampSlice = createSlice({
   name: 'stamp',
   initialState,
-  reducers: {
-    createStamps: (state, action) => {
-      challengeId = action.payload.challengeId;
-      stampNumber = action.payload.totalDays;
-    },
-    getStamps: (state, action) => {
-      state.challengeId = action.payload.challengeId;
-    },
-    changeStatusToPass: state => {
-      state.currentDay = action.payload.currentDay;
-      state.status = 'pass';
-    },
-    changeStatusToSuccess: state => {
-      state.currentDay = action.payload.currentDay;
-      state.status = 'success';
-    },
-    changeStatusToFail: state => {
-      state.currentDay = action.payload.currentDay;
-      state.status = 'fail';
-    },
-  },
+  reducers: {},
+  extraReducers: (builder) =>
+    builder
+      .addCase(sendStamps.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(sendStamps.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.stamps = payload.data.stamp;
+      })
+      .addCase(sendStamps.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data;
+      }),
 });
 
 export default stampSlice.reducer;
