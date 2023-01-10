@@ -28,6 +28,8 @@ const FriendsList = () => {
   // const acceptances = useSelector((state) => state.friends.acceptances);
   // const friendsList = useSelector((state) => state.friends.friendsList);
 
+  const [showNicknameForm, setShowNicknameForm] = useState(true);
+  const [showIdForm, setShowIdForm] = useState(false);
   const [data, setData] = useState('');
 
   const submitForm = (data) => {
