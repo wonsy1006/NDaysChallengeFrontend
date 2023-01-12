@@ -31,8 +31,8 @@ const FriendsList = () => {
   });
 
   // const searchResult = useSelector((state) => state.friends.searchResult);
-  const requests = useSelector((state) => state.friends.requests);
-  const acceptances = useSelector((state) => state.friends.acceptances);
+  const { requests } = useSelector((state) => state.friends);
+  const { acceptances } = useSelector((state) => state.friends);
   // const friendsList = useSelector((state) => state.friends.friendsList);
 
   console.log(requests, acceptances);
