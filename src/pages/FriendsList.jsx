@@ -26,7 +26,7 @@ const FriendsList = () => {
   } = useForm();
 
   useEffect(() => {
-    dispatch(sendRequestToFriend());
+    dispatch(sendRequestToFriend('skywalker@gmail.com'));
   });
 
   // const searchResult = useSelector((state) => state.friends.searchResult);

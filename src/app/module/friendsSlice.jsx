@@ -7,7 +7,7 @@ const initialState = {
   errorMessage: '',
   friendsList: [],
   searchResult: {},
-  requests: {},
+  request: {},
   acceptances: [],
 };
 
@@ -25,9 +25,9 @@ export const findFriends = createAsyncThunk(
 
 export const sendRequestToFriend = createAsyncThunk(
   'friends/sendRequest',
-  async (args, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
-      const data = await instance.post('/friends/request', args);
+      const data = await instance.post('/friends/request', id);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -87,7 +87,7 @@ const friendsSlice = createSlice({
       })
       .addCase(sendRequestToFriend.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.requests = payload.data;
+        state.request = payload.data;
         state.error = null;
       })
       .addCase(sendRequestToFriend.rejected, (state, { payload }) => {
@@ -99,7 +99,7 @@ const friendsSlice = createSlice({
       })
       .addCase(acceptFriendRequest.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.requests = payload.data;
+        state.friendsList = payload.data;
         state.error = null;
       })
       .addCase(acceptFriendRequest.rejected, (state, { payload }) => {
