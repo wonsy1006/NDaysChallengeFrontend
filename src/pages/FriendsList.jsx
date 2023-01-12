@@ -12,6 +12,7 @@ import {
   getFriendsList,
   rejectFriendRequest,
   findFriends,
+  sendRequestToFriend,
 } from '../app/module/friendsSlice';
 import { SearchIcon } from '../components/common/Icon';
 
@@ -23,10 +24,18 @@ const FriendsList = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const searchResult = useSelector((state) => state.friends.searchResult);
-  // const requests = useSelector((state) => state.friends.requests);
-  // const acceptances = useSelector((state) => state.friends.acceptances);
-  // const friendsList = useSelector((state) => state.friends.friendsList);
+
+  useEffect(() => {
+    dispatch(sendRequestToFriend());
+    dispatch(acceptFriendRequest());
+  });
+
+  const searchResult = useSelector((state) => state.friends.searchResult);
+  const requests = useSelector((state) => state.friends.requests);
+  const acceptances = useSelector((state) => state.friends.acceptances);
+  const friendsList = useSelector((state) => state.friends.friendsList);
+
+  console.log(requests, acceptances);
 
   const [showNicknameForm, setShowNicknameForm] = useState(true);
   const [showIdForm, setShowIdForm] = useState(false);
