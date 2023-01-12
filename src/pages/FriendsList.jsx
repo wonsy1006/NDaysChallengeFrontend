@@ -30,10 +30,10 @@ const FriendsList = () => {
     dispatch(acceptFriendRequest());
   });
 
-  const searchResult = useSelector((state) => state.friends.searchResult);
+  // const searchResult = useSelector((state) => state.friends.searchResult);
   const requests = useSelector((state) => state.friends.requests);
   const acceptances = useSelector((state) => state.friends.acceptances);
-  const friendsList = useSelector((state) => state.friends.friendsList);
+  // const friendsList = useSelector((state) => state.friends.friendsList);
 
   console.log(requests, acceptances);
 
