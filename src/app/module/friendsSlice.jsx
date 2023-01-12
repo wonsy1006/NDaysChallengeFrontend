@@ -25,9 +25,9 @@ export const findFriends = createAsyncThunk(
 
 export const sendRequestToFriend = createAsyncThunk(
   'friends/sendRequest',
-  async ({ id, nickname }, thunkAPI) => {
+  async (args, thunkAPI) => {
     try {
-      const data = await instance.post('/friends/request', { id, nickname });
+      const data = await instance.post('/friends/request', args);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
