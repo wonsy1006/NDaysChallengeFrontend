@@ -88,6 +88,7 @@ const friendsSlice = createSlice({
       .addCase(sendRequestToFriend.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.request = payload.data;
+        console.log(payload.data);
         state.error = null;
       })
       .addCase(sendRequestToFriend.rejected, (state, { payload }) => {

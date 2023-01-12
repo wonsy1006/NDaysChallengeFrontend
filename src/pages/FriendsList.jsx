@@ -29,12 +29,12 @@ const FriendsList = () => {
     dispatch(sendRequestToFriend('skywalker@gmail.com'));
   });
 
-  // const searchResult = useSelector((state) => state.friends.searchResult);
-  const { requests } = useSelector((state) => state.friends);
-  // const { acceptances } = useSelector((state) => state.friends);
-  // const friendsList = useSelector((state) => state.friends.friendsList);
+  // // const searchResult = useSelector((state) => state.friends.searchResult);
+  // const { requests } = useSelector((state) => state.friends);
+  // // const { acceptances } = useSelector((state) => state.friends);
+  // // const friendsList = useSelector((state) => state.friends.friendsList);
 
-  console.log(requests);
+  // console.log(requests);
 
   const [showNicknameForm, setShowNicknameForm] = useState(true);
   const [showIdForm, setShowIdForm] = useState(false);
