@@ -11,7 +11,7 @@ import {
   acceptFriendRequest,
   getFriendsList,
   rejectFriendRequest,
-  searchFriends,
+  findFriends,
 } from '../app/module/friendsSlice';
 import { SearchIcon } from '../components/common/Icon';
 
@@ -36,7 +36,7 @@ const FriendsList = () => {
     setData(JSON.stringify(data));
     console.log(data);
 
-    dispatch(searchFriends(data));
+    dispatch(findFriends(data));
   };
 
   return (

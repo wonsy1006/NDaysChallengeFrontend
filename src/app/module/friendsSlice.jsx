@@ -11,8 +11,8 @@ const initialState = {
   acceptances: [],
 };
 
-export const searchFriends = createAsyncThunk(
-  'friends/searchFriends',
+export const findFriends = createAsyncThunk(
+  'friends/findFriends',
   async ({ id, nickname }, thunkAPI) => {
     try {
       const data = await instance.get('/friends/find', { id, nickname });
@@ -70,16 +70,16 @@ const friendsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(searchFriends.pending, (state) => {
+      .addCase(findFriends.pending, (state) => {
         state.loading = true;
       })
-      .addCase(searchFriends.fulfilled, (state, { payload }) => {
+      .addCase(findFriends.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.searchResult = payload.data;
         console.log(payload.data);
         state.error = null;
       })
-      .addCase(searchFriends.rejected, (state, { payload }) => {
+      .addCase(findFriends.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       })
