@@ -58,8 +58,8 @@ const ChallengeDetail = () => {
       />
       <ChallengeTitle>{challengeDetail.name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
-        <Tag category={category.toLowercase()} />
-        <Tag category={type.toLowercase()} />
+        <Tag category={category.toUpperCase()} />
+        <Tag category={type.toUpperCase()} />
       </RowWrapper>
       <ChallengeDajim />
       {challengeDetail.reward === '' ? null : (
