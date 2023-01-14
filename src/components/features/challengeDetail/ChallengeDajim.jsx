@@ -23,6 +23,7 @@ const ChallengeDajim = ({ children }) => {
   }, [dispatch]);
 
   const { dajim } = useSelector((state) => state.dajim);
+  console.log(dajim);
 
   return (
     <Card>
@@ -48,7 +49,7 @@ const ChallengeDajim = ({ children }) => {
       </IconWrapper>
       {!editMode ? (
         <DajimContent>
-          {dajim.content === null ? '다짐을 입력해 보세요' : dajim.content}
+          {dajim.content ? dajim.content : '다짐을 입력해 보세요'}
         </DajimContent>
       ) : (
         <ChallengeDajimForm getBackToEditMode={getBackToEditMode} />
