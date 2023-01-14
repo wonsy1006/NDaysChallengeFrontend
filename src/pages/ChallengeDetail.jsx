@@ -28,10 +28,8 @@ const ChallengeDetail = () => {
   }, [dispatch]);
 
   const { challengeDetail } = useSelector((state) => state.challenge);
-  const category = useSelector(
-    (state) => state.challenge.challengeDetail.category,
-  );
-  const type = useSelector((state) => state.challenge.challengeDetail.type);
+  const category = challengeDetail.category;
+  const type = challengeDetail.type;
 
   // 카테고리, 타입 lowercase로 전환
   // const category = challengeDetail.category;
