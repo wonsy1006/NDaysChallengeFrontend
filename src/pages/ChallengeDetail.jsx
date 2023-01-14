@@ -30,6 +30,7 @@ const ChallengeDetail = () => {
   const { challengeDetail } = useSelector((state) => state.challenge);
   const category = challengeDetail.category;
   const type = challengeDetail.type;
+  console.log(category, type);
 
   // 카테고리, 타입 lowercase로 전환
   // const category = challengeDetail.category;
@@ -56,8 +57,8 @@ const ChallengeDetail = () => {
       />
       <ChallengeTitle>{challengeDetail.name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
-        <Tag category={category.toUpperCase()} />
-        <Tag category={type.toUpperCase()} />
+        <Tag category={category} />
+        <Tag category={type} />
       </RowWrapper>
       <ChallengeDajim />
       {challengeDetail.reward === '' ? null : (
