@@ -1,42 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { openModal } from '../../../app/module/modalSlice';
-import { sendStamps } from '../../../app/module/stampSlice';
 import ChallengeModal from './ChallengeModal';
 import styled from 'styled-components';
 import Card from '../../common/Card';
 import Stamp from '../../common/Stamp';
+import { getChallengeDetail } from '../../../app/module/challengeSlice';
 
-const ChallengeStamp = (props) => {
+const ChallengeStamp = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
+  const params = useParams();
+  const challengeId = parseInt(params.roomNumber);
 
-  // useEffect(() => {
-  //   dispatch(sendStamps({ roomNumber: 1, stampNumber: 1, day: '1' }));
-  // });
+  useEffect(() => {
+    dispatch(getChallengeDetail(challengeId));
+  }, [dispatch]);
 
-  // let numberOfStamp = parseInt(props.content.totalDays);
-  // let leftPad = (num) => {
-  //   return num.toString().padStart(2, '0');
-  // };
+  const { challengeDetail } = useSelector((state) => state.challenge);
 
-  // const [status, setStatus] = useState('unchecked');
-  // // const [stamps, setStamps] = useState();
-  // let stamps = [...Array(numberOfStamp)].map((n, index) => {
-  //   const day = [...Array(numberOfStamp)].map((v, i) =>
-  //     i < 10 ? leftPad(i + 1) : i + 1,
-  //   );
+  let numberOfStamp = parseInt(challengeDetail.totalDays);
+  let leftPad = (num) => {
+    return num.toString().padStart(2, '0');
+  };
 
-  //   return (
-  //     <Stamp
-  //       status={status}
-  //       day={day[index]}
-  //       key={index}
-  //       changeStatus={changeStatus}
-  //       onClick={() => dispatch(openModal())}
-  //     />
-  //   );
-  // });
+  const [status, setStatus] = useState('unchecked');
+  // const [stamps, setStamps] = useState();
+  let stamps = [...Array(numberOfStamp)].map((n, index) => {
+    const day = [...Array(numberOfStamp)].map((v, i) =>
+      i < 10 ? leftPad(i + 1) : i + 1,
+    );
+
+    return (
+      <Stamp
+        status={status}
+        day={day[index]}
+        key={index}
+        changeStatus={changeStatus}
+        onClick={() => dispatch(openModal())}
+      />
+    );
+  });
 
   // console.log(stamps);
   // const stamp = stamps.find((stamp) => stamp.key === '1');
@@ -55,7 +60,7 @@ const ChallengeStamp = (props) => {
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>
-        {/* <StampArea>{stamps}</StampArea> */}
+        <StampArea>{stamps}</StampArea>
       </Card>
     </>
   );
