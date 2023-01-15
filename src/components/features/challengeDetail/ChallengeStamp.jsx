@@ -25,6 +25,12 @@ const ChallengeStamp = (props) => {
 
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
+  const changeStatus = (currentDay, status) => {
+    const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
+    console.log(stamp);
+    stamp.props.status = status;
+  };
+
   Array.from({ length: 10 }, (value, index) => index + 1);
   const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
     const leftPad = (num) => {
@@ -50,12 +56,6 @@ const ChallengeStamp = (props) => {
   // const stamp = stamps.find((stamp) => stamp.key === '1');
   // console.log(stamp);
   // stamp.props.status = 'success';
-
-  const changeStatus = (currentDay, status) => {
-    const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
-    console.log(stamp);
-    stamp.props.status = status;
-  };
 
   return (
     <>
