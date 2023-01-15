@@ -8,16 +8,21 @@ const Tag = (props) => {
     let tagName;
 
     switch (category) {
-      case 'routine':
+      case 'ROUTINE':
         return (tagName = '일상생활');
-      case 'exercise':
+      case 'EXERCISE':
         return (tagName = '운동');
-      case 'mindfulness':
+      case 'MINDFULNESS':
         return (tagName = '멘탈케어');
-      case 'etc':
+      case 'ETC':
         return (tagName = '기타');
+      case 'INDIVIDUAL':
+        return (tagName = '개인');
+      case 'GROUP':
+        return (tagName = '단체');
     }
   };
+
   return <StyledTag {...props}>{getTagName(category)}</StyledTag>;
 };
 
@@ -33,37 +38,37 @@ const StyledTag = styled.span`
   margin-right: 0.8rem;
 
   ${(props) =>
-    props.category === 'routine' &&
+    props.category === 'ROUTINE' &&
     css`
       background: #bf5c5c;
     `}
 
   ${(props) =>
-    props.category === 'exercise' &&
+    props.category === 'EXERCISE' &&
     css`
       background: #a97140;
     `}
 
     ${(props) =>
-    props.category === 'mindfulness' &&
+    props.category === 'MINDFULNESS' &&
     css`
       background: #318335;
     `}
 
     ${(props) =>
-    props.category === 'etc' &&
+    props.category === 'ETC' &&
     css`
       background: #553183;
     `}
 
     ${(props) =>
-    props.individual &&
+    props.category === 'INDIVIDUAL' &&
     css`
       background: ${({ theme }) => theme.colors.ye500};
     `}
 
     ${(props) =>
-    props.group &&
+    props.category === 'GROUP' &&
     css`
       background: ${({ theme }) => theme.colors.bl500};
     `}
