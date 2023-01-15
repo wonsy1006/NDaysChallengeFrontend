@@ -4,6 +4,7 @@ import { PURGE } from 'redux-persist';
 
 const initialState = {
   challenges: [],
+  completedChallenges: [],
   challengeDetail: {},
   message: '',
   error: '',
@@ -89,11 +90,11 @@ export const deleteChallenge = createAsyncThunk(
   },
 );
 
-export const getStamps = createAsyncThunk(
-  'challenge/getStamps',
+export const getCompletedChallengeList = createAsyncThunk(
+  'challenge/getCompletedChallengeList',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get('/challenge/stamp', args);
+      const data = await instance.get(`/user/challenges`, args);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -157,6 +158,19 @@ const challengeSlice = createSlice({
         console.log(payload.data);
       })
       .addCase(deleteChallenge.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(getCompletedChallengeList.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getCompletedChallengeList.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.completedChallenges = payload.data;
+      })
+      .addCase(getCompletedChallengeList.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       })

@@ -23,7 +23,6 @@ const ChallengeDajim = ({ children }) => {
   }, [dispatch]);
 
   const { dajim } = useSelector((state) => state.dajim);
-  console.log(dajim);
 
   return (
     <Card>
