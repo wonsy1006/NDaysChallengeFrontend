@@ -20,14 +20,15 @@ const ChallengeStamp = () => {
 
   const { challengeDetail } = useSelector((state) => state.challenge);
 
-  let numberOfStamp = parseInt(challengeDetail.totalDays);
-  let leftPad = (num) => {
-    return num.toString().padStart(2, '0');
-  };
+  const numberOfStamp = parseInt(challengeDetail.totalDays);
 
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
-  let stamps = [...Array(numberOfStamp)].map((n, index) => {
+  const stamps = [...Array(numberOfStamp)].map((n, index) => {
+    const leftPad = (num) => {
+      return num.toString().padStart(2, '0');
+    };
+
     const day = [...Array(numberOfStamp)].map((v, i) =>
       i < 10 ? leftPad(i + 1) : i + 1,
     );
