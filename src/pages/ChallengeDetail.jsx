@@ -58,7 +58,7 @@ const ChallengeDetail = () => {
       <ChallengeTitle>{challengeDetail.name}</ChallengeTitle>
       <RowWrapper justifyContent="center" margin="0 auto 2rem">
         <Tag category={category} />
-        <Tag category={type} />
+        {/* <Tag category={type} /> */}
       </RowWrapper>
       <ChallengeDajim />
       {challengeDetail.reward === '' ? null : (

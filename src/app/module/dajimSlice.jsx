@@ -28,7 +28,7 @@ export const createDajim = createAsyncThunk(
 
 export const patchDajim = createAsyncThunk(
   'dajim/patchDajim',
-  async (challengeId, thunkAPI) => {
+  async ({ challengeId, dajimNumber }, thunkAPI) => {
     try {
       const data = await instance.patch(`/challenge/${challengeId}/dajim`, {
         dajimNumber,

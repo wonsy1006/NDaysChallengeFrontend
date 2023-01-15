@@ -12,42 +12,42 @@ const ChallengeStamp = (props) => {
 
   const { isOpen } = useSelector((state) => state.modal);
 
-  useEffect(() => {
-    dispatch(sendStamps({ roomNumber: 1, stampNumber: 1, day: '1' }));
-  });
+  // useEffect(() => {
+  //   dispatch(sendStamps({ roomNumber: 1, stampNumber: 1, day: '1' }));
+  // });
 
-  // const numberOfStamp = parseInt(props.content.totalDays);
-  // const leftPad = (num) => {
-  //   return num.toString().padStart(2, '0');
-  // };
+  const numberOfStamp = parseInt(props.content.totalDays);
+  const leftPad = (num) => {
+    return num.toString().padStart(2, '0');
+  };
 
-  // const [status, setStatus] = useState('unchecked');
-  // const [stamps, setStamps] = useState(
-  //   [...Array(numberOfStamp)].map((n, index) => {
-  //     const day = [...Array(numberOfStamp)].map((v, i) =>
-  //       i < 10 ? leftPad(i + 1) : i + 1,
-  //     );
-  //     return (
-  //       <Stamp
-  //         status={status}
-  //         day={day[index]}
-  //         key={index}
-  //         changeStatus={changeStatus}
-  //         onClick={() => dispatch(openModal())}
-  //       />
-  //     );
-  //   }),
-  // );
+  const [status, setStatus] = useState('unchecked');
+  const [stamps, setStamps] = useState(
+    [...Array(numberOfStamp)].map((n, index) => {
+      const day = [...Array(numberOfStamp)].map((v, i) =>
+        i < 10 ? leftPad(i + 1) : i + 1,
+      );
+      return (
+        <Stamp
+          status={status}
+          day={day[index]}
+          key={index}
+          changeStatus={changeStatus}
+          onClick={() => dispatch(openModal())}
+        />
+      );
+    }),
+  );
 
-  // console.log(stamps);
-  // const stamp = stamps.find((stamp) => stamp.key === '1');
-  // console.log(stamp);
-  // stamp.props.status = 'success';
+  console.log(stamps);
+  const stamp = stamps.find((stamp) => stamp.key === '1');
+  console.log(stamp);
+  stamp.props.status = 'success';
 
-  // const changeStatus = (currentDay, status) => {
-  //   const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
-  //   console.log(stamp);
-  // };
+  const changeStatus = (currentDay, status) => {
+    const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
+    console.log(stamp);
+  };
 
   return (
     <>
