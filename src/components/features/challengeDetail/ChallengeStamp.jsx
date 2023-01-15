@@ -11,6 +11,7 @@ import { getChallengeDetail } from '../../../app/module/challengeSlice';
 const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
+  const currentDay = props.currentDay;
   const params = useParams();
   const challengeId = parseInt(params.roomNumber);
 
@@ -58,10 +59,7 @@ const ChallengeStamp = (props) => {
   return (
     <>
       {isOpen && (
-        <ChallengeModal
-          content={challengeDetail}
-          currentDay={props.currentDay}
-        />
+        <ChallengeModal content={challengeDetail} currentDay={currentDay} />
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>
