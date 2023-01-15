@@ -8,7 +8,7 @@ import Card from '../../common/Card';
 import Stamp from '../../common/Stamp';
 import { getChallengeDetail } from '../../../app/module/challengeSlice';
 
-const ChallengeStamp = () => {
+const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
   const params = useParams();
@@ -45,10 +45,10 @@ const ChallengeStamp = () => {
     );
   });
 
-  console.log(stamps);
-  const stamp = stamps.find((stamp) => stamp.key === '1');
-  console.log(stamp);
-  stamp.props.status = 'success';
+  // console.log(stamps);
+  // const stamp = stamps.find((stamp) => stamp.key === '1');
+  // console.log(stamp);
+  // stamp.props.status = 'success';
 
   const changeStatus = (currentDay, status) => {
     const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
@@ -58,7 +58,10 @@ const ChallengeStamp = () => {
   return (
     <>
       {isOpen && (
-        <ChallengeModal content={props.content} currentDay={props.currentDay} />
+        <ChallengeModal
+          content={challengeDetail}
+          currentDay={props.currentDay}
+        />
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>
