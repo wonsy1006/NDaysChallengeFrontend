@@ -25,9 +25,11 @@ const ChallengeStamp = (props) => {
 
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
+
   const changeStatus = (currentDay, status) => {
     const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
     console.log(stamp);
+    setStatus(status);
     stamp.props.status = status;
   };
 
@@ -46,7 +48,7 @@ const ChallengeStamp = (props) => {
         status={status}
         day={day[index]}
         key={index}
-        changeStatus={changeStatus}
+        changeStatus={changeStatus()}
         onClick={() => dispatch(openModal())}
       />
     );
