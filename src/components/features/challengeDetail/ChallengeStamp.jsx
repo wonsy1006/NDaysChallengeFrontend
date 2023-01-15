@@ -15,38 +15,38 @@ const ChallengeStamp = (props) => {
   //   dispatch(sendStamps({ roomNumber: 1, stampNumber: 1, day: '1' }));
   // });
 
-  let numberOfStamp = parseInt(props.content.totalDays);
-  let leftPad = (num) => {
-    return num.toString().padStart(2, '0');
-  };
+  // let numberOfStamp = parseInt(props.content.totalDays);
+  // let leftPad = (num) => {
+  //   return num.toString().padStart(2, '0');
+  // };
 
-  const [status, setStatus] = useState('unchecked');
-  // const [stamps, setStamps] = useState();
-  let stamps = [...Array(numberOfStamp)].map((n, index) => {
-    const day = [...Array(numberOfStamp)].map((v, i) =>
-      i < 10 ? leftPad(i + 1) : i + 1,
-    );
+  // const [status, setStatus] = useState('unchecked');
+  // // const [stamps, setStamps] = useState();
+  // let stamps = [...Array(numberOfStamp)].map((n, index) => {
+  //   const day = [...Array(numberOfStamp)].map((v, i) =>
+  //     i < 10 ? leftPad(i + 1) : i + 1,
+  //   );
 
-    return (
-      <Stamp
-        status={status}
-        day={day[index]}
-        key={index}
-        changeStatus={changeStatus}
-        onClick={() => dispatch(openModal())}
-      />
-    );
-  });
+  //   return (
+  //     <Stamp
+  //       status={status}
+  //       day={day[index]}
+  //       key={index}
+  //       changeStatus={changeStatus}
+  //       onClick={() => dispatch(openModal())}
+  //     />
+  //   );
+  // });
 
-  console.log(stamps);
-  const stamp = stamps.find((stamp) => stamp.key === '1');
-  console.log(stamp);
-  stamp.props.status = 'success';
+  // console.log(stamps);
+  // const stamp = stamps.find((stamp) => stamp.key === '1');
+  // console.log(stamp);
+  // stamp.props.status = 'success';
 
-  const changeStatus = (currentDay, status) => {
-    const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
-    console.log(stamp);
-  };
+  // const changeStatus = (currentDay, status) => {
+  //   const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
+  //   console.log(stamp);
+  // };
 
   return (
     <>
@@ -55,7 +55,7 @@ const ChallengeStamp = (props) => {
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>
-        <StampArea>{stamps}</StampArea>
+        {/* <StampArea>{stamps}</StampArea> */}
       </Card>
     </>
   );
