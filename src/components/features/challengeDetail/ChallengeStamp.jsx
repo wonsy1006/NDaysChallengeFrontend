@@ -22,22 +22,7 @@ const ChallengeStamp = (props) => {
   };
 
   const [status, setStatus] = useState('unchecked');
-  const [stamps, setStamps] = useState(
-    [...Array(numberOfStamp)].map((n, index) => {
-      const day = [...Array(numberOfStamp)].map((v, i) =>
-        i < 10 ? leftPad(i + 1) : i + 1,
-      );
-      return (
-        <Stamp
-          status={status}
-          day={day[index]}
-          key={index}
-          changeStatus={changeStatus}
-          onClick={() => dispatch(openModal())}
-        />
-      );
-    }),
-  );
+  const [stamps, setStamps] = useState();
 
   console.log(stamps);
   const stamp = stamps.find((stamp) => stamp.key === '1');
@@ -56,7 +41,22 @@ const ChallengeStamp = (props) => {
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>
-        {/* <StampArea>{stamps}</StampArea> */}
+        <StampArea>
+          {[...Array(numberOfStamp)].map((n, index) => {
+            const day = [...Array(numberOfStamp)].map((v, i) =>
+              i < 10 ? leftPad(i + 1) : i + 1,
+            );
+            return (
+              <Stamp
+                status={status}
+                day={day[index]}
+                key={index}
+                changeStatus={changeStatus}
+                onClick={() => dispatch(openModal())}
+              />
+            );
+          })}
+        </StampArea>
       </Card>
     </>
   );
