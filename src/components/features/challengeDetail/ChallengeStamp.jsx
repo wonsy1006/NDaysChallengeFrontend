@@ -45,15 +45,15 @@ const ChallengeStamp = () => {
     );
   });
 
-  // console.log(stamps);
-  // const stamp = stamps.find((stamp) => stamp.key === '1');
-  // console.log(stamp);
-  // stamp.props.status = 'success';
+  console.log(stamps);
+  const stamp = stamps.find((stamp) => stamp.key === '1');
+  console.log(stamp);
+  stamp.props.status = 'success';
 
-  // const changeStatus = (currentDay, status) => {
-  //   const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
-  //   console.log(stamp);
-  // };
+  const changeStatus = (currentDay, status) => {
+    const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
+    console.log(stamp);
+  };
 
   return (
     <>
