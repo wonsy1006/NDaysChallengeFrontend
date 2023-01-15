@@ -13,7 +13,7 @@ const ChallengeStamp = (props) => {
   const { isOpen } = useSelector((state) => state.modal);
 
   useEffect(() => {
-    dispatch(sendStamps({ roomNumber: 1, stampNumber: 14, day: '1' }));
+    dispatch(sendStamps({ roomNumber: 1, stampNumber: 1, day: '1' }));
   });
 
   // const numberOfStamp = parseInt(props.content.totalDays);
