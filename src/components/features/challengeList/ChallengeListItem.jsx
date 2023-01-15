@@ -20,7 +20,7 @@ const ChallengeListItem = ({
     <Card>
       <ColumnWrapper>
         <RowWrapper margin=".5rem">
-          <Tag category={lowerCategory}>{category}</Tag>
+          <Tag category={category} />
         </RowWrapper>
         <RowWrapper margin=".5rem">
           <ChallengeTitle>{name}</ChallengeTitle>
