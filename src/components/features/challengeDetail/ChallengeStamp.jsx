@@ -24,12 +24,13 @@ const ChallengeStamp = () => {
 
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
-  const stamps = [...Array(numberOfStamp)].map((n, index) => {
+  Array.from({ length: 10 }, (value, index) => index + 1);
+  const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
     const leftPad = (num) => {
       return num.toString().padStart(2, '0');
     };
 
-    const day = [...Array(numberOfStamp)].map((v, i) =>
+    const day = Array.from({ length: numberOfStamp }, (v, i) =>
       i < 10 ? leftPad(i + 1) : i + 1,
     );
 

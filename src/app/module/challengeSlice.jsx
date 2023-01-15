@@ -31,7 +31,7 @@ export const createChallenge = createAsyncThunk(
     thunkAPI,
   ) => {
     try {
-      await instance.post(`/challenge/create`, {
+      await instance.post(`/challenge`, {
         name,
         category,
         type,
