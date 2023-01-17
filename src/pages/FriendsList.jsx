@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import {
   acceptFriendRequest,
-  getFriendsList,
   rejectFriendRequest,
   findFriends,
   sendRequestToFriend,
+  getRequestList,
+  getAcceptList,
 } from '../app/module/friendsSlice';
 import { SearchIcon } from '../components/common/Icon';
 
@@ -26,7 +27,8 @@ const FriendsList = () => {
   } = useForm();
 
   useEffect(() => {
-    dispatch(sendRequestToFriend('skywalker@gmail.com'));
+    dispatch(getRequestList());
+    dispatch(getAcceptList());
   });
 
   // // const searchResult = useSelector((state) => state.friends.searchResult);
