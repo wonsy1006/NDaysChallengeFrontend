@@ -40,7 +40,7 @@ export const getRequestList = createAsyncThunk(
   'friends/getRequestList',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/request');
+      const data = await instance.get('/friends/request', args);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -68,7 +68,7 @@ export const getAcceptList = createAsyncThunk(
   'friends/getAcceptList',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/accept');
+      const data = await instance.get('/friends/accept', args);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
