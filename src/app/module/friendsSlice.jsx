@@ -5,11 +5,11 @@ const initialState = {
   loading: false,
   message: '',
   errorMessage: '',
-  requestList: [],
-  acceptList: [],
   searchResult: {},
   request: {},
   acceptances: [],
+  requestList: [],
+  acceptList: [],
 };
 
 export const findFriends = createAsyncThunk(
