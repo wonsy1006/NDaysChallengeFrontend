@@ -100,7 +100,6 @@ const friendsSlice = createSlice({
       .addCase(findFriends.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.searchResult = payload.data;
-        console.log(payload.data);
         state.error = null;
       })
       .addCase(findFriends.rejected, (state, { payload }) => {
@@ -126,7 +125,6 @@ const friendsSlice = createSlice({
       .addCase(getRequestList.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.requestList = payload.data;
-        console.log(payload.data);
         state.error = null;
       })
       .addCase(getRequestList.rejected, (state, { payload }) => {
@@ -151,7 +149,6 @@ const friendsSlice = createSlice({
       .addCase(getAcceptList.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.acceptList = payload.data;
-        console.log(payload.data);
         state.error = null;
       })
       .addCase(getAcceptList.rejected, (state, { payload }) => {
