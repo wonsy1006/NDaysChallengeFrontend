@@ -5,7 +5,8 @@ const initialState = {
   loading: false,
   message: '',
   errorMessage: '',
-  friendsList: [],
+  requestList: [],
+  acceptList: [],
   searchResult: {},
   request: {},
   acceptances: [],
@@ -119,6 +120,19 @@ const friendsSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
+      .addCase(getRequestList.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getRequestList.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.requestList = payload.data;
+        console.log(payload.data);
+        state.error = null;
+      })
+      .addCase(getRequestList.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
       .addCase(acceptFriendRequest.pending, (state) => {
         state.loading = true;
       })
@@ -128,6 +142,19 @@ const friendsSlice = createSlice({
         state.error = null;
       })
       .addCase(acceptFriendRequest.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(getAcceptList.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAcceptList.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.acceptList = payload.data;
+        console.log(payload.data);
+        state.error = null;
+      })
+      .addCase(getAcceptList.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

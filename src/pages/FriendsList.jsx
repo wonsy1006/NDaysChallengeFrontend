@@ -31,12 +31,9 @@ const FriendsList = () => {
     dispatch(getAcceptList());
   });
 
-  // // const searchResult = useSelector((state) => state.friends.searchResult);
-  // const { requests } = useSelector((state) => state.friends);
-  // // const { acceptances } = useSelector((state) => state.friends);
-  // // const friendsList = useSelector((state) => state.friends.friendsList);
-
-  // console.log(requests);
+  const requestList = useSelector((state) => state.friends);
+  const acceptList = useSelector((state) => state.friends);
+  console.log(requestList, acceptList);
 
   const [showNicknameForm, setShowNicknameForm] = useState(true);
   const [showIdForm, setShowIdForm] = useState(false);

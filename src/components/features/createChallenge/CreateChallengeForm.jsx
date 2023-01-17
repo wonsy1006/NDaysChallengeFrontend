@@ -12,17 +12,14 @@ import { createChallenge } from '../../../app/module/challengeSlice';
 import { useNavigate } from 'react-router-dom';
 
 const CreateChallengeForm = () => {
-  const success = useSelector(state => state.challenge);
+  const success = useSelector((state) => state.challenge);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // 개인 챌린지 5개 이상일 경우 챌린지 유형 개인 버튼 비활성화
 
   const schema = yup.object().shape({
     type: yup.string().required('챌린지 유형을 선택해 주세요'),
-    name: yup
-      .string()
-      .required('챌린지 제목을 입력해 주세요')
-      .max(30),
+    name: yup.string().required('챌린지 제목을 입력해 주세요').max(30),
     category: yup.string().required('챌린지 카테고리를 선택해 주세요'),
     totalDays: yup.number().required('챌린지 기간을 선택해 주세요'),
     startDate: yup.date().required('챌린지 시작일을 선택해 주세요'),
@@ -42,7 +39,7 @@ const CreateChallengeForm = () => {
 
   const [data, setData] = useState('');
 
-  const submitForm = data => {
+  const submitForm = (data) => {
     data.startDate = toStringByFormatting(data.startDate);
     const category = data.category;
     data.category = category.toUpperCase();
@@ -248,6 +245,11 @@ const CreateChallengeForm = () => {
         />
         <StyledInput
           {...register('status')}
+          type="text"
+          defaultValue="CONTINUE"
+        />
+        <StyledInput
+          {...register('stampNumber')}
           type="text"
           defaultValue="CONTINUE"
         />
