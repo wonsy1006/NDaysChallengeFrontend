@@ -112,8 +112,8 @@ const friendsSlice = createSlice({
       })
       .addCase(sendRequestToFriend.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.request = payload.data;
-        console.log(payload.data);
+        state.request = payload;
+        console.log(payload);
         state.error = null;
       })
       .addCase(sendRequestToFriend.rejected, (state, { payload }) => {
@@ -125,8 +125,8 @@ const friendsSlice = createSlice({
       })
       .addCase(getRequestList.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.requestList = payload.data;
-        console.log(payload.data);
+        state.requestList = payload;
+        console.log(payload);
         state.error = null;
       })
       .addCase(getRequestList.rejected, (state, { payload }) => {
