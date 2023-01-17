@@ -35,6 +35,18 @@ export const sendRequestToFriend = createAsyncThunk(
   },
 );
 
+export const getRequestList = createAsyncThunk(
+  'friends/getRequestList',
+  async (args, thunkAPI) => {
+    try {
+      const data = await instance.get('/friends/request');
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 export const acceptFriendRequest = createAsyncThunk(
   'friends/acceptRequest',
   async ({ id, nickname, image }, thunkAPI) => {
@@ -44,6 +56,18 @@ export const acceptFriendRequest = createAsyncThunk(
         nickname,
         image,
       });
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const getAcceptList = createAsyncThunk(
+  'friends/getAcceptList',
+  async (args, thunkAPI) => {
+    try {
+      const data = await instance.get('/friends/accept');
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
