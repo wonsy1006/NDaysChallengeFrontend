@@ -26,10 +26,10 @@ const FriendsList = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    dispatch(getRequestList());
-    dispatch(getAcceptList());
-  }, [dispatch]);
+  // useEffect(() => {
+  dispatch(getRequestList());
+  dispatch(getAcceptList());
+  // }, [dispatch]);
 
   const { requestList } = useSelector((state) => state.friends);
   const { acceptList } = useSelector((state) => state.friends);
