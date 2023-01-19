@@ -40,7 +40,7 @@ export const getRequestList = createAsyncThunk(
   'friends/getRequestList',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/request', args);
+      const data = await instance.get('/friends/request');
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -68,7 +68,7 @@ export const getAcceptList = createAsyncThunk(
   'friends/getAcceptList',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get('/friends/accept', args);
+      const data = await instance.get(`/friends/accept`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -80,7 +80,7 @@ export const rejectFriendRequest = createAsyncThunk(
   'friends/rejectRequest',
   async ({ id, nickname }, thunkAPI) => {
     try {
-      const data = await instance.delete('/friends/request', { id, nickname });
+      const data = await instance.delete(`/friends/request`, { id, nickname });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

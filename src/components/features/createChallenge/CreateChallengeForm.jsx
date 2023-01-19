@@ -239,20 +239,15 @@ const CreateChallengeForm = () => {
           defaultValue="0"
         />
         <StyledInput
-          {...register('memberNumber', { valueAsNumber: true })}
-          type="number"
-          defaultValue="5"
-        />
-        <StyledInput
           {...register('status')}
           type="text"
           defaultValue="CONTINUE"
         />
-        <StyledInput
+        {/* <StyledInput
           {...register('stampNumber')}
           type="text"
           defaultValue="CONTINUE"
-        />
+        /> */}
       </DisplayNoneWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button primary>챌린지 생성</Button>
