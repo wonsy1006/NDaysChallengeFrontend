@@ -29,7 +29,7 @@ const FriendsList = () => {
   useEffect(() => {
     dispatch(getRequestList());
     dispatch(getAcceptList());
-  }, [dispatch]);
+  }, []);
 
   const { requestList } = useSelector((state) => state.friends);
   const { acceptList } = useSelector((state) => state.friends);
