@@ -16,8 +16,8 @@ const Feed = () => {
 
   return (
     <>
-      {loading && <Loading />}
       <h2>오늘의 다짐</h2>
+      {loading && <Loading />}
       {feed.map((dj) => {
         return (
           <FeedItem
