@@ -23,7 +23,7 @@ const CreateChallengeForm = () => {
     category: yup.string().required('챌린지 카테고리를 선택해 주세요'),
     totalDays: yup.number().required('챌린지 기간을 선택해 주세요'),
     startDate: yup.date().required('챌린지 시작일을 선택해 주세요'),
-    passCount: yup.number().min(0),
+    passCount: yup.number(),
     reward: yup.string(),
     successCount: yup.number(),
     usedPassCount: yup.number(),
@@ -89,9 +89,7 @@ const CreateChallengeForm = () => {
         <Select {...register('category', { required: true })}>
           <Option value="">카테고리를 선택하세요</Option>
           <Option value="routine">일상생활</Option>
-          <Option value="study">공부</Option>
           <Option value="workout">운동</Option>
-          <Option value="hobby">취미</Option>
           <Option value="mindfulness">멘탈케어</Option>
           <Option value="etc">기타</Option>
         </Select>
@@ -166,7 +164,10 @@ const CreateChallengeForm = () => {
         </RadioWrapper>
         {showPassInput ? (
           <PassInput
-            {...register('passCount')}
+            {...register('passCount', {
+              valueAsNumber: true,
+              validate: (value) => value > 0,
+            })}
             id="challengePassCount"
             type="number"
           />
@@ -243,11 +244,6 @@ const CreateChallengeForm = () => {
           type="text"
           defaultValue="CONTINUE"
         />
-        {/* <StyledInput
-          {...register('stampNumber')}
-          type="text"
-          defaultValue="CONTINUE"
-        /> */}
       </DisplayNoneWrapper>
       <ColumnWrapper justifyContent="center" alignItems="center">
         <Button primary>챌린지 생성</Button>
