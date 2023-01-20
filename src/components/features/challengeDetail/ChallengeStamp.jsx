@@ -21,10 +21,10 @@ const ChallengeStamp = (props) => {
 
   const { challengeDetail } = useSelector((state) => state.challenge);
 
-  // const numberOfStamp = parseInt(challengeDetail.totalDays);
+  const numberOfStamp = parseInt(challengeDetail.totalDays);
 
-  // const [status, setStatus] = useState('unchecked');
-  // // const [stamps, setStamps] = useState();
+  const [status, setStatus] = useState('unchecked');
+  // const [stamps, setStamps] = useState();
 
   // const changeStatus = (currentDay, status) => {
   //   const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
@@ -33,25 +33,24 @@ const ChallengeStamp = (props) => {
   //   setStatus(status);
   // };
 
-  // const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
-  //   const leftPad = (num) => {
-  //     return num.toString().padStart(2, '0');
-  //   };
+  const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
+    const leftPad = (num) => {
+      return num.toString().padStart(2, '0');
+    };
 
-  //   const day = Array.from({ length: numberOfStamp }, (v, i) =>
-  //     i < 10 ? leftPad(i + 1) : i + 1,
-  //   );
+    const day = Array.from({ length: numberOfStamp }, (v, i) =>
+      i < 10 ? leftPad(i + 1) : i + 1,
+    );
 
-  //   return (
-  //     <Stamp
-  //       status={status}
-  //       day={day[index]}
-  //       key={index}
-  //       changeStatus={changeStatus()}
-  //       onClick={() => dispatch(openModal())}
-  //     />
-  //   );
-  // });
+    return (
+      <Stamp
+        status={status}
+        day={day[index]}
+        key={index}
+        onClick={() => dispatch(openModal())}
+      />
+    );
+  });
 
   // console.log(stamps);
   // const stamp = stamps.find((stamp) => stamp.key === '1');

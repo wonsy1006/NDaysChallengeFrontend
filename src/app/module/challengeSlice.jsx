@@ -155,7 +155,6 @@ const challengeSlice = createSlice({
       .addCase(deleteChallenge.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        console.log(payload.data);
       })
       .addCase(deleteChallenge.rejected, (state, { payload }) => {
         state.loading = false;
