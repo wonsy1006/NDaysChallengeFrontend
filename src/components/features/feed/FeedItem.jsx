@@ -3,14 +3,7 @@ import Card from '../../common/Card';
 import styled from 'styled-components';
 import ProfilePic from '../../common/ProfilePic';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
-import {
-  Like,
-  Cheer,
-  Touched,
-  Watch,
-  Surprised,
-  Interaction,
-} from '../../common/Sticker';
+import Sticker from '../../common/Sticker';
 
 const FeedItem = (props) => {
   return (
@@ -24,12 +17,11 @@ const FeedItem = (props) => {
       </UserContainer>
       <DajimWrapper>{props.dajimContent}</DajimWrapper>
       <InteractionWrapper>
-        <Like />
-        <Cheer />
-        <Touched />
-        <Watch />
-        <Surprised />
-        {/* <Interaction type="like" /> */}
+        <Sticker type="like" count={0} />
+        <Sticker type="cheer" count={1} />
+        <Sticker type="touched" count={2} />
+        <Sticker type="watch" count={10} />
+        <Sticker type="surprised" count={0} />
       </InteractionWrapper>
     </Card>
   );
