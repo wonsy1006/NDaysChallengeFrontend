@@ -17,11 +17,11 @@ const FeedItem = (props) => {
       </UserContainer>
       <DajimWrapper>{props.dajimContent}</DajimWrapper>
       <InteractionWrapper>
-        <Sticker type="like" count={0} />
-        <Sticker type="cheer" count={1} />
-        <Sticker type="touched" count={2} />
-        <Sticker type="watch" count={10} />
-        <Sticker type="surprised" count={0} />
+        <Sticker type="like" count="0" />
+        <Sticker type="cheer" count="1" />
+        <Sticker type="touched" count="2" />
+        <Sticker type="watch" count="10" />
+        <Sticker type="surprised" count="0" />
       </InteractionWrapper>
     </Card>
   );
