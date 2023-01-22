@@ -33,6 +33,9 @@ const ChallengeStamp = (props) => {
   //   setStatus(status);
   // };
 
+  // 각 stamp가 가져야 할 값 : key, day, status(success/pass), status를 바꿀 함수
+  //
+
   const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
     const leftPad = (num) => {
       return num.toString().padStart(2, '0');
