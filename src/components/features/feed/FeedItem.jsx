@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../../common/Card';
 import styled from 'styled-components';
 import ProfilePic from '../../common/ProfilePic';
-import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
+import { RowWrapper } from '../../common/Wrapper';
 import Sticker from '../../common/Sticker';
 
 const FeedItem = (props) => {
