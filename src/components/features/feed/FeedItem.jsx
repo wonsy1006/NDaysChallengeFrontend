@@ -1,11 +1,21 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Card from '../../common/Card';
 import styled from 'styled-components';
 import ProfilePic from '../../common/ProfilePic';
 import { RowWrapper } from '../../common/Wrapper';
 import Sticker from '../../common/Sticker';
+import { selectEmotion } from '../../../app/module/dajimSlice';
 
 const FeedItem = (props) => {
+  const dispatch = useDispatch();
+
+  const stickerClickHandler = (type) => {
+    const dajimNumber = props.dajimNumber;
+    console.log(dajimNumber, type);
+    dispatch(selectEmotion({ dajimNumber, type }));
+  };
+
   return (
     <Card>
       <UserContainer>
@@ -17,11 +27,31 @@ const FeedItem = (props) => {
       </UserContainer>
       <DajimWrapper>{props.dajimContent}</DajimWrapper>
       <InteractionWrapper>
-        <Sticker type="like" count="0" />
-        <Sticker type="cheer" count="1" />
-        <Sticker type="touched" count="2" />
-        <Sticker type="watch" count="10" />
-        <Sticker type="surprised" count="0" />
+        <Sticker
+          type="like"
+          count="0"
+          stickerClickHandler={stickerClickHandler}
+        />
+        <Sticker
+          type="cheer"
+          count="1"
+          stickerClickHandler={stickerClickHandler}
+        />
+        <Sticker
+          type="touched"
+          count="2"
+          stickerClickHandler={stickerClickHandler}
+        />
+        <Sticker
+          type="watch"
+          count="10"
+          stickerClickHandler={stickerClickHandler}
+        />
+        <Sticker
+          type="surprised"
+          count="0"
+          stickerClickHandler={stickerClickHandler}
+        />
       </InteractionWrapper>
     </Card>
   );

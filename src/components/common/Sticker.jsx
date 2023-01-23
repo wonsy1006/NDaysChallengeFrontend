@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Sticker = (props) => {
   const count = props.count;
   const type = props.type;
+  const stickerClickHandler = props.stickerClickHandler;
 
   const getStickerText = (type) => {
     let text;
@@ -23,9 +24,9 @@ const Sticker = (props) => {
   };
 
   return (
-    <StickerContainer>
+    <StickerContainer onClick={stickerClickHandler}>
       {getStickerText(type)}
-      {count !== 0 ? <CountSpan>count</CountSpan> : null}
+      {count !== 0 ? <CountSpan>{count}</CountSpan> : null}
     </StickerContainer>
   );
 };
@@ -46,6 +47,7 @@ const StickerContainer = styled.p`
 
 const CountSpan = styled.span`
   font-size: ${({ theme }) => theme.fonts.size.small};
+  font-weight: ${({ theme }) => theme.fonts.weight.bold};
   color: ${({ theme }) => theme.colors.gr500};
   margin: 0 0 0 1rem;
 `;
