@@ -21,11 +21,29 @@ const Feed = () => {
       image: 1,
       content: '내용1',
       updatedDate: '2023-01-23',
-      stickersList: [],
+      sticker: [],
     },
-    { dajimNumber: 2, nickname: '닉네임2', image: 2, content: '내용2' },
-    { dajimNumber: 3, nickname: '닉네임3', image: 3, content: '내용3' },
-    { dajimNumber: 4, nickname: '닉네임4', image: 4, content: '내용4' },
+    {
+      dajimNumber: 2,
+      nickname: '닉네임2',
+      image: 2,
+      content: '내용2',
+      sticker: [],
+    },
+    {
+      dajimNumber: 3,
+      nickname: '닉네임3',
+      image: 3,
+      content: '내용3',
+      sticker: [],
+    },
+    {
+      dajimNumber: 4,
+      nickname: '닉네임4',
+      image: 4,
+      content: '내용4',
+      sticker: [],
+    },
   ];
 
   return (
