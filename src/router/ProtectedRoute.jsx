@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
 const ProtectedRoute = () => {
-  const { accessToken } = useSelector(state => state.user);
+  const { accessToken } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!accessToken) {
-  //     navigate('/login');
-  //   }
-  // }, [navigate, accessToken]);
+  useEffect(() => {
+    if (!accessToken) {
+      navigate('/login');
+    }
+  }, [navigate, accessToken]);
 
   return <Outlet />;
 };

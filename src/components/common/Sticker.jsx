@@ -24,7 +24,7 @@ const Sticker = (props) => {
   };
 
   return (
-    <StickerContainer onClick={stickerClickHandler}>
+    <StickerContainer onClick={stickerClickHandler()}>
       {getStickerText(type)}
       {count !== 0 ? <CountSpan>{count}</CountSpan> : null}
     </StickerContainer>
