@@ -3,7 +3,6 @@ import { baseUrl } from '../../utils/api';
 
 const instance = axios.create({
   baseURL: `${baseUrl}`,
-  headers: { 'Content-Type': 'application/json' },
 });
 
 instance.interceptors.request.use(function (config) {

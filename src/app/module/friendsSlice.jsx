@@ -16,7 +16,9 @@ export const findFriends = createAsyncThunk(
   'friends/findFriends',
   async (args, thunkAPI) => {
     try {
-      const data = await instance.get(`/friends/find`, args);
+      const data = await instance.get(`/friends/find`, {
+        headers: { 'Content-Type': 'application/json' },
+      });
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
