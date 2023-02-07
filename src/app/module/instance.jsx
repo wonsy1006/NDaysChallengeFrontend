@@ -3,6 +3,7 @@ import { baseUrl } from '../../utils/api';
 
 const instance = axios.create({
   baseURL: `${baseUrl}`,
+  headers: { 'Content-Type': 'application/json' },
 });
 
 instance.interceptors.request.use(function (config) {
@@ -20,9 +21,6 @@ instance.interceptors.request.use(function (config) {
     config.headers['refreshToken'] = `Bearer ${refreshToken}`;
     return config;
   }
-
-  config.headers['Content-Type'] = 'application/json';
-  return config;
 });
 
 instance.interceptors.response.use(
