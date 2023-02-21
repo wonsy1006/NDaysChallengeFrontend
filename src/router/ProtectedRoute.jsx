@@ -6,11 +6,11 @@ const ProtectedRoute = () => {
   const { accessToken } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!accessToken) {
-      navigate('/login');
-    }
-  }, [navigate, accessToken]);
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     navigate('/login');
+  //   }
+  // }, [navigate, accessToken]);
 
   return <Outlet />;
 };

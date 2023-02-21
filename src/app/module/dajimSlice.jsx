@@ -69,9 +69,10 @@ export const getDajimFeed = createAsyncThunk(
 
 export const selectEmotion = createAsyncThunk(
   'dajim/selectEmotion',
-  async ({ dajimNumber, sticker }, thunkAPI) => {
+  async ({ nickname, dajimNumber, sticker }, thunkAPI) => {
     try {
       const data = await instance.post(`/feed/emotion`, {
+        nickname,
         dajimNumber,
         sticker,
       });

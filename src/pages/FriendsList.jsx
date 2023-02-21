@@ -66,16 +66,24 @@ const FriendsList = () => {
       <h3>친구 추가</h3>
       <RequestContainer>
         <StyledForm onSubmit={handleSubmit(submitForm)}>
-          <RowWrapper
-            width="90%"
-            alignItems="center"
-            justifyContent="center"
-            margin="1.2rem auto 2.4rem"
-          >
+          <RadioWrapper>
+            <Radio
+              {...register('field')}
+              type="radio"
+              value="nickname"
+              id="nickname"
+              defaultChecked
+            />
+            <RadioLabel htmlFor="nickname">닉네임으로 검색</RadioLabel>
+            <Radio {...register('field')} type="radio" value="id" id="id" />
+            <RadioLabel htmlFor="id">아이디로 검색</RadioLabel>
+          </RadioWrapper>
+
+          <RowWrapper width="90%" alignItems="center" margin="0 auto">
             <StyledInput {...register('nickname')} type="text" />
-            <StyledInput {...register('id')} type="text" />
-            <IconWrapper>
-              <Button>검색</Button>
+            {/* <StyledInput {...register('id')} type="text" /> */}
+            <IconWrapper onClick={() => console.log('clicked')}>
+              <SearchIcon size={28} />
             </IconWrapper>
           </RowWrapper>
         </StyledForm>
@@ -156,6 +164,45 @@ const FriendContainer = styled.div`
   align-items: center;
 `;
 
+const RadioWrapper = styled(RowWrapper)`
+  width: 95%;
+  margin: 0 auto 2rem;
+`;
+
+const Radio = styled.input`
+  appearance: none;
+
+  &:checked + label {
+    border: 1px solid ${({ theme }) => theme.colors.bl500};
+    background: ${({ theme }) => theme.colors.bl500};
+    color: #fff;
+  }
+`;
+
+const RadioLabel = styled.label`
+  display: inline-block;
+  padding: 0.8rem 2.8rem;
+  border: 1px solid ${({ theme }) => theme.colors.bl500};
+  border-radius: 1rem;
+  font-size: ${({ theme }) => theme.fonts.size.small};
+  color: ${({ theme }) => theme.colors.bl500};
+
+  &:hover {
+    border: 1px solid #2e73ac;
+    background: #2e73ac;
+    color: #fff;
+    cursor: pointer;
+  }
+`;
+
+const IconWrapper = styled(RowWrapper)`
+  width: 2rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
 const UserName = styled.span`
   margin-right: 0.5rem;
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
@@ -164,12 +211,6 @@ const UserName = styled.span`
 
 const FriendsListContainer = styled.section`
   width: 100%;
-`;
-
-const IconWrapper = styled(RowWrapper)`
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
 `;
 
 const StyledForm = styled.form`

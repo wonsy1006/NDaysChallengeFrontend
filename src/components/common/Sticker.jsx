@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Sticker = (props) => {
   const count = props.count;
   const type = props.type;
+  const status = props.status;
   const stickerClickHandler = props.stickerClickHandler;
 
   const getStickerText = (type) => {
@@ -24,7 +25,7 @@ const Sticker = (props) => {
   };
 
   return (
-    <StickerContainer onClick={stickerClickHandler()}>
+    <StickerContainer status={status} onClick={stickerClickHandler()}>
       {getStickerText(type)}
       {count !== 0 ? <CountSpan>{count}</CountSpan> : null}
     </StickerContainer>
@@ -42,7 +43,10 @@ const StickerContainer = styled.p`
 
   &:hover {
     background: ${({ theme }) => theme.colors.bl50};
+    border: 1.5px solid ${({ theme }) => theme.colors.gr400};
   }
+
+  ${(props) => props.selected && css``}
 `;
 
 const CountSpan = styled.span`

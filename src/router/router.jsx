@@ -41,8 +41,6 @@ const FirstPage = ({ children }) => {
 };
 
 const Router = () => {
-  const { challenges } = useSelector((state) => state.challenge);
-
   return (
     // <BrowserRouter>
     <Routes>

@@ -10,8 +10,11 @@ import { selectEmotion } from '../../../app/module/dajimSlice';
 const FeedItem = (props) => {
   const dispatch = useDispatch();
 
+  const [stickerStatus, setStickerStatus] = useState('unselected');
+
   const stickerClickHandler = (type) => {
     const dajimNumber = props.dajimNumber;
+    setStickerStatus(selected);
     console.log(dajimNumber, type);
     dispatch(selectEmotion({ dajimNumber, type }));
   };
@@ -30,26 +33,31 @@ const FeedItem = (props) => {
         <Sticker
           type="like"
           count="0"
+          status="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
           type="cheer"
           count="1"
+          status="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
           type="touched"
           count="2"
+          status="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
           type="watch"
           count="10"
+          status="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
           type="surprised"
           count="0"
+          status="unselected"
           stickerClickHandler={stickerClickHandler}
         />
       </InteractionWrapper>

@@ -13,6 +13,7 @@ const Feed = () => {
   // }, [dispatch]);
 
   // const { feed } = useSelector((state) => state.dajim);
+  // const nickname = useSelector((state) => state.user.nickname);
 
   const feed = [
     {
