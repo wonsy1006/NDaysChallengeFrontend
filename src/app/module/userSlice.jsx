@@ -2,9 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { PURGE } from 'redux-persist';
 import instance from './instance';
 
-const accessToken = localStorage.getItem('accessToken')
-  ? localStorage.getItem('accessToken')
-  : null;
+// const accessToken = localStorage.getItem('accessToken')
+//   ? localStorage.getItem('accessToken')
+//   : null;
 
 const initialState = {
   loading: false,
@@ -99,7 +99,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logout: state => {
+    logout: (state) => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       state.loading = false;
@@ -109,13 +109,13 @@ export const userSlice = createSlice({
       state.error = null;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(userSignUp.pending, state => {
+      .addCase(userSignUp.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(userSignUp.fulfilled, state => {
+      .addCase(userSignUp.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
         state.success = true;
@@ -124,7 +124,7 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(userLogin.pending, state => {
+      .addCase(userLogin.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -138,7 +138,7 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(getUserDetails.pending, state => {
+      .addCase(getUserDetails.pending, (state) => {
         state.loading = true;
       })
       .addCase(getUserDetails.fulfilled, (state, { payload }) => {
@@ -150,7 +150,7 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(checkId.pending, state => {
+      .addCase(checkId.pending, (state) => {
         state.loading = true;
       })
       .addCase(checkId.fulfilled, (state, { payload }) => {

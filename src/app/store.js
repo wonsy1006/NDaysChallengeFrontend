@@ -3,7 +3,7 @@ import { persistStore, persistReducer, PERSIST, PURGE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import challengeReducer from './module/challengeSlice';
-import friendsSlice from './module/friendsSlice';
+import friendsReducer from './module/friendsSlice';
 import modalReducer from './module/modalSlice';
 import userReducer from './module/userSlice';
 import dajimReducer from './module/dajimSlice';
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   user: userReducer,
   dajim: dajimReducer,
+  friends: friendsReducer,
   // stamp: stampReducer,
 });
 
@@ -27,7 +28,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [PERSIST, PURGE],

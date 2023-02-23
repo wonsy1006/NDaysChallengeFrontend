@@ -40,6 +40,13 @@ const ChallengeDetail = () => {
     (today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
   );
 
+  const stamps = challengeDetail.stamp;
+  const stampCounts = challengeDetail.day;
+  const successCount = challengeDetail.successCount;
+  const passCount = challengeDetail.passCount;
+
+  console.log(stamps, stampCounts, successCount);
+
   return (
     <>
       {loading && <Loading />}
