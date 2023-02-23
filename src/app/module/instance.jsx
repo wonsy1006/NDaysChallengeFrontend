@@ -8,9 +8,8 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-const [cookies, setCookie] = useCookies(['jwt']);
-
 instance.interceptors.request.use((config) => {
+  const [cookies] = useCookies(['jwt']);
   const jwtToken = cookies.jwt;
   if (jwtToken) {
     config.headers.Authorization = `Bearer ${jwtToken}`;
@@ -19,34 +18,21 @@ instance.interceptors.request.use((config) => {
 });
 
 instance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    if (
-      error.response.status === 401 &&
-      !originalRequest._retry &&
-      cookies.refreshToken
-    ) {
-      originalRequest._retry = true;
-      try {
-        const response = await axios.post('/auth/reissue', {
-          refreshToken: cookies.refreshToken,
-        });
-        if (response.status === 200) {
-          setCookie('jwt', response.data.accessToken, {
-            path: '/',
-            expires: new Date(response.data.expiresIn * 1000 + Date.now()),
-          });
-
-          originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
-          return instance(originalRequest);
-        }
-      } catch (error) {
-        setCookie('jwt', '', { path: '/', expires: new Date(0) });
-        setCookie('refreshToken', '', { path: '/', expires: new Date(0) });
-        window.location.reload();
-      }
+  (response) => {
+    const jwtToken = response.headers['accessToken'];
+    if (jwtToken) {
+      const [cookies, setCookie] = useCookies(['jwt']);
+      setCookie('jwt', jwtToken, { path: '/' });
     }
+    return response;
+  },
+  (error) => {
+    const response = error.response;
+    if (response && response.status === 401) {
+      const [cookies, removeCookie] = useCookies(['jwt']);
+      removeCookie('jwt', { path: '/' });
+    }
+
     return Promise.reject(error);
   },
 );
