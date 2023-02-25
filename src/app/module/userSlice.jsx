@@ -131,8 +131,7 @@ export const userSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
         state.userInfo = payload;
-        state.accessToken = payload.accessToken;
-        state.refreshToken = payload.refreshToken;
+        state.jwtToken = payload.jwtToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
