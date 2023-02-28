@@ -10,7 +10,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
   const [cookies] = useCookies(['jwt']);
-  console.log(cookies);
   const jwtToken = cookies.jwt;
   if (jwtToken) {
     config.headers.Authorization = `Bearer ${jwtToken}`;
