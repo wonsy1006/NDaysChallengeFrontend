@@ -35,6 +35,7 @@ export const userLogin = createAsyncThunk(
   async ({ id, pw }, thunkAPI) => {
     try {
       const { data } = await instance.post(`/auth/login`, { id, pw });
+      console.log(data);
       const [accessToken, setAccessToken] = useCookies(['accessToken']);
       const [refreshToken, setRefreshToken] = useCookies(['refreshToken']);
       setAccessToken('accessToken', data.accessToken, { path: '/' });
