@@ -39,6 +39,8 @@ export const userLogin = createAsyncThunk(
       const [refreshToken, setRefreshToken] = useCookies(['refreshToken']);
       setAccessToken('accessToken', data.accessToken, { path: '/' });
       setRefreshToken('refreshToken', data.refreshToken, { path: '/' });
+      console.log(accessToken);
+      console.log(refreshToken);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -99,8 +101,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
       state.loading = false;
       state.userInfo = null;
       state.accessToken = null;
