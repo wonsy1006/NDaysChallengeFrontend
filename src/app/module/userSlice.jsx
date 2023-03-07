@@ -36,6 +36,7 @@ export const userLogin = createAsyncThunk(
     try {
       const { data } = await instance.post(`/auth/login`, { id, pw });
       const accessToken = data.accessToken;
+      console.log(data, accessToken);
       if (accessToken) {
         setCookie('accessToken', token, {
           path: '/',
