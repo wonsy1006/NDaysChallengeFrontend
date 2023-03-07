@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { useCookies } from 'react-cookie';
+import { setCookie } from '../../utils/Cookie';
 import { PURGE } from 'redux-persist';
 import instance from './instance';
 
@@ -35,13 +35,14 @@ export const userLogin = createAsyncThunk(
   async ({ id, pw }, thunkAPI) => {
     try {
       const { data } = await instance.post(`/auth/login`, { id, pw });
-      console.log(data);
-      const [accessToken, setAccessToken] = useCookies(['accessToken']);
-      const [refreshToken, setRefreshToken] = useCookies(['refreshToken']);
-      setAccessToken('accessToken', data.accessToken, { path: '/' });
-      setRefreshToken('refreshToken', data.refreshToken, { path: '/' });
-      console.log(accessToken);
-      console.log(refreshToken);
+      const accessToken = data.accessToken;
+      if (accessToken) {
+        setCookie('accessToken', token, {
+          path: '/',
+          secure: true,
+          sameSite: 'none',
+        });
+      }
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

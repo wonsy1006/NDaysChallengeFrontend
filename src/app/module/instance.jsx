@@ -5,6 +5,7 @@ import { baseUrl } from '../../utils/api';
 const instance = axios.create({
   baseURL: `${baseUrl}`,
   headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
 });
 
 instance.interceptors.request.use((config) => {
@@ -18,7 +19,7 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   (response) => {
-    const jwtToken = response.headers['accessToken'];
+    const jwtToken = response.headers['jwtToken'];
     if (jwtToken) {
       const [cookies, setCookie] = useCookies(['jwt']);
       setCookie('jwt', jwtToken, { path: '/' });
