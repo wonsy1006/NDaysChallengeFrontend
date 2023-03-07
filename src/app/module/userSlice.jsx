@@ -41,11 +41,7 @@ export const userLogin = createAsyncThunk(
       const [cookies, setCookie, removeCookie] = useCookies();
 
       if (accessToken) {
-        setCookie('accessToken', accessToken, {
-          path: '/',
-          secure: true,
-          sameSite: 'none',
-        });
+        setCookie('accessToken', accessToken);
       }
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {

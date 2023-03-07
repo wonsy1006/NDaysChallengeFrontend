@@ -19,18 +19,18 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   (response) => {
-    const jwtToken = response.headers['jwtToken'];
-    if (jwtToken) {
-      const [cookies, setCookie] = useCookies(['jwt']);
-      setCookie('jwt', jwtToken, { path: '/' });
+    const accessToken = response.headers['accessToken'];
+    if (accessToken) {
+      const [cookies, setCookie] = useCookies(['accessToken']);
+      setCookie('accessToken', accessToken, { path: '/' });
     }
     return response;
   },
   (error) => {
     const response = error.response;
     if (response && response.status === 401) {
-      const [cookies, removeCookie] = useCookies(['jwt']);
-      removeCookie('jwt', { path: '/' });
+      const [cookies, removeCookie] = useCookies(['accessToken']);
+      removeCookie('accessToken', { path: '/' });
     }
 
     return Promise.reject(error);
