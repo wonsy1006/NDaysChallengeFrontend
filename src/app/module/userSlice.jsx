@@ -3,8 +3,6 @@ import { useCookies } from 'react-cookie';
 import { PURGE } from 'redux-persist';
 import instance from './instance';
 
-const [cookies, setCookie] = useCookies();
-
 const initialState = {
   loading: false,
   userInfo: {},
@@ -39,6 +37,9 @@ export const userLogin = createAsyncThunk(
       const { data } = await instance.post(`/auth/login`, { id, pw });
       const accessToken = data.accessToken;
       console.log(data, accessToken);
+
+      const [cookies, setCookie, removeCookie] = useCookies();
+
       if (accessToken) {
         setCookie('accessToken', accessToken, {
           path: '/',
