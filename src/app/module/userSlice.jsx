@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { setCookie } from '../../utils/Cookie';
+import { useCookies } from 'react-cookie';
 import { PURGE } from 'redux-persist';
 import instance from './instance';
+
+const [cookies, setCookie] = useCookies();
 
 const initialState = {
   loading: false,
@@ -38,7 +40,7 @@ export const userLogin = createAsyncThunk(
       const accessToken = data.accessToken;
       console.log(data, accessToken);
       if (accessToken) {
-        setCookie('accessToken', token, {
+        setCookie('accessToken', accessToken, {
           path: '/',
           secure: true,
           sameSite: 'none',
@@ -133,8 +135,6 @@ export const userSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         state.loading = true;
         state.userInfo = payload;
-        state.accessToken = accessToken;
-        state.refreshToken = refreshToken;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
         state.loading = false;
