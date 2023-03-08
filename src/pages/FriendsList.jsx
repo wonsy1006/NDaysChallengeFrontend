@@ -187,3 +187,9 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
+const UserName = styled.span`
+  margin-right: 0.5rem;
+  font-weight: ${({ theme }) => theme.fonts.weight.bold};
+  color: ${({ theme }) => theme.colors.bl500};
+`;
