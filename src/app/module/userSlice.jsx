@@ -38,10 +38,10 @@ export const userLogin = createAsyncThunk(
       const accessToken = data.accessToken;
       console.log(data, accessToken);
 
-      const [cookies, setCookie, removeCookie] = useCookies();
+      const [cookies, setCookie, removeCookie] = useCookies('token');
 
       if (accessToken) {
-        setCookie('accessToken', accessToken);
+        setCookie('token', accessToken);
       }
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
