@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { useCookies } from 'react-cookie';
 import { PURGE } from 'redux-persist';
 import instance from './instance';
+
+const accessToken = localStorage.getItem('accessToken')
+  ? localStorage.getItem('accessToken')
+  : null;
 
 const initialState = {
   loading: false,
@@ -35,15 +38,8 @@ export const userLogin = createAsyncThunk(
   async ({ id, pw }, thunkAPI) => {
     try {
       const { data } = await instance.post(`/auth/login`, { id, pw });
-      const accessToken = data.accessToken;
-      console.log(data, accessToken);
-
-      const [cookies, setCookie, removeCookie] = useCookies('token');
-      console.log(cookies);
-
-      if (accessToken) {
-        setCookie('token', accessToken, { secure: true });
-      }
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -104,6 +100,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       state.loading = false;
       state.userInfo = null;
       state.accessToken = null;
