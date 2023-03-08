@@ -27,7 +27,9 @@ const ChallengeDetail = () => {
     dispatch(getChallengeDetail(challengeId));
   }, [dispatch]);
 
-  const { challengeDetail } = useSelector((state) => state.challenge);
+  const challengeDetail = useSelector(
+    (state) => state.challenge.challengeDetail,
+  );
   console.log(challengeDetail);
   const category = challengeDetail.category;
   // const type = challengeDetail.type;
@@ -45,7 +47,7 @@ const ChallengeDetail = () => {
   const successCount = challengeDetail.successCount;
   const passCount = challengeDetail.passCount;
 
-  console.log(stamps, stampCounts, successCount);
+  // console.log(stamps, stampCounts, successCount);
 
   return (
     <>
