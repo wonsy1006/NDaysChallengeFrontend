@@ -27,18 +27,6 @@ const FriendsListItem = () => {
             </RowWrapper>
           );
         })}
-        <RowWrapper width="90%" alignItems="center">
-          <ColumnWrapper width="4rem" margin="1rem">
-            <ProfilePic picType="pic3" />
-          </ColumnWrapper>
-          <UserName>OOOOO</UserName>
-        </RowWrapper>
-        <RowWrapper width="90%" alignItems="center">
-          <ColumnWrapper width="4rem" margin="1rem">
-            <ProfilePic picType="pic3" />
-          </ColumnWrapper>
-          <UserName>OOOOO</UserName>
-        </RowWrapper>
       </ColumnWrapper>
     </FriendsListContainer>
   );

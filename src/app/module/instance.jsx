@@ -16,7 +16,7 @@ instance.interceptors.request.use(function (config) {
   }
   if (config.headers && accessToken && refreshToken) {
     config.headers['Authorization'] = `Bearer ${accessToken}`;
-    config.headers['refreshToken'] = `Bearer ${refreshToken}`;
+    config.headers['refreshToken'] = `${refreshToken}`;
     return config;
   }
 });
