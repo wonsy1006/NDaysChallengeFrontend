@@ -17,16 +17,20 @@ const FriendsListItem = () => {
   return (
     <FriendsListContainer>
       <ColumnWrapper alignItems="center">
-        {acceptList.map((accept) => {
-          return (
-            <RowWrapper width="90%" alignItems="center">
-              <ColumnWrapper width="4rem" margin="1rem">
-                <ProfilePic picType={`pic${accept.image}`} />
-              </ColumnWrapper>
-              <UserName>{accept.nickname}</UserName>
-            </RowWrapper>
-          );
-        })}
+        {acceptList.length === 0 ? (
+          <p>표시할 친구가 없습니다.</p>
+        ) : (
+          acceptList.map((accept) => {
+            return (
+              <RowWrapper width="90%" alignItems="center">
+                <ColumnWrapper width="4rem" margin="1rem">
+                  <ProfilePic picType={`pic${accept.image}`} />
+                </ColumnWrapper>
+                <UserName>{accept.nickname}</UserName>
+              </RowWrapper>
+            );
+          })
+        )}
       </ColumnWrapper>
     </FriendsListContainer>
   );

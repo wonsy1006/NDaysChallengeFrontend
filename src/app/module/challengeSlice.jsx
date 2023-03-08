@@ -75,6 +75,23 @@ export const getChallengeDetail = createAsyncThunk(
   },
 );
 
+// 스탬프 갱신
+export const updateStamp = createAsyncThunk(
+  'challenge/updateStamp',
+  async (args, thunkAPI) => {
+    try {
+      await instance.post('/challenge/stamp', {
+        roomNumber,
+        stampNumber,
+        day,
+        successCount,
+        usedPassCount,
+      });
+      return thunkAPI.fulfillWithValue();
+    } catch (error) {}
+  },
+);
+
 export const deleteChallenge = createAsyncThunk(
   'challenge/deleteChallenge',
   async (challengeId, thunkAPI) => {
