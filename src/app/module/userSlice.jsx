@@ -42,7 +42,7 @@ export const userLogin = createAsyncThunk(
       console.log(cookies);
 
       if (accessToken) {
-        setCookie('token', accessToken);
+        setCookie('token', accessToken, { secure: true });
       }
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
