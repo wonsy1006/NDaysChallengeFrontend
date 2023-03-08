@@ -8,9 +8,7 @@ import { getAcceptList } from '../../../app/module/friendsSlice';
 const FriendsListItem = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAcceptList);
-  }, []);
+  dispatch(getAcceptList);
 
   const { acceptList } = useSelector((state) => state.friends);
 
