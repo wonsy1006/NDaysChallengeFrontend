@@ -39,6 +39,7 @@ export const userLogin = createAsyncThunk(
       console.log(data, accessToken);
 
       const [cookies, setCookie, removeCookie] = useCookies('token');
+      console.log(cookies);
 
       if (accessToken) {
         setCookie('token', accessToken);
