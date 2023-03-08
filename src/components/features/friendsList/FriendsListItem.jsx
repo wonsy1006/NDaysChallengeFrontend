@@ -18,7 +18,7 @@ const FriendsListItem = () => {
     <FriendsListContainer>
       <ColumnWrapper alignItems="center">
         {acceptList.length === 0 ? (
-          <p>표시할 친구가 없습니다.</p>
+          <Message>표시할 친구가 없습니다.</Message>
         ) : (
           acceptList.map((accept) => {
             return (
@@ -46,4 +46,9 @@ const UserName = styled.span`
   margin-right: 0.5rem;
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
   color: ${({ theme }) => theme.colors.bl500};
+`;
+
+const Message = styled.p`
+  padding: 1.6rem;
+  font-size: ${({ theme }) => theme.fonts.size.small};
 `;
