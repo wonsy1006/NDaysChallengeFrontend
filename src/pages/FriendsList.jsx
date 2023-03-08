@@ -114,22 +114,6 @@ const FriendsList = () => {
         </ResultContainer>
       </RequestContainer>
       <h3>친구 목록</h3>
-      <FriendsListContainer>
-        <ColumnWrapper alignItems="center">
-          <RowWrapper width="90%" alignItems="center">
-            <ColumnWrapper width="4rem" margin="1rem">
-              <ProfilePic picType="pic3" />
-            </ColumnWrapper>
-            <UserName>OOOOO</UserName>
-          </RowWrapper>
-          <RowWrapper width="90%" alignItems="center">
-            <ColumnWrapper width="4rem" margin="1rem">
-              <ProfilePic picType="pic3" />
-            </ColumnWrapper>
-            <UserName>OOOOO</UserName>
-          </RowWrapper>
-        </ColumnWrapper>
-      </FriendsListContainer>
     </>
   );
 };
@@ -201,16 +185,6 @@ const IconWrapper = styled(RowWrapper)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-`;
-
-const UserName = styled.span`
-  margin-right: 0.5rem;
-  font-weight: ${({ theme }) => theme.fonts.weight.bold};
-  color: ${({ theme }) => theme.colors.bl500};
-`;
-
-const FriendsListContainer = styled.section`
-  width: 100%;
 `;
 
 const StyledForm = styled.form`
