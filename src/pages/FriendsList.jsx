@@ -13,9 +13,9 @@ import {
   findFriends,
   sendRequestToFriend,
   getRequestList,
-  getAcceptList,
 } from '../app/module/friendsSlice';
 import { SearchIcon } from '../components/common/Icon';
+import FriendsListItem from '../components/features/friendsList/FriendsListItem';
 
 const FriendsList = () => {
   const dispatch = useDispatch();
@@ -28,12 +28,7 @@ const FriendsList = () => {
 
   useEffect(() => {
     dispatch(getRequestList());
-    dispatch(getAcceptList());
   }, []);
-
-  // const { requestList } = useSelector((state) => state.friends);
-  // const { acceptList } = useSelector((state) => state.friends);
-  // console.log(requestList, acceptList);
 
   const [showNicknameForm, setShowNicknameForm] = useState(true);
   const [showIdForm, setShowIdForm] = useState(false);
@@ -114,6 +109,7 @@ const FriendsList = () => {
         </ResultContainer>
       </RequestContainer>
       <h3>친구 목록</h3>
+      <FriendsListItem />
     </>
   );
 };

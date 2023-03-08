@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ColumnWrapper, RowWrapper } from '../../common/Wrapper';
 import ProfilePic from '../../common/ProfilePic';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAcceptList } from '../../../app/module/friendsSlice';
 
 const FriendsListItem = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAcceptList);
+  }, []);
+
   const { acceptList } = useSelector((state) => state.friends);
 
   return (
@@ -14,9 +21,9 @@ const FriendsListItem = () => {
           return (
             <RowWrapper width="90%" alignItems="center">
               <ColumnWrapper width="4rem" margin="1rem">
-                <ProfilePic picType="pic3" />
+                <ProfilePic picType={`pic${accept.image}`} />
               </ColumnWrapper>
-              <UserName>OOOOO</UserName>
+              <UserName>{accept.nickname}</UserName>
             </RowWrapper>
           );
         })}
