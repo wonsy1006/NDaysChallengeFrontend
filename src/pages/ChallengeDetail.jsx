@@ -67,7 +67,7 @@ const ChallengeDetail = () => {
       {challengeDetail.reward === '' ? null : (
         <ChallengeReward content={challengeDetail.reward} />
       )}
-      <ChallengeStamp content={challengeDetail} currentDay={currentDay} />
+      {/* <ChallengeStamp content={challengeDetail} currentDay={currentDay} /> */}
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
         <PassWrapper>
           남은 패스 : <LeftPass>{challengeDetail.passCount}</LeftPass> 회
