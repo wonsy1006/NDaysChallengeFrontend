@@ -13,13 +13,8 @@ const ChallengeStamp = (props) => {
   const { isOpen } = useSelector((state) => state.modal);
   const currentDay = props.currentDay;
   const params = useParams();
-  const challengeId = parseInt(params.roomNumber);
 
-  useEffect(() => {
-    dispatch(getChallengeDetail());
-  }, [dispatch]);
-
-  const { challengeDetail } = useSelector((state) => state.challenge);
+  const { challengeDetail } = props.content;
 
   const numberOfStamp = parseInt(challengeDetail.totalDays);
 

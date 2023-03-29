@@ -30,7 +30,7 @@ const ChallengeDetail = () => {
   const challengeDetail = useSelector(
     (state) => state.challenge.challengeDetail,
   );
-  console.log(challengeDetail);
+
   const category = challengeDetail.category;
   // const type = challengeDetail.type;
 
