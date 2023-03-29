@@ -13,10 +13,8 @@ const ChallengeStamp = (props) => {
   const currentDay = props.currentDay;
   const params = useParams();
 
-  const challengeDetail = props.content;
-  console.log(challengeDetail);
-
-  // const numberOfStamp = parseInt(challengeDetail.totalDays);
+  console.log(props);
+  // const numberOfStamp = parseInt(props.totalDays);
 
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
@@ -60,7 +58,7 @@ const ChallengeStamp = (props) => {
   return (
     <>
       {isOpen && (
-        <ChallengeModal content={challengeDetail} currentDay={currentDay} />
+        <ChallengeModal content={props.content} currentDay={currentDay} />
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>
