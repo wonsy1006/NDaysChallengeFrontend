@@ -6,7 +6,6 @@ import ChallengeModal from './ChallengeModal';
 import styled from 'styled-components';
 import Card from '../../common/Card';
 import Stamp from '../../common/Stamp';
-import { getChallengeDetail } from '../../../app/module/challengeSlice';
 
 const ChallengeStamp = (props) => {
   const dispatch = useDispatch();
@@ -14,9 +13,10 @@ const ChallengeStamp = (props) => {
   const currentDay = props.currentDay;
   const params = useParams();
 
-  const { challengeDetail } = props.content;
+  const challengeDetail = props.content;
+  console.log(challengeDetail);
 
-  const numberOfStamp = parseInt(challengeDetail.totalDays);
+  // const numberOfStamp = parseInt(challengeDetail.totalDays);
 
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
