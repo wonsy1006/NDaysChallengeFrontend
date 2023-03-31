@@ -61,7 +61,7 @@ const ChallengeStamp = (props) => {
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>
-        {/* <StampArea>{stamps}</StampArea> */}
+        <StampArea>{stamps}</StampArea>
       </Card>
     </>
   );
