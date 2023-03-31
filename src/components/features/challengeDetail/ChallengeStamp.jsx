@@ -13,7 +13,7 @@ const ChallengeStamp = (props) => {
   const currentDay = props.currentDay;
   const params = useParams();
 
-  // const numberOfStamp = parseInt(props.totalDays);
+  const numberOfStamp = parseInt(props.totalDays);
 
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
@@ -26,28 +26,25 @@ const ChallengeStamp = (props) => {
   // };
 
   // 각 stamp가 가져야 할 값 : key, day, status(success/pass), status를 바꿀 함수
-  //
 
-  const stamps = new Map();
+  const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
+    const leftPad = (num) => {
+      return num.toString().padStart(2, '0');
+    };
 
-  // const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
-  //   const leftPad = (num) => {
-  //     return num.toString().padStart(2, '0');
-  //   };
+    const day = Array.from({ length: numberOfStamp }, (v, i) =>
+      i < 10 ? leftPad(i + 1) : i + 1,
+    );
 
-  //   const day = Array.from({ length: numberOfStamp }, (v, i) =>
-  //     i < 10 ? leftPad(i + 1) : i + 1,
-  //   );
-
-  //   return (
-  //     <Stamp
-  //       status={status}
-  //       day={day[index]}
-  //       key={index}
-  //       onClick={() => dispatch(openModal())}
-  //     />
-  //   );
-  // });
+    return (
+      <Stamp
+        status={status}
+        day={day[index]}
+        key={index}
+        onClick={() => dispatch(openModal())}
+      />
+    );
+  });
 
   // console.log(stamps);
   // const stamp = stamps.find((stamp) => stamp.key === '1');
