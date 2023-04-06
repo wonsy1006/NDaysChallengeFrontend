@@ -34,9 +34,6 @@ const ChallengeDetail = () => {
   const category = challengeDetail.category;
   // const type = challengeDetail.type;
 
-  console.log(challengeDetail.stamp);
-  console.log(challengeDetail.day);
-
   // 현재 일차 수 계산
   const today = new Date();
   const endDate = new Date(challengeDetail.endDate);

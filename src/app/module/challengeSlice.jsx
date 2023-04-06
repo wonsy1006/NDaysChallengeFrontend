@@ -78,7 +78,10 @@ export const getChallengeDetail = createAsyncThunk(
 // 스탬프 갱신
 export const updateStamp = createAsyncThunk(
   'challenge/updateStamp',
-  async (args, thunkAPI) => {
+  async (
+    { roomNumber, stampNumber, day, successCount, usedPassCount },
+    thunkAPI,
+  ) => {
     try {
       await instance.post('/challenge/stamp', {
         roomNumber,
@@ -87,8 +90,10 @@ export const updateStamp = createAsyncThunk(
         successCount,
         usedPassCount,
       });
-      return thunkAPI.fulfillWithValue();
-    } catch (error) {}
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   },
 );
 
@@ -158,10 +163,23 @@ const challengeSlice = createSlice({
       })
       .addCase(getChallengeDetail.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.challengeDetail = payload.data;
+        state.data = payload;
         state.error = null;
       })
       .addCase(getChallengeDetail.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(updateStamp.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateStamp.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.challengeDetail = payload.data;
+        state.error = null;
+      })
+      .addCase(updateStamp.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       })

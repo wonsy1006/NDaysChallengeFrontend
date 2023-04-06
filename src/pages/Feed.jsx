@@ -21,8 +21,8 @@ const Feed = () => {
   return (
     <>
       <h2>오늘의 다짐</h2>
-      {/* {loading && <Loading />} */}
-      {/* {feed.map((dj) => {
+      {loading && <Loading />}
+      {feed.map((dj) => {
         return (
           <FeedItem
             key={dj.dajimNumber}
@@ -32,7 +32,7 @@ const Feed = () => {
             dajimContent={dj.content}
           />
         );
-      })} */}
+      })}
       <Pagination />
     </>
   );

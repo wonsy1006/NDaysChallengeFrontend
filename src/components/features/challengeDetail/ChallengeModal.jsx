@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../../app/module/modalSlice';
+import { updateStamp } from '../../../app/module/challengeSlice';
 import styled from 'styled-components';
 import { RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
@@ -28,7 +29,7 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             sub
             onClick={() => {
-              changeStatus(currentDayStr, 'pass');
+              dispatch(updateStamp());
               dispatch(closeModal());
             }}
           >
@@ -37,7 +38,6 @@ const ChallengeModal = (props, { changeStatus }) => {
           <Button
             primary
             onClick={() => {
-              changeStatus(currentDayStr, 'success');
               dispatch(closeModal());
             }}
           >

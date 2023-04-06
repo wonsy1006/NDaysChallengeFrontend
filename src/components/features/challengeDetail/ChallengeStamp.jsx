@@ -17,6 +17,8 @@ const ChallengeStamp = (props) => {
   const numberOfStamp = parseInt(props.content.totalDays);
   console.log(numberOfStamp);
 
+  const stampInfo = props.content.day;
+
   const [status, setStatus] = useState('unchecked');
   // const [stamps, setStamps] = useState();
 
