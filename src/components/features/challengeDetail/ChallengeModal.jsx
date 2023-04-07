@@ -7,10 +7,14 @@ import { RowWrapper } from '../../common/Wrapper';
 import Button from '../../common/Button';
 import { CloseIcon } from '../../common/Icon';
 
-const ChallengeModal = (props, { changeStatus }) => {
+const ChallengeModal = (props) => {
   const dispatch = useDispatch();
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
+
+  const stampStatus = useSelector(
+    (state) => state.challenge.challengeDetail.day,
+  );
 
   return (
     <ModalContainer>
