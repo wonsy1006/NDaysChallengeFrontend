@@ -15,12 +15,12 @@ const ChallengeStamp = (props) => {
 
   const numberOfStamp = parseInt(props.content.totalDays);
 
-  const stampInfo =
-    props.content.day === null
-      ? Array.from({ length: numberOfStamp }, (str) => {
-          return (str = 'unchecked');
-        })
-      : props.content.day;
+  const stampInfo = 'oooxxx';
+  // props.content.day === null
+  //   ? Array.from({ length: numberOfStamp }, (str) => {
+  //       return (str = 'unchecked');
+  //     })
+  //   : props.content.day;
 
   const stampInfoArray = stampInfo.split('');
 
