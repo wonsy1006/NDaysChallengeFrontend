@@ -16,10 +16,8 @@ const ChallengeStamp = (props) => {
   const numberOfStamp = parseInt(props.content.totalDays);
 
   const stampInfo = 'oooxxx';
-  const status = stampInfo.split();
+  const status = stampInfo.split('');
   console.log(status);
-
-  const changeStampInfoToStatus = (status) => {};
 
   // const [stamps, setStamps] = useState();
 
