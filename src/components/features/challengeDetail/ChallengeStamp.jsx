@@ -15,20 +15,26 @@ const ChallengeStamp = (props) => {
 
   const numberOfStamp = parseInt(props.content.totalDays);
 
-  const stampInfo = 'oooxxx';
-  const status = stampInfo.split('');
-  console.log(status);
+  const stampInfo =
+    props.content.day === ''
+      ? Array.from({ length: numberOfStamp }, (str) => {
+          return (str = 'unchecked');
+        })
+      : props.content.day;
 
-  // const [stamps, setStamps] = useState();
+  const stampInfoArray = stampInfo.split('');
 
-  // const changeStatus = (currentDay, status) => {
-  //   const stamp = stamps.find((stamp) => stamp.key === currentDay.toString());
-  //   console.log(stamp);
-  //   status = stamp.props.status;
-  //   setStatus(status);
-  // };
+  const status = stampInfoArray.map((str) => {
+    if (str === 'o') {
+      return (str = 'success');
+    } else if (str === 'x') {
+      return (str = 'pass');
+    } else {
+      return (str = 'unchecked');
+    }
+  });
 
-  // 각 stamp가 가져야 할 값 : key, day, status(success/pass), status를 바꿀 함수
+  const changeStatus = (status, currentDay) => {};
 
   const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
     const leftPad = (num) => {
