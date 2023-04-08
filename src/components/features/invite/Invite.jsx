@@ -49,8 +49,6 @@ const Invite = () => {
     }
   };
 
-  const shareInstagram = () => {};
-
   const shareFacebook = () => {
     const sendUrl = 'http://ndayschallenge.com'; // 전달할 URL
     window.open('http://www.facebook.com/sharer/sharer.php?u=' + sendUrl);
@@ -73,13 +71,6 @@ const Invite = () => {
           }}
         >
           <KakaotalkIcon size={48} />
-        </IconWrapper>
-        <IconWrapper
-          onClick={() => {
-            shareInstagram();
-          }}
-        >
-          <InstagramIcon size={48} />
         </IconWrapper>
         <IconWrapper
           onClick={() => {
