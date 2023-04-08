@@ -16,15 +16,15 @@ const ChallengeStamp = (props) => {
   const numberOfStamp = parseInt(props.content.totalDays);
 
   const stampInfo =
-    props.content.day === ''
+    props.content.day === null
       ? Array.from({ length: numberOfStamp }, (str) => {
           return (str = 'unchecked');
         })
       : props.content.day;
 
-  // const stampInfoArray = stampInfo.split('');
+  const stampInfoArray = stampInfo.split('');
 
-  const status = stampInfo.map((str) => {
+  const status = stampInfoArray.map((str) => {
     if (str === 'o') {
       return (str = 'success');
     } else if (str === 'x') {
