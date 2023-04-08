@@ -15,9 +15,12 @@ const ChallengeStamp = (props) => {
 
   const numberOfStamp = parseInt(props.content.totalDays);
 
-  const stampInfo = props.content.day;
+  const stampInfo = 'oooxxx';
+  const status = stampInfo.split();
+  console.log(status);
 
-  const [status, setStatus] = useState('unchecked');
+  const changeStampInfoToStatus = (status) => {};
+
   // const [stamps, setStamps] = useState();
 
   // const changeStatus = (currentDay, status) => {
@@ -48,10 +51,10 @@ const ChallengeStamp = (props) => {
     );
   });
 
-  // console.log(stamps);
-  // const stamp = stamps.find((stamp) => stamp.key === '1');
-  // console.log(stamp);
-  // stamp.props.status = 'success';
+  console.log(stamps);
+  const stamp = stamps.find((stamp) => stamp.key === '1');
+  console.log(stamp);
+  stamp.props.status = 'success';
 
   return (
     <>
