@@ -22,9 +22,9 @@ const ChallengeStamp = (props) => {
         })
       : props.content.day;
 
-  const stampInfoArray = stampInfo.split('');
+  // const stampInfoArray = stampInfo.split('');
 
-  const status = stampInfoArray.map((str) => {
+  const status = stampInfo.map((str) => {
     if (str === 'o') {
       return (str = 'success');
     } else if (str === 'x') {
