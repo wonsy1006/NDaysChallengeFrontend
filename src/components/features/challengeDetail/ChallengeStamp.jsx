@@ -41,6 +41,8 @@ const ChallengeStamp = (props) => {
           }
         });
 
+  console.log(status);
+
   const changeStatus = (status, currentDay) => {};
 
   const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
