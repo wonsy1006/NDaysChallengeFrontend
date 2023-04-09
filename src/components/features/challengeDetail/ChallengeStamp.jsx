@@ -15,24 +15,31 @@ const ChallengeStamp = (props) => {
 
   const numberOfStamp = parseInt(props.content.totalDays);
 
-  const stampInfo = 'oooxxx';
-  // props.content.day === null
-  //   ? Array.from({ length: numberOfStamp }, (str) => {
-  //       return (str = 'unchecked');
-  //     })
-  //   : props.content.day;
+  const stampInfo = props.content.day;
 
-  const stampInfoArray = stampInfo.split('');
+  // const stampInfo =
+  //   props.content.day === ''
+  //     ? Array.from({ length: numberOfStamp }, (str) => {
+  //         return (str = 'unchecked');
+  //       })
+  //     : props.content.day;
 
-  const status = stampInfoArray.map((str) => {
-    if (str === 'o') {
-      return (str = 'success');
-    } else if (str === 'x') {
-      return (str = 'pass');
-    } else {
-      return (str = 'unchecked');
-    }
-  });
+  // const stampInfoArray = stampInfo.split('');
+
+  const status =
+    stampInfo === ''
+      ? Array.from({ length: numberOfStamp }, (str) => {
+          return (str = 'unchecked');
+        })
+      : stampInfo.map((str) => {
+          if (str === 'o') {
+            return (str = 'success');
+          } else if (str === 'x') {
+            return (str = 'pass');
+          } else {
+            return (str = 'unchecked');
+          }
+        });
 
   const changeStatus = (status, currentDay) => {};
 
