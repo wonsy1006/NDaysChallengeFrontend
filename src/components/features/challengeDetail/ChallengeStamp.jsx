@@ -17,7 +17,7 @@ const ChallengeStamp = (props) => {
 
   const stampInfo = props.content.day;
 
-  console.log(stampInfo);
+  console.log(stampInfo.length);
   console.log(typeof stampInfo);
 
   // const stampInfo =
