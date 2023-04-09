@@ -30,7 +30,7 @@ const ChallengeStamp = (props) => {
   // const stampInfoArray = stampInfo.split('');
 
   const status =
-    stampInfo === ''
+    stampInfo.length === 0
       ? Array.from({ length: numberOfStamp }, (str) => {
           return (str = 'unchecked');
         })
@@ -60,7 +60,7 @@ const ChallengeStamp = (props) => {
 
     return (
       <Stamp
-        status={status}
+        status={status[index]}
         day={day[index]}
         key={index}
         onClick={() => dispatch(openModal())}
