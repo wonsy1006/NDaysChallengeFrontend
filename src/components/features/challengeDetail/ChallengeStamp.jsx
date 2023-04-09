@@ -54,7 +54,7 @@ const ChallengeStamp = (props) => {
 
     return (
       <Stamp
-        status={status}
+        status={status[index]}
         day={day[index]}
         key={index}
         onClick={() => dispatch(openModal())}
