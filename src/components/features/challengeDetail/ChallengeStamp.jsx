@@ -29,7 +29,7 @@ const ChallengeStamp = (props) => {
   // const stampInfoArray = stampInfo.split('');
 
   const status =
-    typeof stampInfo === undefined
+    typeof stampInfo === string
       ? Array.from({ length: numberOfStamp }, (str) => {
           return (str = 'unchecked');
         })
