@@ -17,6 +17,8 @@ const ChallengeStamp = (props) => {
 
   const stampInfo = props.content.day;
 
+  console.log(typeof stampInfo);
+
   // const stampInfo =
   //   props.content.day === ''
   //     ? Array.from({ length: numberOfStamp }, (str) => {
@@ -27,21 +29,21 @@ const ChallengeStamp = (props) => {
   // const stampInfoArray = stampInfo.split('');
 
   const status =
-    stampInfo === ''
-      ? Array.from({ length: numberOfStamp }, (str) => {
-          return (str = 'unchecked');
-        })
-      : stampInfo.map((str) => {
-          if (str === 'o') {
-            return (str = 'success');
-          } else if (str === 'x') {
-            return (str = 'pass');
-          } else {
-            return (str = 'unchecked');
-          }
-        });
+    // stampInfo === ''
+    //   ? Array.from({ length: numberOfStamp }, (str) => {
+    //       return (str = 'unchecked');
+    //     })
+    //   : stampInfo.map((str) => {
+    //       if (str === 'o') {
+    //         return (str = 'success');
+    //       } else if (str === 'x') {
+    //         return (str = 'pass');
+    //       } else {
+    //         return (str = 'unchecked');
+    //       }
+    //     });
 
-  console.log(status);
+    console.log(status);
 
   const changeStatus = (status, currentDay) => {};
 
@@ -56,7 +58,7 @@ const ChallengeStamp = (props) => {
 
     return (
       <Stamp
-        status={status[index]}
+        status={status}
         day={day[index]}
         key={index}
         onClick={() => dispatch(openModal())}
