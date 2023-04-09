@@ -69,7 +69,7 @@ const ChallengeDetail = () => {
       )}
       <ChallengeStamp content={challengeDetail} currentDay={currentDay} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
-        {challengeDetail.passCount === 0 ? null : (
+        {challengeDetail.passCount === '0' ? null : (
           <PassWrapper>
             남은 패스 : <LeftPass>{challengeDetail.passCount}</LeftPass> 회
           </PassWrapper>
