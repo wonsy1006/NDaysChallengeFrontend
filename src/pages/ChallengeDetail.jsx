@@ -45,7 +45,7 @@ const ChallengeDetail = () => {
   const stamps = challengeDetail.stamp;
   const stampCounts = challengeDetail.day;
   const successCount = challengeDetail.successCount;
-  const passCount = challengeDetail.passCount;
+  const passCount = parseInt(challengeDetail.passCount);
 
   // console.log(stamps, stampCounts, successCount);
 
@@ -69,7 +69,7 @@ const ChallengeDetail = () => {
       )}
       <ChallengeStamp content={challengeDetail} currentDay={currentDay} />
       <RowWrapper width="90%" margin="1rem auto" justifyContent="space-between">
-        {challengeDetail.passCount === '0' ? null : (
+        {passCount === 0 ? null : (
           <PassWrapper>
             남은 패스 : <LeftPass>{challengeDetail.passCount}</LeftPass> 회
           </PassWrapper>
