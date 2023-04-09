@@ -29,12 +29,12 @@ const ChallengeStamp = (props) => {
 
   // const stampInfoArray = stampInfo.split('');
 
-  const status =
-    stampInfo.length === 0
-      ? Array.from({ length: numberOfStamp }, (str) => {
-          return (str = 'unchecked');
-        })
-      : stampInfo;
+  const status = stampInfo;
+  // .length === 0
+  //   ? Array.from({ length: numberOfStamp }, (str) => {
+  //       return (str = 'unchecked');
+  //     })
+  //   : stampInfo;
   // .map((str) => {
   //     if (str === 'o') {
   //       return (str = 'success');
