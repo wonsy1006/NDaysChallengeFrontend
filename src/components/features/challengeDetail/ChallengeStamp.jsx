@@ -30,21 +30,22 @@ const ChallengeStamp = (props) => {
   // const stampInfoArray = stampInfo.split('');
 
   const status =
-    // typeof stampInfo == string
-    //   ? Array.from({ length: numberOfStamp }, (str) => {
-    //       return (str = 'unchecked');
-    //     })
-    //   : stampInfo.map((str) => {
-    //       if (str === 'o') {
-    //         return (str = 'success');
-    //       } else if (str === 'x') {
-    //         return (str = 'pass');
-    //       } else {
-    //         return (str = 'unchecked');
-    //       }
-    //     });
+    stampInfo === ''
+      ? Array.from({ length: numberOfStamp }, (str) => {
+          return (str = 'unchecked');
+        })
+      : stampInfo;
+  // .map((str) => {
+  //     if (str === 'o') {
+  //       return (str = 'success');
+  //     } else if (str === 'x') {
+  //       return (str = 'pass');
+  //     } else {
+  //       return (str = 'unchecked');
+  //     }
+  //   });
 
-    console.log(status);
+  console.log(status);
 
   const changeStatus = (status, currentDay) => {};
 
