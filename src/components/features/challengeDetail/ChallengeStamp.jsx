@@ -15,38 +15,24 @@ const ChallengeStamp = (props) => {
 
   const numberOfStamp = parseInt(props.content.totalDays);
 
-  const stampInfo = props.content.day;
-
-  // console.log(stampInfo.length);
-  // console.log(typeof stampInfo);
-
-  // const stampInfo =
-  //   props.content.day === ''
-  //     ? Array.from({ length: numberOfStamp }, (str) => {
-  //         return (str = 'unchecked');
-  //       })
-  //     : props.content.day;
-
-  // const stampInfoArray = stampInfo.split('');
+  const [modifiedStampInfo, setModifiedStampInfo] = useState([]);
 
   useEffect(() => {
-    stampInfo =
+    const stampInfo = props.content.day;
+    const modifiedStampInfo =
       stampInfo.length === 0
-        ? Array.from({ length: numberOfStamp }, (str) => {
-            return (str = 'unchecked');
-          })
+        ? Array.from({ length: numberOfStamp }, (str) => 'unchecked')
         : stampInfo.map((str) => {
             if (str === 'o') {
-              return (str = 'success');
+              return 'success';
             } else if (str === 'x') {
-              return (str = 'pass');
+              return 'pass';
             } else {
-              return (str = 'unchecked');
+              return 'unchecked';
             }
           });
-  }, [stampInfo]);
-
-  console.log(status);
+    setModifiedStampInfo(modifiedStampInfo);
+  }, [props.content.day, numberOfStamp]);
 
   const stamps = Array.from({ length: numberOfStamp }, (n, index) => {
     const leftPad = (num) => {
@@ -59,7 +45,7 @@ const ChallengeStamp = (props) => {
 
     return (
       <Stamp
-        status={stampInfo[index]}
+        status={modifiedStampInfo[index]}
         day={day[index]}
         key={index + 1}
         onClick={() => dispatch(openModal())}
