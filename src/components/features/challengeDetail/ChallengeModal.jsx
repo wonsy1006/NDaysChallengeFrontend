@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { closeModal } from '../../../app/module/modalSlice';
 import { updateStamp } from '../../../app/module/challengeSlice';
 import styled from 'styled-components';
@@ -13,37 +13,69 @@ const ChallengeModal = (props) => {
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
 
-  const [successCount, setSuccessCount] = useState(0);
-  const [usedPassCount, setUsedPassCount] = useState(0);
+  const [stampInfo, setStampInfo] = useState(props.stampInfo);
 
-  const stampInfoCopy = [...props.stampInfo];
-  if (stampInfoCopy.includes('unchecked')) {
-    const lastUncheckedIndex = stampInfoCopy.lastIndexOf('unchecked');
-    stampInfoCopy.fill('unchecked', lastUncheckedIndex + 1);
-  }
-
-  const handleSubButtonClick = () => {
-    const uncheckedIndex = stampInfoCopy.indexOf('unchecked');
-    if (uncheckedIndex >= 0) {
-      stampInfoCopy[uncheckedIndex] = 'pass';
-      setUsedPassCount((count) => count + 1);
+  const handlePassClick = () => {
+    const uncheckedCount = stampInfo.filter(
+      (status) => status === 'unchecked',
+    ).length;
+    if (uncheckedCount === 0) {
+      // No unchecked stamps left
+      return;
     }
+    const usedPassCount = props.content.passCount - 1;
+    const updatedStampInfo = [...stampInfo];
+    const nextUncheckedIndex = updatedStampInfo.indexOf('unchecked');
+    updatedStampInfo[nextUncheckedIndex] = 'pass';
+    setStampInfo(updatedStampInfo);
+    dispatch(
+      updateStamp({
+        roomNumber: props.content.roomNumber,
+        stampNumber: props.content.stampNumber,
+        day: updatedStampInfo.join(''),
+        successCount: props.content.successCount,
+        usedPassCount,
+      }),
+    );
   };
 
-  const handlePrimaryButtonClick = () => {
-    const uncheckedIndex = stampInfoCopy.indexOf('unchecked');
-    if (uncheckedIndex >= 0) {
-      stampInfoCopy[uncheckedIndex] = 'success';
-      setSuccessCount((count) => count + 1);
+  const handleSuccessClick = () => {
+    const uncheckedCount = stampInfo.filter(
+      (status) => status === 'unchecked',
+    ).length;
+    if (uncheckedCount === 0) {
+      // No unchecked stamps left
+      return;
+    }
+    const successCount = props.content.successCount + 1;
+    const updatedStampInfo = [...stampInfo];
+    const nextUncheckedIndex = updatedStampInfo.indexOf('unchecked');
+    updatedStampInfo[nextUncheckedIndex] = 'success';
+    setStampInfo(updatedStampInfo);
+    if (uncheckedCount === 1) {
+      // Last unchecked stamp was just checked
+      dispatch(
+        updateStamp({
+          roomNumber: props.content.roomNumber,
+          stampNumber: props.content.stampNumber,
+          day: updatedStampInfo.join(''),
+          successCount,
+          usedPassCount: props.content.passCount,
+        }),
+      );
+    } else {
+      // There are still unchecked stamps left
+      dispatch(
+        updateStamp({
+          roomNumber: props.content.roomNumber,
+          stampNumber: props.content.stampNumber,
+          day: updatedStampInfo.join(''),
+          successCount,
+          usedPassCount: props.content.usedPassCount,
+        }),
+      );
     }
   };
-
-  useEffect(() => {
-    const successDays = stampInfoCopy.filter((status) => status === 'success');
-    setSuccessCount(successDays.length);
-    const passDays = stampInfoCopy.filter((status) => status === 'pass');
-    setUsedPassCount(passDays.length);
-  }, [stampInfoCopy]);
 
   return (
     <ModalContainer>
