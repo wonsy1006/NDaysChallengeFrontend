@@ -176,7 +176,6 @@ const challengeSlice = createSlice({
       })
       .addCase(updateStamp.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.challengeDetail = payload.data;
         state.error = null;
       })
       .addCase(updateStamp.rejected, (state, { payload }) => {

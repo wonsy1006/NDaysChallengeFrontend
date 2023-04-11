@@ -64,7 +64,11 @@ const ChallengeStamp = (props) => {
   return (
     <>
       {isOpen && (
-        <ChallengeModal content={props.content} currentDay={currentDay} />
+        <ChallengeModal
+          content={props.content}
+          stampInfo={stampInfo}
+          currentDay={currentDay}
+        />
       )}
       <Card>
         <StampTitle>✔️ 챌린지 진척도</StampTitle>

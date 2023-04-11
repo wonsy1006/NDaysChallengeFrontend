@@ -33,6 +33,7 @@ const ChallengeModal = (props) => {
           <Button
             sub
             onClick={() => {
+              console.log(props.stampInfo);
               dispatch(updateStamp());
               dispatch(closeModal());
             }}
