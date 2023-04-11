@@ -86,7 +86,7 @@ const ChallengeDetail = () => {
       >
         <RemoveChallenge
           onClick={() => {
-            deleteChallenge(challengeId);
+            dispatch(deleteChallenge(challengeId));
             window.location.reload('/');
           }}
         >
