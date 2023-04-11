@@ -15,27 +15,27 @@ const ChallengeStamp = (props) => {
 
   const numberOfStamp = parseInt(props.content.totalDays);
 
-  // create a local state variable to store the stamp information
   const [stampInfo, setStampInfo] = useState(props.content.day);
 
   useEffect(() => {
-    // update the stampInfo state variable
     setStampInfo((prevState) => {
-      if (prevState.length === 0) {
-        return Array.from({ length: numberOfStamp }, (str) => {
+      const initialArray = Array.from(
+        { length: numberOfStamp - prevState.length },
+        (str) => {
+          return (str = 'u');
+        },
+      );
+      const stringArray = prevState.split('');
+      const newArray = initialArray.concat(stringArray);
+      return newArray.map((str) => {
+        if (str === 'o') {
+          return (str = 'success');
+        } else if (str === 'x') {
+          return (str = 'pass');
+        } else {
           return (str = 'unchecked');
-        });
-      } else {
-        return prevState.map((str) => {
-          if (str === 'o') {
-            return (str = 'success');
-          } else if (str === 'x') {
-            return (str = 'pass');
-          } else {
-            return (str = 'unchecked');
-          }
-        });
-      }
+        }
+      });
     });
   }, [numberOfStamp, props.content.day]);
 
