@@ -15,27 +15,30 @@ const ChallengeStamp = (props) => {
 
   const numberOfStamp = parseInt(props.content.totalDays);
 
-  const [stampInfo, setStampInfo] = useState(props.content.day);
+  const [stampInfo, setStampInfo] = useState([]);
 
   useEffect(() => {
     setStampInfo((prevState) => {
-      const initialArray = Array.from(
-        { length: numberOfStamp - prevState.length },
-        (str) => {
-          return (str = 'u');
-        },
-      );
-      const stringArray = prevState.split('');
-      const newArray = initialArray.concat(stringArray);
-      return newArray.map((str) => {
-        if (str === 'o') {
-          return (str = 'success');
-        } else if (str === 'x') {
-          return (str = 'pass');
-        } else {
-          return (str = 'unchecked');
-        }
-      });
+      if (!props.content.day) {
+        return Array.from({ length: numberOfStamp }, () => 'unchecked');
+      } else {
+        const days = props.content.day.split('');
+        const remainingDays = numberOfStamp - days.length;
+        const fillers = Array.from(
+          { length: remainingDays },
+          () => 'unchecked',
+        );
+        const filledDays = days.map((day) => {
+          if (day === 'o') {
+            return 'success';
+          } else if (day === 'x') {
+            return 'pass';
+          } else {
+            return 'unchecked';
+          }
+        });
+        return [...filledDays, ...fillers];
+      }
     });
   }, [numberOfStamp, props.content.day]);
 
@@ -57,10 +60,6 @@ const ChallengeStamp = (props) => {
       />
     );
   });
-
-  console.log(stamps);
-  const stamp = stamps.find((stamp) => stamp.key === '1');
-  console.log(stamp);
 
   return (
     <>
