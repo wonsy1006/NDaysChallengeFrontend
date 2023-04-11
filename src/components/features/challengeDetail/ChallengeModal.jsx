@@ -12,9 +12,7 @@ const ChallengeModal = (props) => {
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
 
-  const stampStatus = useSelector(
-    (state) => state.challenge.challengeDetail.day,
-  );
+  console.log(props.stampInfo);
 
   return (
     <ModalContainer>
@@ -33,7 +31,6 @@ const ChallengeModal = (props) => {
           <Button
             sub
             onClick={() => {
-              console.log(props.stampInfo);
               dispatch(updateStamp());
               dispatch(closeModal());
             }}
