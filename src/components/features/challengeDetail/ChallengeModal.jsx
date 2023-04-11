@@ -12,8 +12,6 @@ const ChallengeModal = (props) => {
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
 
-  console.log(props.stampInfo);
-
   return (
     <ModalContainer>
       <Modal>
@@ -31,8 +29,9 @@ const ChallengeModal = (props) => {
           <Button
             sub
             onClick={() => {
-              dispatch(updateStamp());
-              dispatch(closeModal());
+              console.log(props.stampInfo);
+              // dispatch(updateStamp());
+              // dispatch(closeModal());
             }}
           >
             패스 사용하기
@@ -40,7 +39,8 @@ const ChallengeModal = (props) => {
           <Button
             primary
             onClick={() => {
-              dispatch(closeModal());
+              console.log(props.stampInfo);
+              // dispatch(closeModal());
             }}
           >
             도전 성공
