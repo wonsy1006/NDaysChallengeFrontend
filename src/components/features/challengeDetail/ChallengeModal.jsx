@@ -9,8 +9,41 @@ import { CloseIcon } from '../../common/Icon';
 
 const ChallengeModal = (props) => {
   const dispatch = useDispatch();
+  const { roomNumber, stampNumber } = props.content;
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
+
+  const [successCount, setSuccessCount] = useState(0);
+  const [usedPassCount, setUsedPassCount] = useState(0);
+
+  const stampInfoCopy = [...props.stampInfo];
+  if (stampInfoCopy.includes('unchecked')) {
+    const lastUncheckedIndex = stampInfoCopy.lastIndexOf('unchecked');
+    stampInfoCopy.fill('unchecked', lastUncheckedIndex + 1);
+  }
+
+  const handleSubButtonClick = () => {
+    const uncheckedIndex = stampInfoCopy.indexOf('unchecked');
+    if (uncheckedIndex >= 0) {
+      stampInfoCopy[uncheckedIndex] = 'pass';
+      setUsedPassCount((count) => count + 1);
+    }
+  };
+
+  const handlePrimaryButtonClick = () => {
+    const uncheckedIndex = stampInfoCopy.indexOf('unchecked');
+    if (uncheckedIndex >= 0) {
+      stampInfoCopy[uncheckedIndex] = 'success';
+      setSuccessCount((count) => count + 1);
+    }
+  };
+
+  useEffect(() => {
+    const successDays = stampInfoCopy.filter((status) => status === 'success');
+    setSuccessCount(successDays.length);
+    const passDays = stampInfoCopy.filter((status) => status === 'pass');
+    setUsedPassCount(passDays.length);
+  }, [stampInfoCopy]);
 
   return (
     <ModalContainer>
@@ -26,23 +59,10 @@ const ChallengeModal = (props) => {
           남은 패스 : <LeftPass>{props.content.passCount}</LeftPass> 회
         </PassWrapper>
         <ButtonWrapper>
-          <Button
-            sub
-            onClick={() => {
-              console.log(props.stampInfo);
-              // dispatch(updateStamp());
-              // dispatch(closeModal());
-            }}
-          >
+          <Button sub onClick={handleSubButtonClick}>
             패스 사용하기
           </Button>
-          <Button
-            primary
-            onClick={() => {
-              console.log(props.stampInfo);
-              // dispatch(closeModal());
-            }}
-          >
+          <Button primary onClick={handlePrimaryButtonClick}>
             도전 성공
           </Button>
         </ButtonWrapper>
