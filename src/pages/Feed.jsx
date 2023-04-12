@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { getDajimFeed } from '../app/module/dajimSlice';
 import Loading from '../utils/Loading';
 import Button from '../components/common/Button';
+import { RowWrapper } from '../components/common/Wrapper';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,9 @@ const Feed = () => {
           />
         );
       })}
-      {<Button skeleton>+ 더 보기</Button>}
+      <ButtonWrapper>
+        <Button skeleton>+ 더 보기</Button>
+      </ButtonWrapper>
     </>
   );
 };
@@ -44,4 +47,9 @@ export default Feed;
 const Pagination = styled.div`
   display: flex;
   width: 100%;
+`;
+
+const ButtonWrapper = styled(RowWrapper)`
+  justify-content: center;
+  align-items: center;
 `;
