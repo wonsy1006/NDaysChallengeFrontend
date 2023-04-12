@@ -18,8 +18,6 @@ const Feed = () => {
   const { feed } = useSelector((state) => state.dajim);
   const nickname = useSelector((state) => state.user.nickname);
 
-  const { dajim } = feed.content;
-
   return (
     <>
       <h2>오늘의 다짐</h2>
