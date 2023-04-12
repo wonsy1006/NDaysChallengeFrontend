@@ -88,7 +88,7 @@ const StyledButton = styled.button`
       }
     `}
   
-    ${(props) =>
+  ${(props) =>
     props.refuse &&
     css`
       padding: 0.8rem 1.6rem;
@@ -101,6 +101,24 @@ const StyledButton = styled.button`
       font-size: 1.4rem;
       &:hover {
         background: ${({ theme }) => theme.colors.rd};
+        color: ${({ theme }) => theme.colors.gr000};
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+      }
+    `}
+
+  ${(props) =>
+    props.skeleton &&
+    css`
+      padding: 0.8rem 1.6rem;
+      width: 16rem;
+      height: 4rem;
+      border: 1px solid ${({ theme }) => theme.colors.bl500};
+      border-radius: 1.6rem;
+      background: transparent;
+      color: ${({ theme }) => theme.colors.bl500};
+      font-size: 1.4rem;
+      &:hover {
+        background: ${({ theme }) => theme.colors.bl500};
         color: ${({ theme }) => theme.colors.gr000};
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
       }
