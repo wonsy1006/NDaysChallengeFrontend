@@ -22,7 +22,7 @@ const Feed = () => {
     <>
       <h2>오늘의 다짐</h2>
       {loading && <Loading />}
-      {dajim.map((dj) => {
+      {/* {dajim.map((dj) => {
         return (
           <FeedItem
             key={dj.dajimNumber}
@@ -32,7 +32,7 @@ const Feed = () => {
             dajimContent={dj.content}
           />
         );
-      })}
+      })} */}
       <ButtonWrapper>
         <Button skeleton>+ 더 보기</Button>
       </ButtonWrapper>
