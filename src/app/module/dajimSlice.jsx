@@ -131,7 +131,7 @@ const dajimSlice = createSlice({
       .addCase(getDajimFeed.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        state.feed = payload.data.reverse();
+        state.feed = payload.data;
       })
       .addCase(getDajimFeed.rejected, (state, { payload }) => {
         state.loading = false;
