@@ -4,6 +4,7 @@ import FeedItem from '../components/features/feed/FeedItem';
 import styled from 'styled-components';
 import { getDajimFeed } from '../app/module/dajimSlice';
 import Loading from '../utils/Loading';
+import Button from '../components/common/Button';
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const Feed = () => {
           />
         );
       })}
-      {/* <Pagination /> */}
+      {<Button skeleton>+ 더 보기</Button>}
     </>
   );
 };
