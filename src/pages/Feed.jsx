@@ -16,13 +16,13 @@ const Feed = () => {
   const { feed } = useSelector((state) => state.dajim);
   const nickname = useSelector((state) => state.user.nickname);
 
-  const pagination = ({ feed }) => {};
+  console.log(feed);
 
   return (
     <>
       <h2>오늘의 다짐</h2>
       {loading && <Loading />}
-      {feed.map((dj) => {
+      {/* {feed.map((dj) => {
         return (
           <FeedItem
             key={dj.dajimNumber}
@@ -32,8 +32,8 @@ const Feed = () => {
             dajimContent={dj.content}
           />
         );
-      })}
-      <Pagination />
+      })} */}
+      {/* <Pagination /> */}
     </>
   );
 };
