@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../../app/module/modalSlice';
 import { updateStamp } from '../../../app/module/challengeSlice';
