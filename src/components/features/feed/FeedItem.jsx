@@ -14,7 +14,7 @@ const FeedItem = (props) => {
 
   const stickerClickHandler = (type) => {
     const dajimNumber = props.dajimNumber;
-    setStickerStatus(selected);
+    setStickerStatus('selected');
     console.log(dajimNumber, type);
     dispatch(selectEmotion({ dajimNumber, type }));
   };
@@ -29,7 +29,7 @@ const FeedItem = (props) => {
         </NicknameContainer>
       </UserContainer>
       <DajimWrapper>{props.dajimContent}</DajimWrapper>
-      <InteractionWrapper>
+      {/* <InteractionWrapper>
         <Sticker
           type="like"
           count="0"
@@ -60,7 +60,7 @@ const FeedItem = (props) => {
           status="unselected"
           stickerClickHandler={stickerClickHandler}
         />
-      </InteractionWrapper>
+      </InteractionWrapper> */}
     </Card>
   );
 };
