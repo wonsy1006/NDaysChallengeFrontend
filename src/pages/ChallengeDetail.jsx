@@ -47,8 +47,6 @@ const ChallengeDetail = () => {
   const successCount = challengeDetail.successCount;
   const passCount = parseInt(challengeDetail.passCount);
 
-  // console.log(stamps, stampCounts, successCount);
-
   return (
     <>
       {loading && <Loading />}

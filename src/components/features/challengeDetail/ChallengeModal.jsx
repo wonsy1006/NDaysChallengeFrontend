@@ -13,14 +13,18 @@ const ChallengeModal = (props) => {
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
 
-  const [successCount, setSuccessCount] = useState(0);
-  const [usedPassCount, setUsedPassCount] = useState(0);
+  const [successCount, setSuccessCount] = useState(props.content.successCount);
+  const [usedPassCount, setUsedPassCount] = useState(
+    props.content.usedPassCount,
+  );
 
   const stampInfoCopy = [...props.stampInfo];
   if (stampInfoCopy.includes('unchecked')) {
     const lastUncheckedIndex = stampInfoCopy.lastIndexOf('unchecked');
     stampInfoCopy.fill('unchecked', lastUncheckedIndex + 1);
   }
+
+  console.log(stampInfoCopy);
 
   const handleSubButtonClick = () => {
     const uncheckedIndex = stampInfoCopy.indexOf('unchecked');
@@ -40,8 +44,10 @@ const ChallengeModal = (props) => {
 
   useEffect(() => {
     const successDays = stampInfoCopy.filter((status) => status === 'success');
+    console.log(successDays);
     setSuccessCount(successDays.length);
     const passDays = stampInfoCopy.filter((status) => status === 'pass');
+    console.log(passDays);
     setUsedPassCount(passDays.length);
   }, [stampInfoCopy]);
 
