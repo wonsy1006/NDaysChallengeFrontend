@@ -13,43 +13,82 @@ const ChallengeModal = (props) => {
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
 
+  const stampInfo = useMemo(() => {
+    // Convert currentDay into an array of stampInfo
+    const dayArr = currentDayStr.split('');
+    const stampArr = Array(
+      props.content.passCount + props.content.stampCount,
+    ).fill('unchecked');
+    dayArr.forEach((status, i) => {
+      if (status === 'o') {
+        stampArr[i] = 'success';
+      } else if (status === 'x') {
+        stampArr[i] = 'pass';
+      }
+    });
+    return stampArr;
+  }, [currentDayStr, props.content.passCount, props.content.stampCount]);
+
   const [successCount, setSuccessCount] = useState(props.content.successCount);
   const [usedPassCount, setUsedPassCount] = useState(
     props.content.usedPassCount,
   );
 
-  const stampInfoCopy = [...props.stampInfo];
-  if (stampInfoCopy.includes('unchecked')) {
-    const lastUncheckedIndex = stampInfoCopy.lastIndexOf('unchecked');
-    stampInfoCopy.fill('unchecked', lastUncheckedIndex + 1);
-  }
-
-  console.log(stampInfoCopy);
-
-  const handleSubButtonClick = () => {
-    const uncheckedIndex = stampInfoCopy.indexOf('unchecked');
+  const handlePassButtonClick = () => {
+    const uncheckedIndex = stampInfo.indexOf('unchecked');
     if (uncheckedIndex >= 0) {
-      stampInfoCopy[uncheckedIndex] = 'pass';
+      stampInfo[uncheckedIndex] = 'pass';
       setUsedPassCount((count) => count + 1);
+      const newStampStr = stampInfo
+        .map((status) => {
+          if (status === 'success') {
+            return 'o';
+          } else if (status === 'pass') {
+            return 'x';
+          } else {
+            return '_';
+          }
+        })
+        .join('');
+      dispatch(
+        updateStamp({
+          roomNumber,
+          stampNumber,
+          day: newStampStr,
+          successCount,
+          usedPassCount: usedPassCount + 1,
+        }),
+      );
     }
   };
 
-  const handlePrimaryButtonClick = () => {
-    const uncheckedIndex = stampInfoCopy.indexOf('unchecked');
+  const handleSuccessButtonClick = () => {
+    const uncheckedIndex = stampInfo.indexOf('unchecked');
     if (uncheckedIndex >= 0) {
-      stampInfoCopy[uncheckedIndex] = 'success';
+      stampInfo[uncheckedIndex] = 'success';
       setSuccessCount((count) => count + 1);
+      const newStampStr = stampInfo
+        .map((status) => {
+          if (status === 'success') {
+            return 'o';
+          } else if (status === 'pass') {
+            return 'x';
+          } else {
+            return '_';
+          }
+        })
+        .join('');
+      dispatch(
+        updateStamp({
+          roomNumber,
+          stampNumber,
+          day: newStampStr,
+          successCount: successCount + 1,
+          usedPassCount,
+        }),
+      );
     }
   };
-
-  useEffect(() => {
-    const successDays = stampInfoCopy.filter((status) => status === 'success');
-    console.log(successDays);
-    setSuccessCount(successDays.length);
-    const passDays = stampInfoCopy.filter((status) => status === 'pass');
-    console.log(passDays);
-    setUsedPassCount(passDays.length);
-  }, [stampInfoCopy]);
 
   return (
     <ModalContainer>
