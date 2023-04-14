@@ -13,83 +13,6 @@ const ChallengeModal = (props) => {
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
 
-  const stampInfo = useMemo(() => {
-    // Convert currentDay into an array of stampInfo
-    const dayArr = currentDayStr.split('');
-    const stampArr = Array(
-      props.content.passCount + props.content.stampCount,
-    ).fill('unchecked');
-    dayArr.forEach((status, i) => {
-      if (status === 'o') {
-        stampArr[i] = 'success';
-      } else if (status === 'x') {
-        stampArr[i] = 'pass';
-      }
-    });
-    return stampArr;
-  }, [currentDayStr, props.content.passCount, props.content.stampCount]);
-
-  const [successCount, setSuccessCount] = useState(props.content.successCount);
-  const [usedPassCount, setUsedPassCount] = useState(
-    props.content.usedPassCount,
-  );
-
-  const handlePassButtonClick = () => {
-    const uncheckedIndex = stampInfo.indexOf('unchecked');
-    if (uncheckedIndex >= 0) {
-      stampInfo[uncheckedIndex] = 'pass';
-      setUsedPassCount((count) => count + 1);
-      const newStampStr = stampInfo
-        .map((status) => {
-          if (status === 'success') {
-            return 'o';
-          } else if (status === 'pass') {
-            return 'x';
-          } else {
-            return '_';
-          }
-        })
-        .join('');
-      dispatch(
-        updateStamp({
-          roomNumber,
-          stampNumber,
-          day: newStampStr,
-          successCount,
-          usedPassCount: usedPassCount + 1,
-        }),
-      );
-    }
-  };
-
-  const handleSuccessButtonClick = () => {
-    const uncheckedIndex = stampInfo.indexOf('unchecked');
-    if (uncheckedIndex >= 0) {
-      stampInfo[uncheckedIndex] = 'success';
-      setSuccessCount((count) => count + 1);
-      const newStampStr = stampInfo
-        .map((status) => {
-          if (status === 'success') {
-            return 'o';
-          } else if (status === 'pass') {
-            return 'x';
-          } else {
-            return '_';
-          }
-        })
-        .join('');
-      dispatch(
-        updateStamp({
-          roomNumber,
-          stampNumber,
-          day: newStampStr,
-          successCount: successCount + 1,
-          usedPassCount,
-        }),
-      );
-    }
-  };
-
   return (
     <ModalContainer>
       <Modal>
@@ -104,12 +27,8 @@ const ChallengeModal = (props) => {
           남은 패스 : <LeftPass>{props.content.passCount}</LeftPass> 회
         </PassWrapper>
         <ButtonWrapper>
-          <Button sub onClick={handleSubButtonClick}>
-            패스 사용하기
-          </Button>
-          <Button primary onClick={handlePrimaryButtonClick}>
-            도전 성공
-          </Button>
+          <Button sub>패스 사용하기</Button>
+          <Button primary>도전 성공</Button>
         </ButtonWrapper>
         <CloseWrapper
           onClick={() => {
