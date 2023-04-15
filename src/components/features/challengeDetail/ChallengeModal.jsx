@@ -13,6 +13,16 @@ const ChallengeModal = (props) => {
   const currentDay = props.currentDay;
   const currentDayStr = currentDay.toString();
 
+  console.log(props);
+
+  const passHandler = () => {
+    dispatch(closeModal());
+  };
+
+  const successHandler = () => {
+    dispatch(closeModal());
+  };
+
   return (
     <ModalContainer>
       <Modal>
@@ -27,8 +37,12 @@ const ChallengeModal = (props) => {
           남은 패스 : <LeftPass>{props.content.passCount}</LeftPass> 회
         </PassWrapper>
         <ButtonWrapper>
-          <Button sub>패스 사용하기</Button>
-          <Button primary>도전 성공</Button>
+          <Button sub onClick={passHandler}>
+            패스 사용하기
+          </Button>
+          <Button primary onClick={successHandler}>
+            도전 성공
+          </Button>
         </ButtonWrapper>
         <CloseWrapper
           onClick={() => {
