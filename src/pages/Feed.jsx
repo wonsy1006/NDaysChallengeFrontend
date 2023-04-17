@@ -19,9 +19,6 @@ const Feed = () => {
   const feedItems = feed.content;
   const nickname = useSelector((state) => state.user.nickname);
 
-  console.log(feed);
-  console.log(feedItems);
-
   return (
     <>
       <h2>오늘의 다짐</h2>
