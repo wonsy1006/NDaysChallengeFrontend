@@ -15,7 +15,11 @@ const ChallengeModal = (props) => {
 
   console.log(props);
 
-  const passHandler = () => {
+  // stampInfo 데이터 복제
+  const stampInfoCopy = props.stampInfo;
+
+  const passHandler = (currentDay) => {
+    stampInfoCopy.splice(0);
     dispatch(closeModal());
   };
 

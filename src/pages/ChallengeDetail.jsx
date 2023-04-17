@@ -47,6 +47,18 @@ const ChallengeDetail = () => {
   const successCount = challengeDetail.successCount;
   const passCount = parseInt(challengeDetail.passCount);
 
+  // 챌린지 실패 조건 추가
+  const judgeChallengeFailure = (
+    currentDay,
+    successCount,
+    passCount,
+    startDate,
+    endDate,
+  ) => {
+    // 조건 1 currentDay > 챌린지 일수
+    // 조건 2
+  };
+
   return (
     <>
       {loading && <Loading />}
