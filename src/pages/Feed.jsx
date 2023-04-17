@@ -16,6 +16,7 @@ const Feed = () => {
   }, [dispatch]);
 
   const { feed } = useSelector((state) => state.dajim);
+  const { feedItems } = useSelector((state) => state.dajim.content);
   const nickname = useSelector((state) => state.user.nickname);
 
   console.log(feed.content);
@@ -24,7 +25,7 @@ const Feed = () => {
     <>
       <h2>오늘의 다짐</h2>
       {loading && <Loading />}
-      {/* {feed.content.map((dj) => {
+      {feedItems.map((dj) => {
         return (
           <FeedItem
             key={dj.dajimNumber}
@@ -34,7 +35,7 @@ const Feed = () => {
             dajimContent={dj.content}
           />
         );
-      })} */}
+      })}
       <ButtonWrapper>
         <Button skeleton>+ 더 보기</Button>
       </ButtonWrapper>
