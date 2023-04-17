@@ -16,24 +16,25 @@ const Feed = () => {
   }, [dispatch]);
 
   const { feed } = useSelector((state) => state.dajim);
-  const feedItems = feed.content;
+  const feedItems = feed && feed.content;
   const nickname = useSelector((state) => state.user.nickname);
 
   return (
     <>
       <h2>오늘의 다짐</h2>
       {loading && <Loading />}
-      {feedItems.map((dj) => {
-        return (
-          <FeedItem
-            key={dj.dajimNumber}
-            dajimNumber={dj.dajimNumber}
-            user={dj.nickname}
-            pic={dj.image}
-            dajimContent={dj.content}
-          />
-        );
-      })}
+      {feedItems &&
+        feedItems.map((dj) => {
+          return (
+            <FeedItem
+              key={dj.dajimNumber}
+              dajimNumber={dj.dajimNumber}
+              user={dj.nickname}
+              pic={dj.image}
+              dajimContent={dj.content}
+            />
+          );
+        })}
       <ButtonWrapper>
         <Button skeleton>+ 더 보기</Button>
       </ButtonWrapper>
