@@ -19,7 +19,8 @@ const Feed = () => {
   const { feedItems } = useSelector((state) => state.dajim.content);
   const nickname = useSelector((state) => state.user.nickname);
 
-  console.log(feed.content);
+  console.log(feed);
+  console.log(feedItems);
 
   return (
     <>
