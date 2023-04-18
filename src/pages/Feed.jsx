@@ -9,20 +9,21 @@ import { RowWrapper } from '../components/common/Wrapper';
 
 const Feed = () => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.dajim);
+  const { loading, feed } = useSelector((state) => state.dajim);
 
   useEffect(() => {
     dispatch(getDajimFeed());
   }, [dispatch]);
 
-  const { feed } = useSelector((state) => state.dajim);
   const feedItems = feed && feed.content;
-  const nickname = useSelector((state) => state.user.nickname);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
       <h2>오늘의 다짐</h2>
-      {loading && <Loading />}
       {feedItems &&
         feedItems.map((dj) => {
           return (
