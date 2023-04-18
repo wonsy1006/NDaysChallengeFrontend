@@ -69,10 +69,9 @@ export const getDajimFeed = createAsyncThunk(
 
 export const selectEmotion = createAsyncThunk(
   'dajim/selectEmotion',
-  async ({ nickname, dajimNumber, sticker }, thunkAPI) => {
+  async ({ dajimNumber, sticker }, thunkAPI) => {
     try {
       const data = await instance.post(`/feed/emotion`, {
-        nickname,
         dajimNumber,
         sticker,
       });
@@ -143,8 +142,11 @@ const dajimSlice = createSlice({
       })
       .addCase(selectEmotion.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.error = null;
-        state.stickers = payload.data;
+        state.stickers = payload;
+      })
+      .addCase(selectEmotion.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
       });
   },
 });
