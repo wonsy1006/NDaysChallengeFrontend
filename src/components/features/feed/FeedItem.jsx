@@ -29,29 +29,29 @@ const FeedItem = (props) => {
         </NicknameContainer>
       </UserContainer>
       <DajimWrapper>{props.dajimContent}</DajimWrapper>
-      {/* <InteractionWrapper>
+      <InteractionWrapper>
         <Sticker
           type="like"
           count="0"
-          status="unselected"
+          stickerStatus="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
           type="cheer"
           count="1"
-          status="unselected"
+          stickerStatus="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
           type="touched"
           count="2"
-          status="unselected"
+          stickerStatus="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
           type="watch"
           count="10"
-          status="unselected"
+          stickerStatus="unselected"
           stickerClickHandler={stickerClickHandler}
         />
         <Sticker
@@ -60,7 +60,7 @@ const FeedItem = (props) => {
           status="unselected"
           stickerClickHandler={stickerClickHandler}
         />
-      </InteractionWrapper> */}
+      </InteractionWrapper>
     </Card>
   );
 };

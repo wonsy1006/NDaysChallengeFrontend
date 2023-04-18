@@ -32,6 +32,9 @@ const Feed = () => {
               user={dj.nickname}
               pic={dj.image}
               dajimContent={dj.content}
+              allStickers={dj.allStickers}
+              loginSticker={dj.loginSticker}
+              updateDate={dj.updateDate}
             />
           );
         })}
