@@ -26,7 +26,7 @@ const Sticker = (props) => {
   return (
     <StickerContainer status={status}>
       {getStickerText(type)}
-      {count > 0 ? <CountSpan>{count}</CountSpan> : <CountSpan>0</CountSpan>}
+      {count > 0 ? <CountSpan>{count}</CountSpan> : <ZeroSpan>0</ZeroSpan>}
     </StickerContainer>
   );
 };
@@ -54,6 +54,13 @@ const StickerContainer = styled.p`
 const CountSpan = styled.span`
   font-size: ${({ theme }) => theme.fonts.size.small};
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
+  color: ${({ theme }) => theme.colors.gr500};
+  margin: 0 0 0 1rem;
+`;
+
+const ZeroSpan = styled.span`
+  font-size: ${({ theme }) => theme.fonts.size.small};
+  font-weight: ${({ theme }) => theme.fonts.weight.normal};
   color: ${({ theme }) => theme.colors.gr500};
   margin: 0 0 0 1rem;
 `;
