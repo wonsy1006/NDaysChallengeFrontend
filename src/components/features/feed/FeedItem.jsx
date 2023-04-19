@@ -10,14 +10,6 @@ import { selectEmotion } from '../../../app/module/dajimSlice';
 const FeedItem = (props) => {
   const dispatch = useDispatch();
 
-  const [stickerStatus, setStickerStatus] = useState('unselected');
-
-  const stickerClickHandler = (type) => {
-    const dajimNumber = props.dajimNumber;
-    setStickerStatus('selected');
-    dispatch(selectEmotion({ dajimNumber, type }));
-  };
-
   console.log(props.allStickers, props.loginSticker);
 
   return (
@@ -30,38 +22,33 @@ const FeedItem = (props) => {
         </NicknameContainer>
       </UserContainer>
       <DajimWrapper>{props.dajimContent}</DajimWrapper>
-      {/* <InteractionWrapper>
+      <InteractionWrapper>
         <Sticker
           type="like"
-          count="0"
-          stickerStatus="unselected"
-          stickerClickHandler={stickerClickHandler}
+          count={props.allStickers.LIKE}
+          status="unselected"
         />
         <Sticker
           type="cheer"
-          count="1"
-          stickerStatus="unselected"
-          stickerClickHandler={stickerClickHandler}
+          count={props.allStickers.CHEER}
+          status="unselected"
         />
         <Sticker
           type="touched"
-          count="2"
-          stickerStatus="unselected"
-          stickerClickHandler={stickerClickHandler}
+          count={props.allStickers.TOUCHED}
+          status="unselected"
         />
         <Sticker
           type="watch"
-          count="10"
-          stickerStatus="unselected"
-          stickerClickHandler={stickerClickHandler}
+          count={props.allStickers.WATCH}
+          status="unselected"
         />
         <Sticker
           type="surprised"
-          count="0"
+          count={props.allStickers.SURPRISED}
           status="unselected"
-          stickerClickHandler={stickerClickHandler}
         />
-      </InteractionWrapper> */}
+      </InteractionWrapper>
     </Card>
   );
 };
