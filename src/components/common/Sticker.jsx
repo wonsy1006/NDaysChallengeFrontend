@@ -27,7 +27,7 @@ const Sticker = (props) => {
   return (
     <StickerContainer status={status}>
       {getStickerText(type)}
-      {count !== 0 ? <CountSpan>{count}</CountSpan> : null}
+      {count !== 0 ? <CountSpan>{count}</CountSpan> : 0}
     </StickerContainer>
   );
 };
