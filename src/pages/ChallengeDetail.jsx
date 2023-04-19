@@ -47,6 +47,8 @@ const ChallengeDetail = () => {
   const successCount = challengeDetail.successCount;
   const passCount = parseInt(challengeDetail.passCount);
 
+  console.log(challengeDetail.day);
+
   // 챌린지 실패 조건 추가
   const judgeChallengeFailure = (
     currentDay,
