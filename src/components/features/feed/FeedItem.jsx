@@ -18,6 +18,8 @@ const FeedItem = (props) => {
     dispatch(selectEmotion({ dajimNumber, type }));
   };
 
+  console.log(props.allStickers, props.loginSticker);
+
   return (
     <Card>
       <UserContainer>
