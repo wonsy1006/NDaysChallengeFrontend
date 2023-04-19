@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Sticker = (props) => {
-  const count = props.count;
+  const count = parseInt(props.count);
   const type = props.type;
   const status = props.status;
-  const stickerClickHandler = props.stickerClickHandler;
 
   const getStickerText = (type) => {
     let text;
@@ -27,7 +26,7 @@ const Sticker = (props) => {
   return (
     <StickerContainer status={status}>
       {getStickerText(type)}
-      {count !== '' ? <CountSpan>{count}</CountSpan> : 0}
+      {count > 0 ? <CountSpan>{count}</CountSpan> : 0}
     </StickerContainer>
   );
 };
@@ -45,7 +44,11 @@ const StickerContainer = styled.p`
     background: ${({ theme }) => theme.colors.bl50};
   }
 
-  ${(props) => props.selected && css``}
+  ${(props) =>
+    props.selected &&
+    css`
+      background: ${({ theme }) => theme.colors.bl50};
+    `}
 `;
 
 const CountSpan = styled.span`
