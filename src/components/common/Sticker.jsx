@@ -27,7 +27,7 @@ const Sticker = (props) => {
   return (
     <StickerContainer status={status}>
       {getStickerText(type)}
-      {count !== 0 ? <CountSpan>{count}</CountSpan> : 0}
+      {count !== '' ? <CountSpan>{count}</CountSpan> : 0}
     </StickerContainer>
   );
 };
@@ -43,7 +43,6 @@ const StickerContainer = styled.p`
 
   &:hover {
     background: ${({ theme }) => theme.colors.bl50};
-    border: 1.5px solid ${({ theme }) => theme.colors.gr400};
   }
 
   ${(props) => props.selected && css``}
