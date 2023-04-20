@@ -13,10 +13,9 @@ const initialState = {
 
 export const createDajim = createAsyncThunk(
   'dajim/createDajim',
-  async ({ challengeId, dajimNumber, open, content }, thunkAPI) => {
+  async ({ challengeId, open, content }, thunkAPI) => {
     try {
       const data = await instance.post(`/challenge/${challengeId}/dajim`, {
-        dajimNumber,
         open,
         content,
       });
@@ -32,7 +31,6 @@ export const patchDajim = createAsyncThunk(
   async ({ challengeId, dajimNumber }, thunkAPI) => {
     try {
       const data = await instance.patch(`/challenge/${challengeId}/dajim`, {
-        dajimNumber,
         open,
         content,
       });
