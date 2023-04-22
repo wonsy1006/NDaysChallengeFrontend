@@ -30,14 +30,10 @@ const Sticker = (props) => {
     }
   };
 
-  const stickerClickController = (dajimNumber, sticker) => {
-    dispatch(selectEmotion(dajimNumber, sticker));
-  };
-
   return (
     <StickerContainer
       status={status}
-      onClick={stickerClickController(dajimNumber, sticker)}
+      onClick={dispatch(selectEmotion(dajimNumber, sticker))}
     >
       {getStickerText(type)}
       {count > 0 ? <CountSpan>{count}</CountSpan> : <ZeroSpan>0</ZeroSpan>}
