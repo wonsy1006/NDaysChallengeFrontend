@@ -9,6 +9,7 @@ import { selectEmotion } from '../../../app/module/dajimSlice';
 
 const FeedItem = (props) => {
   const dispatch = useDispatch();
+  const dajimNumber = props.dajimNumber;
 
   console.log(props.allStickers, props.loginSticker);
 
@@ -25,26 +26,31 @@ const FeedItem = (props) => {
       <InteractionWrapper>
         <Sticker
           type="like"
+          dajimNumber={dajimNumber}
           count={props.allStickers.LIKE}
           status="unselected"
         />
         <Sticker
           type="cheer"
+          dajimNumber={dajimNumber}
           count={props.allStickers.CHEER}
           status="unselected"
         />
         <Sticker
           type="touched"
+          dajimNumber={dajimNumber}
           count={props.allStickers.TOUCHED}
           status="unselected"
         />
         <Sticker
           type="watch"
+          dajimNumber={dajimNumber}
           count={props.allStickers.WATCH}
           status="unselected"
         />
         <Sticker
           type="surprised"
+          dajimNumber={dajimNumber}
           count={props.allStickers.SURPRISED}
           status="unselected"
         />

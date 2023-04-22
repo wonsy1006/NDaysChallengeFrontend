@@ -7,6 +7,9 @@ const Sticker = (props) => {
   const count = parseInt(props.count);
   const type = props.type;
   const status = props.status;
+  const dajimNumber = parseInt(props.dajimNumber);
+  const sticker = type.toUpperCase();
+
   // UI Component에서 dispatch를 써도 되는가?
   const dispatch = useDispatch();
 
@@ -32,7 +35,10 @@ const Sticker = (props) => {
   };
 
   return (
-    <StickerContainer status={status} onClick={stickerClickController}>
+    <StickerContainer
+      status={status}
+      onClick={stickerClickController(dajimNumber, sticker)}
+    >
       {getStickerText(type)}
       {count > 0 ? <CountSpan>{count}</CountSpan> : <ZeroSpan>0</ZeroSpan>}
     </StickerContainer>
