@@ -1,10 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { selectEmotion } from '../../app/module/dajimSlice';
 
 const Sticker = (props) => {
   const count = parseInt(props.count);
   const type = props.type;
   const status = props.status;
+  // UI Component에서 dispatch를 써도 되는가?
+  const dispatch = useDispatch();
 
   const getStickerText = (type) => {
     let text;
@@ -23,8 +27,12 @@ const Sticker = (props) => {
     }
   };
 
+  const stickerClickController = (dajimNumber, sticker) => {
+    dispatch(selectEmotion(dajimNumber, sticker));
+  };
+
   return (
-    <StickerContainer status={status}>
+    <StickerContainer status={status} onClick={stickerClickController}>
       {getStickerText(type)}
       {count > 0 ? <CountSpan>{count}</CountSpan> : <ZeroSpan>0</ZeroSpan>}
     </StickerContainer>

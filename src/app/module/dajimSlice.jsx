@@ -141,7 +141,6 @@ const dajimSlice = createSlice({
       })
       .addCase(selectEmotion.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.stickers = payload;
       })
       .addCase(selectEmotion.rejected, (state, { payload }) => {
         state.loading = false;
