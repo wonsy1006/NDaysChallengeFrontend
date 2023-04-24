@@ -37,7 +37,7 @@ const Sticker = (props) => {
   return (
     <StickerContainer
       status={status}
-      onClick={dispatch(selectEmotion(dajimNumber, sticker))}
+      // onClick={dispatch(selectEmotion(dajimNumber, sticker))}
     >
       {getStickerText(type)}
       {count > 0 ? <CountSpan>{count}</CountSpan> : <ZeroSpan>0</ZeroSpan>}
