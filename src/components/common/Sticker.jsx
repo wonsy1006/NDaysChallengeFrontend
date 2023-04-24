@@ -35,7 +35,7 @@ const Sticker = (props) => {
   };
 
   return (
-    <StickerContainer status={status} onClick={stickerClickController()}>
+    <StickerContainer status={status} onClick={stickerClickController}>
       {getStickerText(type)}
       {count > 0 ? <CountSpan>{count}</CountSpan> : <ZeroSpan>0</ZeroSpan>}
     </StickerContainer>
