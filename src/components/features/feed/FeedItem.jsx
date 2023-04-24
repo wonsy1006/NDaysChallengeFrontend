@@ -11,8 +11,6 @@ const FeedItem = (props) => {
   const dispatch = useDispatch();
   const dajimNumber = props.dajimNumber;
 
-  console.log(props.allStickers, props.loginSticker);
-
   return (
     <Card>
       <UserContainer>
