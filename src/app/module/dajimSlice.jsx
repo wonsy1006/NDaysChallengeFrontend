@@ -4,7 +4,7 @@ import instance from './instance';
 const initialState = {
   dajim: {},
   dajimNumber: null,
-  feed: [],
+  feed: {},
   stickers: [],
   message: '',
   error: '',
