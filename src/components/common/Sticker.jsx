@@ -13,9 +13,9 @@ const Sticker = (props) => {
   // UI Component에서 dispatch를 써도 되는가?
   const dispatch = useDispatch();
 
-  const stickerClickController = useEffect(() => {
-    dispatch(selectEmotion(dajimNumber, sticker));
-  });
+  // const stickerClickController = useEffect(() => {
+  //   dispatch(selectEmotion(dajimNumber, sticker));
+  // });
 
   const getStickerText = (type) => {
     let text;
@@ -35,7 +35,10 @@ const Sticker = (props) => {
   };
 
   return (
-    <StickerContainer status={status} onClick={stickerClickController}>
+    <StickerContainer
+      status={status}
+      onClick={dispatch(selectEmotion(dajimNumber, sticker))}
+    >
       {getStickerText(type)}
       {count > 0 ? <CountSpan>{count}</CountSpan> : <ZeroSpan>0</ZeroSpan>}
     </StickerContainer>
