@@ -66,6 +66,11 @@ export const getDajimFeed = createAsyncThunk(
   },
 );
 
+export const getNextPage = createAsyncThunk(
+  'dajim/getNextPage',
+  async (args, thunkAPI) => {},
+);
+
 export const selectEmotion = createAsyncThunk(
   'dajim/selectEmotion',
   async ({ dajimNumber, sticker }, thunkAPI) => {

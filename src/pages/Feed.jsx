@@ -15,6 +15,7 @@ const Feed = () => {
     dispatch(getDajimFeed());
   }, [dispatch]);
 
+  console.log(feed);
   const feedItems = feed && feed.content;
 
   if (loading) {
