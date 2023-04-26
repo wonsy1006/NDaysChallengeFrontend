@@ -15,6 +15,15 @@ const Feed = () => {
     dispatch(getDajimFeed());
   }, [dispatch]);
 
+  const pagination = () => {
+    const isEmpty = feed.empty;
+    const isFirst = feed.empty;
+    const isLast = feed.empty;
+    const number = feed.number;
+    const numberOfElements = feed.numberOfElements;
+    const size = feed.size;
+  };
+
   console.log(feed);
   const feedItems = feed && feed.content;
 
