@@ -11,20 +11,12 @@ const Feed = () => {
   const dispatch = useDispatch();
   const { loading, feed } = useSelector((state) => state.dajim);
 
+  const pageNumber = 0;
+
   useEffect(() => {
-    dispatch(getDajimFeed());
+    dispatch(getDajimFeed(pageNumber));
   }, [dispatch]);
 
-  const pagination = () => {
-    const isEmpty = feed.empty;
-    const isFirst = feed.empty;
-    const isLast = feed.empty;
-    const number = feed.number;
-    const numberOfElements = feed.numberOfElements;
-    const size = feed.size;
-  };
-
-  console.log(feed);
   const feedItems = feed && feed.content;
 
   if (loading) {
