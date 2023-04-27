@@ -42,7 +42,9 @@ const Feed = () => {
           );
         })}
       <ButtonWrapper>
-        <Button skeleton>+ 더 보기</Button>
+        <Button skeleton onClick={dispatch(getDajimFeed(pageNumber + 1))}>
+          + 더 보기
+        </Button>
       </ButtonWrapper>
     </>
   );
