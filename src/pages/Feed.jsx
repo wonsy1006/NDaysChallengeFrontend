@@ -11,13 +11,19 @@ const Feed = () => {
   const dispatch = useDispatch();
   const { loading, feed } = useSelector((state) => state.dajim);
 
-  const pageNumber = 0;
+  let pageNumber = 0;
 
   useEffect(() => {
     dispatch(getDajimFeed(pageNumber));
   }, [dispatch]);
 
   const feedItems = feed && feed.content;
+
+  const getNextPage = (pageNumber) => {
+    pageNumber++;
+    dispatch(getDajimFeed(pageNumber));
+    return pageNumber;
+  };
 
   if (loading) {
     return <Loading />;
@@ -42,9 +48,7 @@ const Feed = () => {
           );
         })}
       <ButtonWrapper>
-        <Button skeleton onClick={dispatch(getDajimFeed(pageNumber + 1))}>
-          + 더 보기
-        </Button>
+        <Button skeleton>+ 더 보기</Button>
       </ButtonWrapper>
     </>
   );
