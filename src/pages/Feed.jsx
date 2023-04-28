@@ -48,9 +48,7 @@ const Feed = () => {
           );
         })}
       <ButtonWrapper>
-        <Button skeleton onClick={getNextPage(pageNumber)}>
-          + 더 보기
-        </Button>
+        <Button skeleton>+ 더 보기</Button>
       </ButtonWrapper>
     </>
   );
