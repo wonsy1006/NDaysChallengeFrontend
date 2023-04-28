@@ -21,6 +21,7 @@ const Feed = () => {
 
   const getNextPage = (pageNumber) => {
     dispatch(getDajimFeed(pageNumber));
+    console.log('clicked');
     return pageNumber;
   };
 
